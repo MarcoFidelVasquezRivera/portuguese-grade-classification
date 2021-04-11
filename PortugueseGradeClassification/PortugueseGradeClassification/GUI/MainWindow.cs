@@ -12,9 +12,11 @@ namespace PortugueseGradeClassification
 {
     public partial class MainWindow : Form
     {
+
         public MainWindow()
         {
-            InitializeComponent();
+            //Le falta la clase controladora
+            InitializeComponent();    
         }
     }
 }

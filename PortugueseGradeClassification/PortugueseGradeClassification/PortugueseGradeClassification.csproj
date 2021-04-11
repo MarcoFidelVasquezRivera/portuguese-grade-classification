@@ -46,26 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoadDataWindow.cs">
+    <Compile Include="GUI\LoadDataWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoadDataWindow.Designer.cs">
+    <Compile Include="GUI\LoadDataWindow.Designer.cs">
       <DependentUpon>LoadDataWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.cs">
+    <Compile Include="GUI\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWindow.Designer.cs">
+    <Compile Include="GUI\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Program.cs" />
     <Compile Include="Model\LoadData.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="LoadDataWindow.resx">
+    <EmbeddedResource Include="GUI\LoadDataWindow.resx">
       <DependentUpon>LoadDataWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainWindow.resx">
+    <EmbeddedResource Include="GUI\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

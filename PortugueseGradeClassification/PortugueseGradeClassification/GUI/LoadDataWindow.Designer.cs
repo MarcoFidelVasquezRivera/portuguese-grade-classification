@@ -62,7 +62,7 @@ namespace PortugueseGradeClassification
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LoadDataButton);
             this.Name = "LoadDataWindow";
-            this.Text = "Form1";
+            this.Text = "Portuguese grade classification";
             this.ResumeLayout(false);
             this.PerformLayout();
 

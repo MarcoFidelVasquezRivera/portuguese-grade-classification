@@ -86,7 +86,10 @@ namespace PortugueseGradeClassification.Model
 
         public override string ToString()
         {
-            return SchoolName + Sex + Age + Address;
+            return SchoolName + Sex + Age + Address + FamilySize + ParentsStatus + MotherEducation + FatherEducation + MotherJob + FatherJob + ReasonToStudy +
+                   Guardian + TravelTime + StudyTime + PreviousFailures + SchoolSupport + FamilySupport + ExtraPaidClasses + ExtraCurricularActivities + NurserySchool + 
+                   HigherEducation + InternetAccess + InRomanticRelationship +FamilyRelationshipQuality + FreeTime + GoOutFrecuency + DrinksAlcoholLaboralDays + 
+                   DrinksAlcoholNonLaroralDays + HealthStatus + Absences + FirstGrade + SecondGrade + ThirdGrade;
         }
     }
 }

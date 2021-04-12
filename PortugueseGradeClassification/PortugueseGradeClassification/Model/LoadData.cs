@@ -10,7 +10,7 @@ namespace PortugueseGradeClassification.Model
 {
     class LoadData
     {
-        public ArrayList students; //ArrayList rustico de students porque no se que vamos a utilizar
+        private List<Student> students; //ArrayList rustico de students porque no se que vamos a utilizar
 
         public void Load(string path)
         {
@@ -29,7 +29,7 @@ namespace PortugueseGradeClassification.Model
                     int.Parse(info[6]), int.Parse(info[7]), info[8], info[9], info[10], info[11], int.Parse(info[12]), int.Parse(info[13]),
                     int.Parse(info[14]), info[15], info[16], info[17], info[18], info[19], info[20], info[21], info[22], int.Parse(info[23]),
                     int.Parse(info[24]), int.Parse(info[25]), int.Parse(info[26]), int.Parse(info[27]), int.Parse(info[28]), int.Parse(info[29]),
-                    int.Parse(info[30]), int.Parse(info[31]), int.Parse(info[32]);
+                    int.Parse(info[30]), int.Parse(info[31]), int.Parse(info[32]));
 
 
 
@@ -40,8 +40,9 @@ namespace PortugueseGradeClassification.Model
 
         }
 
-
-
-
+        public List<Student> getStudents()
+        {
+            return students;
+        }
     }
 }

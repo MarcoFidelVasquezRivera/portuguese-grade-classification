@@ -14,12 +14,52 @@ namespace PortugueseGradeClassification
 {
     public partial class MainWindow : Form
     {
+        enum Type { NUMERIC, CATEGORIC, CHAIN}
+        private Dictionary<string, Type> columnTypes;
 
         //Seria bueno tener la hash de estudiantes como atributo
         public MainWindow()
         {
             //Le falta la clase controladora
             InitializeComponent();
+
+            //Inicializacion de la tabla hash con los tipos
+            columnTypes = new Dictionary<string, Type>()
+            {
+                { "School",Type.CATEGORIC },
+                { "Sex",Type.CATEGORIC },
+                { "Age",Type.NUMERIC },
+                { "Address",Type.CATEGORIC },
+                { "Family size",Type.CATEGORIC },
+                { "Parents status",Type.CATEGORIC },
+                { "Mother's education",Type.NUMERIC },
+                { "Father's education",Type.NUMERIC },
+                { "Mother's job",Type.CHAIN },
+                { "Father's job",Type.CHAIN },
+                { "Reason",Type.CHAIN },
+                { "Guardian",Type.CHAIN },
+                { "Travel time",Type.NUMERIC },
+                { "Study time",Type.NUMERIC },
+                { "Failures",Type.NUMERIC },
+                { "School support",Type.CATEGORIC },
+                { "Family support",Type.CATEGORIC },
+                { "Extra paid classes",Type.CATEGORIC },
+                { "Extra activities",Type.CATEGORIC },
+                { "Nursery",Type.CATEGORIC },
+                { "Higher education",Type.CATEGORIC },
+                { "Internet access",Type.CATEGORIC },
+                { "Romantic relationship",Type.CATEGORIC },
+                { "Family relation",Type.NUMERIC },
+                { "Free time",Type.NUMERIC },
+                { "Go out",Type.NUMERIC },
+                { "Weekday alcohol",Type.NUMERIC },
+                { "Weekend alcohol",Type.NUMERIC },
+                { "Health",Type.NUMERIC },
+                { "Absences",Type.NUMERIC },
+                { "Grade 1",Type.NUMERIC },
+                { "Grade 2",Type.NUMERIC },
+                { "Grade 3",Type.NUMERIC },
+            };
 
             Hashtable students = new Hashtable();
 
@@ -255,6 +295,51 @@ namespace PortugueseGradeClassification
                     break;
             }
            
+        }
+
+        private void FilterButton_Click(object sender, EventArgs e)
+        {
+            String field = PortuComboBox.Text;
+            filter(field);
+        }
+
+        private void filter(String field)
+        {
+            if (!field.Equals(""))
+            {
+                //Falta implementar el filtro de datos
+            }
+        }
+
+        private void FilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String field = FilterComboBox.Text;
+            Type type = columnTypes[field]; 
+
+            switch (type)
+            {
+                case Type.CATEGORIC:
+                    BiComboBox.Visible = true;
+                    FilterText1.Visible = false;
+                    FilterText2.Visible = false;
+                    BiComboBox.Text = "Pick a value...";
+                    break;
+
+                case Type.NUMERIC:
+                    BiComboBox.Visible = false;
+                    FilterText1.Visible = true;
+                    FilterText2.Visible = true;
+                    FilterText1.Text = "Min. Value...";
+                    FilterText2.Text = "Max. Value...";
+                    break;
+
+                case Type.CHAIN:
+                    BiComboBox.Visible = false;
+                    FilterText1.Visible = true;
+                    FilterText2.Visible = false;
+                    FilterText1.Text = "Keyword...";
+                    break;
+            }
         }
     }
 }

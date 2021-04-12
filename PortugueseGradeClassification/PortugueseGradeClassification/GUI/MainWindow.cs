@@ -15,6 +15,7 @@ namespace PortugueseGradeClassification
     public partial class MainWindow : Form
     {
 
+        //Seria bueno tener la hash de estudiantes como atributo
         public MainWindow()
         {
             //Le falta la clase controladora
@@ -62,6 +63,198 @@ namespace PortugueseGradeClassification
             }
 
                 
+        }
+
+        private void PortuComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            
+            String currentField = PortuComboBox.SelectedItem.ToString();
+            switch (currentField)
+            {
+                case "School name":
+                    // Torta
+                    PortuGraph.Titles.Clear();
+                    PortuGraph.Series["Series1"].Points.Clear();
+                    PortuGraph.Titles.Add("School name");
+                    PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
+                    PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                    //Tomamos la hash de estudiantes
+                    Hashtable students = new Hashtable();
+                    int msSchool = 0;
+                    int gpSchool = 0;   
+                    //conteo de estudiantes en cada escuela
+                    foreach (DictionaryEntry element in students)
+                    {
+                        Student stu = (Student)element.Value;
+                        if (stu.SchoolName.Equals("MS"))
+                        {
+                            msSchool++;
+                        }
+                        else
+                        {
+                            gpSchool++;
+                        }
+                    }
+                    //Agregamos los datos a la torta
+                    PortuGraph.Series["Series1"].Points.AddXY("Mousinho da Silveira School", msSchool);
+                    PortuGraph.Series["Series1"].Points.AddXY("Gabriel Pereira School", gpSchool);
+                    break;
+                case "Free time":
+                    // Barra
+                    PortuGraph.Titles.Clear();
+                    PortuGraph.Series["Series1"].Points.Clear();
+                    PortuGraph.Titles.Add("Free time");
+                    PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
+                    PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+                    //Tomamos la hash de estudiantes
+                    Hashtable students2 = new Hashtable();
+                    int time1 = 0;
+                    int time2 = 0;
+                    int time3 = 0;
+                    int time4 = 0;
+                    int time5 = 0;
+
+                    //conteo de estudiantes en cada escuela
+                    foreach (DictionaryEntry element in students2)
+                    {
+                        Student stu = (Student)element.Value;
+                        if (stu.FreeTime == 1)
+                        {
+                            time1++;
+                        }
+                        else if(stu.FreeTime == 2)
+                        {
+                            time2++;
+
+                        }else if(stu.FreeTime == 3)
+                        {
+                            time3++;
+                        }else if(stu.FreeTime == 4)
+                        {
+                            time4++;
+                        }
+                        else
+                        {
+                            time5++;
+                        }
+                    }
+                    //Agregamos los datos a la torta
+                    PortuGraph.Series["Series1"].Points.AddXY("Almost none",time1 );
+                    PortuGraph.Series["Series1"].Points.AddXY("Few", time2);
+                    PortuGraph.Series["Series1"].Points.AddXY("Moderate", time3);
+                    PortuGraph.Series["Series1"].Points.AddXY("Many", time4);
+                    PortuGraph.Series["Series1"].Points.AddXY("A lot", time5);
+                    break;
+                case "Study time":
+                    //Barra
+                    PortuGraph.Titles.Clear();
+                    PortuGraph.Series["Series1"].Points.Clear();
+                    PortuGraph.Titles.Add("Study time");
+                    PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
+                    PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+                    //Tomamos la hash de estudiantes
+                    Hashtable students3 = new Hashtable();
+                    int study1 = 0;
+                    int study2 = 0;
+                    int study3 = 0;
+                    int study4 = 0;
+                    int study5 = 0;
+
+                    //conteo de estudiantes en cada escuela
+                    foreach (DictionaryEntry element in students3)
+                    {
+                        Student stu = (Student)element.Value;
+                        if (stu.StudyTime == 1)
+                        {
+                            study1++;
+                        }
+                        else if (stu.StudyTime == 2)
+                        {
+                            study2++;
+
+                        }
+                        else if (stu.StudyTime == 3)
+                        {
+                            study3++;
+                        }
+                        else if (stu.StudyTime == 4)
+                        {
+                            study4++;
+                        }
+                        else
+                        {
+                            study5++;
+                        }
+                    }
+                    //Agregamos los datos a la torta
+                    PortuGraph.Series["Series1"].Points.AddXY("Almost none", study1);
+                    PortuGraph.Series["Series1"].Points.AddXY("Few", study2);
+                    PortuGraph.Series["Series1"].Points.AddXY("Moderate", study3);
+                    PortuGraph.Series["Series1"].Points.AddXY("Many", study4);
+                    PortuGraph.Series["Series1"].Points.AddXY("A lot", study5);
+                    break;
+                case "Address":
+                    //Torta
+                    PortuGraph.Titles.Clear();
+                    PortuGraph.Series["Series1"].Points.Clear();
+                    PortuGraph.Titles.Add("Address");
+                    PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
+                    PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                    //Tomamos la hash de estudiantes
+                    Hashtable students4 = new Hashtable();
+                    int rural = 0;
+                    int urban = 0;
+                    //conteo de estudiantes en cada escuela
+                    foreach (DictionaryEntry element in students4)
+                    {
+                        Student stu = (Student)element.Value;
+                        if (stu.Address.Equals("U"))
+                        {
+                            urban++;
+                        }
+                        else
+                        {
+                            rural++;
+                        }
+                    }
+                    //Agregamos los datos a la torta
+                    PortuGraph.Series["Series1"].Points.AddXY("Urban", urban);
+                    PortuGraph.Series["Series1"].Points.AddXY("Rural", rural);
+                    break;
+                case "Internet access":
+                    //Torta
+                    PortuGraph.Titles.Clear();
+                    PortuGraph.Series["Series1"].Points.Clear();
+                    PortuGraph.Titles.Add("Internet access");
+                    PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
+                    PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                    //Tomamos la hash de estudiantes
+                    Hashtable students5 = new Hashtable();
+                    int yes = 0;
+                    int no = 0;
+                    //conteo de estudiantes en cada escuela
+                    foreach (DictionaryEntry element in students5)
+                    {
+                        Student stu = (Student)element.Value;
+                        if (stu.InternetAccess.Equals("yes"))
+                        {
+                            yes++;
+                        }
+                        else
+                        {
+                            no++;
+                        }
+                    }
+                    //Agregamos los datos a la torta
+                    PortuGraph.Series["Series1"].Points.AddXY("Yes", yes);
+                    PortuGraph.Series["Series1"].Points.AddXY("No", no);
+                    break;
+                default:
+
+                    break;
+            }
+           
         }
     }
 }

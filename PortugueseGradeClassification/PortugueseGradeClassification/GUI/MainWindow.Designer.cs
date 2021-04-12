@@ -29,6 +29,9 @@ namespace PortugueseGradeClassification
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.PortuTable = new System.Windows.Forms.DataGridView();
@@ -67,9 +70,14 @@ namespace PortugueseGradeClassification
             this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.PortuGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PortuComboBox = new System.Windows.Forms.ComboBox();
             this.TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PortuTable)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PortuGraph)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl1
@@ -303,6 +311,9 @@ namespace PortugueseGradeClassification
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.PortuComboBox);
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.PortuGraph);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -321,6 +332,50 @@ namespace PortugueseGradeClassification
             this.tabPage3.Text = "Classification";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // PortuGraph
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.PortuGraph.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.PortuGraph.Legends.Add(legend1);
+            this.PortuGraph.Location = new System.Drawing.Point(284, 6);
+            this.PortuGraph.Name = "PortuGraph";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.PortuGraph.Series.Add(series1);
+            this.PortuGraph.Size = new System.Drawing.Size(443, 359);
+            this.PortuGraph.TabIndex = 1;
+            this.PortuGraph.Text = "chart1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(25, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(157, 16);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Choose graphic data";
+            // 
+            // PortuComboBox
+            // 
+            this.PortuComboBox.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PortuComboBox.FormattingEnabled = true;
+            this.PortuComboBox.Items.AddRange(new object[] {
+            "School name",
+            "Free time",
+            "Study time",
+            "Address",
+            "Internet access"});
+            this.PortuComboBox.Location = new System.Drawing.Point(28, 97);
+            this.PortuComboBox.Name = "PortuComboBox";
+            this.PortuComboBox.Size = new System.Drawing.Size(180, 22);
+            this.PortuComboBox.TabIndex = 3;
+            this.PortuComboBox.Text = "Field";
+            this.PortuComboBox.SelectedIndexChanged += new System.EventHandler(this.PortuComboBox_SelectedIndexChanged);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,6 +387,9 @@ namespace PortugueseGradeClassification
             this.TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PortuTable)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PortuGraph)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -376,5 +434,8 @@ namespace PortugueseGradeClassification
         private System.Windows.Forms.DataGridViewTextBoxColumn Column33;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart PortuGraph;
+        private System.Windows.Forms.ComboBox PortuComboBox;
     }
 }

@@ -31,9 +31,7 @@ namespace PortugueseGradeClassification
         {
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.Table = new System.Windows.Forms.DataGridView();
+            this.PortuTable = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,9 +65,11 @@ namespace PortugueseGradeClassification
             this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Table)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PortuTable)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl1
@@ -85,7 +85,7 @@ namespace PortugueseGradeClassification
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.Table);
+            this.tabPage1.Controls.Add(this.PortuTable);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -94,30 +94,10 @@ namespace PortugueseGradeClassification
             this.tabPage1.Text = "Table";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // PortuTable
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(838, 377);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Charts";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(838, 377);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Classification";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // Table
-            // 
-            this.Table.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Table.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PortuTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PortuTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
@@ -151,10 +131,10 @@ namespace PortugueseGradeClassification
             this.Column31,
             this.Column32,
             this.Column33});
-            this.Table.Location = new System.Drawing.Point(8, 6);
-            this.Table.Name = "Table";
-            this.Table.Size = new System.Drawing.Size(818, 359);
-            this.Table.TabIndex = 0;
+            this.PortuTable.Location = new System.Drawing.Point(8, 6);
+            this.PortuTable.Name = "PortuTable";
+            this.PortuTable.Size = new System.Drawing.Size(818, 359);
+            this.PortuTable.TabIndex = 0;
             // 
             // Column1
             // 
@@ -321,6 +301,26 @@ namespace PortugueseGradeClassification
             this.Column33.HeaderText = "Grade 3";
             this.Column33.Name = "Column33";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(833, 373);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Charts";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(833, 373);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Classification";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,7 +331,7 @@ namespace PortugueseGradeClassification
             this.Text = "Portuguese grade classification";
             this.TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Table)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PortuTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -340,7 +340,7 @@ namespace PortugueseGradeClassification
 
         private System.Windows.Forms.TabControl TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridView Table;
+        private System.Windows.Forms.DataGridView PortuTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

@@ -84,6 +84,18 @@ namespace PortugueseGradeClassification.Model
 
         }
 
+        public String GetAllData() 
+        {
+            //Marco lo siento no encontre una mejor forma no me eches del grupo por favor
+            String str = SchoolName + "," + Sex + "," + Age + "," + Address + "," + FamilySize + "," + ParentsStatus + "," + MotherEducation 
+                + "," + FatherEducation + "," + MotherJob + "," + FatherJob + "," + ReasonToStudy + "," + Guardian + "," + TravelTime
+                + "," + StudyTime + "," + PreviousFailures + "," + SchoolSupport + "," + FamilySupport + "," + ExtraPaidClasses + "," + ExtraCurricularActivities
+                + "," + NurserySchool + "," + HigherEducation + "," + InternetAccess + "," + InRomanticRelationship + "," + FamilyRelationshipQuality
+                + "," + FreeTime + "," + GoOutFrecuency + "," + DrinksAlcoholLaboralDays + "," + DrinksAlcoholNonLaroralDays + "," + HealthStatus
+                + "," + Absences + "," + FirstGrade + "," + SecondGrade + "," + ThirdGrade;
+            return str;
+        }
+
         public override string ToString()
         {
             return SchoolName + Sex + Age + Address + FamilySize + ParentsStatus + MotherEducation + FatherEducation + MotherJob + FatherJob + ReasonToStudy +

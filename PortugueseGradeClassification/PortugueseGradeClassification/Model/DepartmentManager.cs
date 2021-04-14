@@ -74,86 +74,124 @@ namespace PortugueseGradeClassification.Model
             table.Rows.Clear();
 
             List<Student> passedFilter = new List<Student>();
+            string info = "";
 
-            switch (columnName)
-            {
-                case "Mother's job":
-                    foreach (Student st in students)
-                    { 
-                        if(st.MotherJob.ToUpper().Equals(chain.ToUpper()))
-                        {
-                            DataRow dr = table.NewRow();
-                            String[] parameters = st.ToString().Split(',');
+            foreach (Student st in students) {
+                switch (columnName)
+                {
 
-                            for (int i = 0; i < parameters.Length; i++)
-                            {
-                                dr[i] = parameters[i];
+                    case "Mother's job":
+                        info = st.MotherJob;
+                        break;
 
-                            }
-                            table.Rows.Add(dr);
-                        }
-                    
-                    }
-                    break;
+                    case "Father's job":
+                        info = st.FatherJob;
+                        break;
 
-                case "Father's job":
-                    foreach (Student st in students)
+                    case "Reason":
+                        info = st.ReasonToStudy;
+                        break;
+
+                    case "Guardian":
+                        info = st.Guardian;
+                        break;
+                }
+
+
+                info = info.ToUpper();
+                if (info.Equals(chain.ToUpper()))
+                {
+                    DataRow dr = table.NewRow();
+                    String[] parameters = st.ToString().Split(',');
+
+                    for (int i = 0; i < parameters.Length; i++)
                     {
-                        if (st.FatherJob.ToUpper().Equals(chain.ToUpper()))
-                        {
-                            DataRow dr = table.NewRow();
-                            String[] parameters = st.ToString().Split(',');
-
-                            for (int i = 0; i < parameters.Length; i++)
-                            {
-                                dr[i] = parameters[i];
-
-                            }
-                            table.Rows.Add(dr);
-                        }
+                        dr[i] = parameters[i];
 
                     }
-                    break;
-
-                case "Reason":
-                    foreach (Student st in students)
-                    {
-                        if (st.ReasonToStudy.ToUpper().Equals(chain.ToUpper()))
-                        {
-                            DataRow dr = table.NewRow();
-                            String[] parameters = st.ToString().Split(',');
-
-                            for (int i = 0; i < parameters.Length; i++)
-                            {
-                                dr[i] = parameters[i];
-
-                            }
-                            table.Rows.Add(dr);
-                        }
-
-                    }
-                    break;
-
-                case "Guardian":
-                    foreach (Student st in students)
-                    {
-                        if (st.Guardian.ToUpper().Equals(chain.ToUpper()))
-                        {
-                            DataRow dr = table.NewRow();
-                            String[] parameters = st.ToString().Split(',');
-
-                            for (int i = 0; i < parameters.Length; i++)
-                            {
-                                dr[i] = parameters[i];
-
-                            }
-                            table.Rows.Add(dr);
-                        }
-
-                    }
-                    break;
+                    table.Rows.Add(dr);
+                }
             }
-     
+        }
+
+        public void FilterByCategory(String rowName, String category) 
+        {
+            table.Rows.Clear();
+            List<Student> passedFilter = new List<Student>();
+            String info = "";
+
+            foreach (Student st in students)
+            {
+                switch (rowName) 
+                {
+                    case "School":
+                        info = st.SchoolName;
+                        break;
+
+                    case "Sex":
+                        info = Convert.ToString(st.Sex);
+                        break;
+
+                    case "Address":
+                        info = Convert.ToString(st.Address);
+                        break;
+
+                    case "Family Size":
+                        info = st.FamilySize;
+                        break;
+
+                    case "Parents status":
+                        info = Convert.ToString(st.ParentsStatus);
+                        break;
+                    
+                    case "School support":
+                        info = st.SchoolSupport;
+                        break;
+                    
+                    case "Family support":
+                        info = st.FamilySupport;
+                        break;
+                   
+                    case "Extra paid classes":
+                        info = st.ExtraPaidClasses;
+                        break;
+                   
+                    case "Extra activities":
+                        info = st.ExtraCurricularActivities;
+                        break;
+                    
+                    case "Nursery":
+                        info = st.NurserySchool;
+                        break;
+                   
+                    case "Higher education":
+                        info = st.HigherEducation;
+                        break;
+                    
+                    case "Internet access":
+                        info = st.InternetAccess;
+                        break;
+
+                    case "Romantic relationship":
+                        info = st.InRomanticRelationship;
+                        break;
+                }
+                
+                info = info.ToUpper();
+                if (info.Equals(category.ToUpper()))
+                {
+                    DataRow dr = table.NewRow();
+                    String[] parameters = st.ToString().Split(',');
+
+                    for (int i = 0; i < parameters.Length; i++)
+                    {
+                        dr[i] = parameters[i];
+
+                    }
+                    table.Rows.Add(dr);
+
+                }
+            }
         }
 
         public Dictionary<string,int> GetStudentsInfo(int typeOfInfo)

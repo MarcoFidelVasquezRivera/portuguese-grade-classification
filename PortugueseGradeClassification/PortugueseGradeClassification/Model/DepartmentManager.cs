@@ -23,6 +23,9 @@ namespace PortugueseGradeClassification.Model
 
         public void Load(string path)
         {
+            this.table.Clear();
+            this.students.Clear();
+
             var reader = new StreamReader(File.OpenRead(@path));
             string line = reader.ReadLine();
 
@@ -42,7 +45,12 @@ namespace PortugueseGradeClassification.Model
                     int.Parse(info[24]), int.Parse(info[25]), int.Parse(info[26]), int.Parse(info[27]), int.Parse(info[28]), int.Parse(info[29]),
                     int.Parse(info[30]), int.Parse(info[31]), int.Parse(info[32]));
 
-
+                DataRow dr = table.NewRow();
+                for (int i=0; i<info.Length;i++)
+                {
+                    dr[i] = info[i]; //carga los datos de cada columna para su respectiva fila
+                }
+                table.Rows.Add();
 
                 students.Add(toAdd);
                 line = reader.ReadLine();
@@ -51,10 +59,6 @@ namespace PortugueseGradeClassification.Model
 
         }
 
-        public List<Student> GetStudents()
-        {
-            return students;
-        }
 
         public void CreateHeaders(String[] headers)
         {
@@ -79,7 +83,7 @@ namespace PortugueseGradeClassification.Model
                         if(st.MotherJob.ToUpper().Equals(chain.ToUpper()))
                         {
                             DataRow dr = table.NewRow();
-                            String[] parameters = st.GetAllData().Split(',');
+                            String[] parameters = st.ToString().Split(',');
 
                             for (int i = 0; i < parameters.Length; i++)
                             {
@@ -98,7 +102,7 @@ namespace PortugueseGradeClassification.Model
                         if (st.FatherJob.ToUpper().Equals(chain.ToUpper()))
                         {
                             DataRow dr = table.NewRow();
-                            String[] parameters = st.GetAllData().Split(',');
+                            String[] parameters = st.ToString().Split(',');
 
                             for (int i = 0; i < parameters.Length; i++)
                             {
@@ -117,7 +121,7 @@ namespace PortugueseGradeClassification.Model
                         if (st.ReasonToStudy.ToUpper().Equals(chain.ToUpper()))
                         {
                             DataRow dr = table.NewRow();
-                            String[] parameters = st.GetAllData().Split(',');
+                            String[] parameters = st.ToString().Split(',');
 
                             for (int i = 0; i < parameters.Length; i++)
                             {
@@ -136,7 +140,7 @@ namespace PortugueseGradeClassification.Model
                         if (st.Guardian.ToUpper().Equals(chain.ToUpper()))
                         {
                             DataRow dr = table.NewRow();
-                            String[] parameters = st.GetAllData().Split(',');
+                            String[] parameters = st.ToString().Split(',');
 
                             for (int i = 0; i < parameters.Length; i++)
                             {
@@ -150,6 +154,62 @@ namespace PortugueseGradeClassification.Model
                     break;
             }
      
+        }
+
+        public Dictionary<string,int> GetStudentsInfo(int typeOfInfo)
+        {
+            Dictionary<string, int> studentsInfo = new Dictionary<string, int>();
+
+            string info = "";
+            foreach (Student student in students)
+            {
+                switch (typeOfInfo)
+                {
+                    case 1:
+                        info = student.SchoolName;
+                        break;
+
+                    case 2:
+                        info = student.FreeTime.ToString();
+                        break;
+
+                    case 3:
+                        info = student.StudyTime.ToString();
+                        break;
+
+                    case 4:
+                        info = student.TravelTime.ToString();
+                        break;
+
+                    case 5:
+                        info = student.InternetAccess;
+                        break;
+                    
+                }
+
+                if (studentsInfo.ContainsKey(info))
+                {
+                    studentsInfo[info]++;
+                }
+                else
+                {
+                    studentsInfo.Add(info, 1);
+                }
+
+            }
+
+            return studentsInfo;
+        }
+
+        public List<Student> GetStudents()
+        {
+            return students;
+        }
+
+
+        public DataTable GetTable()
+        {
+            return this.table;
         }
     }
 }

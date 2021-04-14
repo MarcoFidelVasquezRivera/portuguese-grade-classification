@@ -73,7 +73,6 @@ namespace PortugueseGradeClassification.Model
         {
             table.Rows.Clear();
 
-            List<Student> passedFilter = new List<Student>();
             string info = "";
 
             foreach (Student st in students) {
@@ -117,7 +116,6 @@ namespace PortugueseGradeClassification.Model
         public void FilterByCategory(String rowName, String category) 
         {
             table.Rows.Clear();
-            List<Student> passedFilter = new List<Student>();
             String info = "";
 
             foreach (Student st in students)
@@ -192,6 +190,101 @@ namespace PortugueseGradeClassification.Model
 
                 }
             }
+        }
+
+        public void FilterByInterval(string rowName, int lowerLimit, int higherLimit)
+        {
+            if (lowerLimit>higherLimit)
+            {
+                //poner que salte una excepcion o algo así
+            }
+            table.Rows.Clear();
+            int info = 0;
+            foreach(Student student in students){
+
+                switch (rowName.ToUpper())
+                {
+                    case "AGE":
+                        info = student.Age;
+                        break;
+
+                    case "MOTHER'S EDUCATION":
+                        info = student.MotherEducation;
+                        break;
+
+                    case "FATHER'S EDUCATION":
+                        info = student.FatherEducation;
+                        break;
+
+                    case "TRAVEL TIME":
+                        info = student.TravelTime;
+                        break;
+
+                    case "STUDY TIME":
+                        info = student.StudyTime;
+                        break;
+
+                    case "FAILURES":
+                        info = student.PreviousFailures;
+                        break;
+
+                    case "FAMILY RELATION":
+                        info = student.FamilyRelationshipQuality;
+                        break;
+
+                    case "FREE TIME":
+                        info = student.FreeTime;
+                        break;
+
+                    case "GO OUT":
+                        info = student.GoOutFrecuency;
+                        break;
+
+                    case "WEEKDAY ALCOHOL":
+                        info = student.DrinksAlcoholLaboralDays;
+                        break;
+
+                    case "WEEKEND ALCOHOL":
+                        info = student.DrinksAlcoholNonLaroralDays;
+                        break;
+
+                    case "HEALTH":
+                        info = student.HealthStatus;
+                        break;
+
+                    case "ABSENCES":
+                        info = student.Absences;
+                        break;
+
+                    case "GRADE 1":
+                        info = student.FirstGrade;
+                        break;
+
+                    case "GRADE 2":
+                        info = student.SecondGrade;
+                        break;
+
+                    case "GRADE 3":
+                        info = student.ThirdGrade;
+                        break;
+
+                }
+
+                if (info<higherLimit && info>lowerLimit)
+                {
+                    DataRow dr = table.NewRow();
+                    String[] parameters = student.ToString().Split(',');
+
+                    for (int i = 0; i < parameters.Length; i++)
+                    {
+                        dr[i] = parameters[i];
+
+                    }
+                    table.Rows.Add(dr);
+
+                }
+            }
+
         }
 
         public Dictionary<string,int> GetStudentsInfo(int typeOfInfo)

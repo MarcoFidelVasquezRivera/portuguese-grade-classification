@@ -69,16 +69,15 @@ namespace PortugueseGradeClassification.Model
 
         }
 
-        public void FilterByChain(String columnName, String chain) 
+        public void FilterByCategory(String rowName, String category) 
         {
             table.Rows.Clear();
+            String info = "";
 
-            string info = "";
-
-            foreach (Student st in students) {
-                switch (columnName)
+            foreach (Student st in students)
+            {
+                switch (rowName) 
                 {
-
                     case "Mother's job":
                         info = st.MotherJob;
                         break;
@@ -94,34 +93,7 @@ namespace PortugueseGradeClassification.Model
                     case "Guardian":
                         info = st.Guardian;
                         break;
-                }
 
-
-                info = info.ToUpper();
-                if (info.Equals(chain.ToUpper()))
-                {
-                    DataRow dr = table.NewRow();
-                    String[] parameters = st.ToString().Split(',');
-
-                    for (int i = 0; i < parameters.Length; i++)
-                    {
-                        dr[i] = parameters[i];
-
-                    }
-                    table.Rows.Add(dr);
-                }
-            }
-        }
-
-        public void FilterByCategory(String rowName, String category) 
-        {
-            table.Rows.Clear();
-            String info = "";
-
-            foreach (Student st in students)
-            {
-                switch (rowName) 
-                {
                     case "School":
                         info = st.SchoolName;
                         break;

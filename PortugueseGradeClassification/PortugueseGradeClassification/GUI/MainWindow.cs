@@ -496,25 +496,34 @@ namespace PortugueseGradeClassification
                             int t1 = int.Parse(FilterText1.Text);
                             int t2 = int.Parse(FilterText2.Text);
 
+                            manager.FilterByInterval("TRAVEL TIME", t1, t2);
+                            PortuTable.DataSource = manager.GetTable();
+
                             break;
                         case "Study time":
                             int s1 = int.Parse(FilterText1.Text);
                             int s2 = int.Parse(FilterText2.Text);
 
+                            manager.FilterByInterval("STUDY TIME", s1, s2);
+                            PortuTable.DataSource = manager.GetTable();
                             break;
                         case "Failures":
                             int fai1 = int.Parse(FilterText1.Text);
                             int fai2 = int.Parse(FilterText2.Text);
 
+                            manager.FilterByInterval("FAILURES", fai1, fai2);
+                            PortuTable.DataSource = manager.GetTable();
                             break;
                         case "School support":
                             if (BiComboBox.Text.Equals("Yes"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("School support", "yes");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else if (BiComboBox.Text.Equals("No"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("School support", "no");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else
                             {
@@ -524,11 +533,13 @@ namespace PortugueseGradeClassification
                         case "Family support":
                             if (BiComboBox.Text.Equals("Yes"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Family support", "yes");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else if (BiComboBox.Text.Equals("No"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Family support", "no");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else
                             {
@@ -538,11 +549,13 @@ namespace PortugueseGradeClassification
                         case "Extra paid classes":
                             if (BiComboBox.Text.Equals("Yes"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Extra paid classes","yes");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else if (BiComboBox.Text.Equals("No"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Extra paid classes", "no");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else
                             {
@@ -552,11 +565,13 @@ namespace PortugueseGradeClassification
                         case "Extra activities":
                             if (BiComboBox.Text.Equals("Yes"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Extra activities", "yes");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else if (BiComboBox.Text.Equals("No"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Extra activities", "no");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else
                             {
@@ -566,11 +581,13 @@ namespace PortugueseGradeClassification
                         case "Nursery":
                             if (BiComboBox.Text.Equals("Yes"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Nursery", "yes");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else if (BiComboBox.Text.Equals("No"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Nursery", "no");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else
                             {
@@ -580,11 +597,13 @@ namespace PortugueseGradeClassification
                         case "Higher education":
                             if (BiComboBox.Text.Equals("Yes"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Higher education", "yes");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else if (BiComboBox.Text.Equals("No"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Higher education", "no");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else
                             {
@@ -594,11 +613,13 @@ namespace PortugueseGradeClassification
                         case "Internet access":
                             if (BiComboBox.Text.Equals("Yes"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Internet access", "yes");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else if (BiComboBox.Text.Equals("No"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Internet access", "no");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else
                             {

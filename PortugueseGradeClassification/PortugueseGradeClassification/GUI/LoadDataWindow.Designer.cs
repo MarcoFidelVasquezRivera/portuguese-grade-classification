@@ -31,6 +31,7 @@ namespace PortugueseGradeClassification
         {
             this.LoadDataButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // LoadDataButton
@@ -54,6 +55,10 @@ namespace PortugueseGradeClassification
             this.label1.TabIndex = 1;
             this.label1.Text = "Welcome, please load a .csv file";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // LoadDataWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -72,6 +77,7 @@ namespace PortugueseGradeClassification
 
         private System.Windows.Forms.Button LoadDataButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

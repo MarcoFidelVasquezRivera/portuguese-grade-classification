@@ -16,13 +16,13 @@ namespace PortugueseGradeClassification
     {
         private enum Type { NUMERIC, CATEGORIC, CHAIN}
         private Dictionary<string, Type> columnTypes;
+        private DepartmentManager manager;
 
-        //Seria bueno tener la hash de estudiantes como atributo
-        public MainWindow()
+        public MainWindow(DepartmentManager manager)
         {
-            //Le falta la clase controladora
+            
             InitializeComponent();
-
+            this.manager = manager;
             //Inicializacion de la tabla hash con los tipos
             columnTypes = new Dictionary<string, Type>()
             {
@@ -61,21 +61,12 @@ namespace PortugueseGradeClassification
                 { "Grade 3",Type.NUMERIC },
             };
 
-            Hashtable students = new Hashtable();
-
-            foreach (DictionaryEntry element in students)
-            {
-                Student stu = (Student)element.Value;
-                loadStudentToTable(stu);         
-            }
-
-                
+            PortuTable.DataSource = manager.GetTable();
         }
 
-        private void PortuComboBox_SelectedIndexChanged(object sender, EventArgs e)
+            private void PortuComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            
             String currentField = PortuComboBox.SelectedItem.ToString();
             switch (currentField)
             {
@@ -267,7 +258,7 @@ namespace PortugueseGradeClassification
 
         private void FilterButton_Click(object sender, EventArgs e)
         {
-            String field = PortuComboBox.Text;
+            String field = FilterComboBox.Text;
             filter(field);
         }
 
@@ -280,15 +271,18 @@ namespace PortugueseGradeClassification
                     case "School":
                         if (BiComboBox.Text.Equals("Mousinho da Silveira School"))
                         {
-                            //Pedir datos a model para cargar la tabla
+                            manager.FilterByCategory("School", "MS");
+                            PortuTable.DataSource = manager.GetTable();
                         }
                         else if(BiComboBox.Text.Equals("Gabriel Pereira School"))
                         {
-                            //Pedir datos a model para cargar la tabla
+                            
+                            manager.FilterByCategory("School", "GB");
+                            PortuTable.DataSource = manager.GetTable();
                         }
                         else
                         {
-                            BiComboBox.Text = "Please select a value";
+                            manager.FilterByCategory("School", "GB");
                         }
                         break;
                     case "Sex":
@@ -308,6 +302,9 @@ namespace PortugueseGradeClassification
                     case "Age":
                         int age1 = int.Parse(FilterText1.Text);
                         int age2 = int.Parse(FilterText2.Text);
+
+                        manager.FilterByInterval("Age", age1, age2);
+                        PortuTable.DataSource = manager.GetTable();
 
                         break;
                     case "Address":

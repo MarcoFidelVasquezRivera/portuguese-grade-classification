@@ -10,7 +10,7 @@ using PortugueseGradeClassification.CustomExceptions;
 
 namespace PortugueseGradeClassification.Model
 {
-    class DepartmentManager
+    public class DepartmentManager
     {
         private DataTable table;
         private List<Student> students; 
@@ -35,9 +35,19 @@ namespace PortugueseGradeClassification.Model
             CreateHeaders(headers);
 
             line = reader.ReadLine();
-            while(line != null && line != "")
+           
+            while(line != null && line != "" )
             {
-                string[] info = line.Split(';');
+                string[] info = line.Split(';',',');
+
+                for(int i = 0; i < info.Length; i++)
+                {
+                    info[i] =  info[i].TrimStart('"');
+                    info[i] =  info[i].TrimEnd('"');
+
+                }
+
+               
 
                 //Cuestionable cantidad de parametros pero it do be like that sometimes ¯\_(ツ)_/¯
                 Student toAdd = new Student(info[0], char.Parse(info[1]), int.Parse(info[2]), char.Parse(info[3]), info[4], char.Parse(info[5]),
@@ -46,16 +56,18 @@ namespace PortugueseGradeClassification.Model
                     int.Parse(info[24]), int.Parse(info[25]), int.Parse(info[26]), int.Parse(info[27]), int.Parse(info[28]), int.Parse(info[29]),
                     int.Parse(info[30]), int.Parse(info[31]), int.Parse(info[32]));
 
+                students.Add(toAdd);
+
                 DataRow dr = table.NewRow();
                 for (int i=0; i<info.Length;i++)
                 {
                     dr[i] = info[i]; //carga los datos de cada columna para su respectiva fila
+                    
                 }
-                table.Rows.Add();
+                table.Rows.Add(dr);
 
-                students.Add(toAdd);
+                
                 line = reader.ReadLine();
-
             }
 
         }

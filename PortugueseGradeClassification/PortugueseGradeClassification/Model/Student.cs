@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PortugueseGradeClassification.Model
 {
-    class Student
+    public class Student
     {
         public string SchoolName { get; }
         public char Sex { get; }

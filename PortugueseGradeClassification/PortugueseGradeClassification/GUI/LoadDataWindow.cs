@@ -7,32 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PortugueseGradeClassification.Model;
 
 namespace PortugueseGradeClassification
 {
     public partial class LoadDataWindow : Form
     {
 
-        MainWindow mainWindow;
+        private MainWindow mainWindow;
+        private DepartmentManager manager;
 
         public LoadDataWindow()
         {
-            //falta controladora en clase mainwindow 
+           
             InitializeComponent();
-            mainWindow = new MainWindow();
+            manager = new DepartmentManager();
+            mainWindow = new MainWindow(manager);
         }
 
         private void LoadDataButton_Click(object sender, EventArgs e)
         {
-            bool correctFile = true;
-            //cargar datos .csv 
-            //debe cambiar el boolean a false
 
-            if (correctFile)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                this.Hide();
-                mainWindow.Show();
+                manager.Load(openFileDialog1.FileName);
             }
+            this.Hide();
+            mainWindow.Show();
         }
     }
 }

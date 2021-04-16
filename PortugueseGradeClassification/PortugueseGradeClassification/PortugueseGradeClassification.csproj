@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomExceptions\IncorrectLimitsException.cs" />
     <Compile Include="GUI\LoadDataWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,7 +61,7 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Program.cs" />
-    <Compile Include="Model\LoadData.cs" />
+    <Compile Include="Model\DepartmentManager.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\LoadDataWindow.resx">

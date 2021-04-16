@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PortugueseGradeClassification.CustomExceptions;
 using PortugueseGradeClassification.Model;
 
 namespace PortugueseGradeClassification
@@ -34,10 +35,10 @@ namespace PortugueseGradeClassification
                 { "Parents status",Type.CATEGORIC },
                 { "Mother's education",Type.NUMERIC },
                 { "Father's education",Type.NUMERIC },
-                { "Mother's job",Type.CHAIN },
-                { "Father's job",Type.CHAIN },
-                { "Reason",Type.CHAIN },
-                { "Guardian",Type.CHAIN },
+                { "Mother's job",Type.CATEGORIC },
+                { "Father's job",Type.CATEGORIC },
+                { "Reason",Type.CATEGORIC },
+                { "Guardian",Type.CATEGORIC },
                 { "Travel time",Type.NUMERIC },
                 { "Study time",Type.NUMERIC },
                 { "Failures",Type.NUMERIC },
@@ -266,295 +267,415 @@ namespace PortugueseGradeClassification
         {
             if (!field.Equals(""))
             {
-                switch (field)
+                try
                 {
-                    case "School":
-                        if (BiComboBox.Text.Equals("Mousinho da Silveira School"))
-                        {
-                            manager.FilterByCategory("School", "MS");
+                    switch (field)
+                    {
+                        case "School":
+                            if (BiComboBox.Text.Equals("Mousinho da Silveira School"))
+                            {
+                                manager.FilterByCategory("School", "MS");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("Gabriel Pereira School"))
+                            {
+
+                                manager.FilterByCategory("School", "GB");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Sex":
+                            if (BiComboBox.Text.Equals("Male"))
+                            {
+                                manager.FilterByCategory("Sex", "M");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("Female"))
+                            {
+                                manager.FilterByCategory("Sex", "F");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Age":
+                            int age1 = int.Parse(FilterText1.Text);
+                            int age2 = int.Parse(FilterText2.Text);
+
+                            manager.FilterByInterval("AGE", age1, age2);
                             PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if(BiComboBox.Text.Equals("Gabriel Pereira School"))
-                        {
+
+                            break;
+                        case "Address":
+                            if (BiComboBox.Text.Equals("Rural"))
+                            {
+                                manager.FilterByCategory("Address", "R");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("Urban"))
+                            {
+                                manager.FilterByCategory("Address", "U");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Family size":
+                            if (BiComboBox.Text.Equals("Less or equal to 3"))
+                            {
+                                manager.FilterByCategory("Family Size", "LE3");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("Greater than 3"))
+                            {
+                                manager.FilterByCategory("Family Size", "GT3");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Parents status":
+                            if (BiComboBox.Text.Equals("Living together"))
+                            {
+                                manager.FilterByCategory("Parents status", "T");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("Apart"))
+                            {
+                                manager.FilterByCategory("Parents status", "A");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Mother's education":
+                            int m1 = int.Parse(FilterText1.Text);
+                            int m2 = int.Parse(FilterText2.Text);
+
+                            manager.FilterByInterval("MOTHER'S EDUCATION", m1, m2);
+                            PortuTable.DataSource = manager.GetTable();
+
+                            break;
+                        case "Father's education":
+                            int f1 = int.Parse(FilterText1.Text);
+                            int f2 = int.Parse(FilterText2.Text);
+
+                            manager.FilterByInterval("FATHER'S EDUCATION", f1, f2);
+                            PortuTable.DataSource = manager.GetTable();
+
+                            break;
+                        case "Mother's job":
+                            if (BiComboBox.Text.Equals("teacher"))
+                            {
+                                manager.FilterByCategory("Mother's job", "teacher");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("health"))
+                            {
+                                manager.FilterByCategory("Mother's job", "health");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("services"))
+                            {
+                                manager.FilterByCategory("Mother's job", "services");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("at_home"))
+                            {
+                                manager.FilterByCategory("Mother's job", "at_home");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("other"))
+                            {
+                                manager.FilterByCategory("Mother's job", "other");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+
+                        case "Father's job":
+
+                            if (BiComboBox.Text.Equals("teacher"))
+                            {
+                                manager.FilterByCategory("Father's job", "teacher");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("health"))
+                            {
+                                manager.FilterByCategory("Father's job", "health");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("services"))
+                            {
+                                manager.FilterByCategory("Father's job", "services");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("at_home"))
+                            {
+                                manager.FilterByCategory("Father's job", "at_home");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("other"))
+                            {
+                                manager.FilterByCategory("Father's job", "other");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Reason":
                             
-                            manager.FilterByCategory("School", "GB");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            manager.FilterByCategory("School", "GB");
-                        }
-                        break;
-                    case "Sex":
-                        if (BiComboBox.Text.Equals("Male"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("Female"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Age":
-                        int age1 = int.Parse(FilterText1.Text);
-                        int age2 = int.Parse(FilterText2.Text);
+                            if (BiComboBox.Text.Equals("home"))
+                            {
+                                manager.FilterByCategory("Reason", "home");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("reputation"))
+                            {
+                                manager.FilterByCategory("Reason", "reputation");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("course"))
+                            {
+                                manager.FilterByCategory("Reason", "course");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("other"))
+                            {
+                                manager.FilterByCategory("Reason", "other");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
 
-                        manager.FilterByInterval("Age", age1, age2);
-                        PortuTable.DataSource = manager.GetTable();
+                            break;
+                        case "Guardian":
 
-                        break;
-                    case "Address":
-                        if (BiComboBox.Text.Equals("Rural"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("Urban"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Family size":
-                        if (BiComboBox.Text.Equals("Less or equal to 3"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("Greater than 3"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Parents status":
-                        if (BiComboBox.Text.Equals("Living together"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("Apart"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "";
-                        }
-                        break;
-                    case "Mother's education":
-                        int m1 = int.Parse(FilterText1.Text);
-                        int m2 = int.Parse(FilterText2.Text);
+                            if (BiComboBox.Text.Equals("mother"))
+                            {
+                                manager.FilterByCategory("Guardian", "mother");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("father"))
+                            {
+                                manager.FilterByCategory("Guardian", "father");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else if (BiComboBox.Text.Equals("other"))
+                            {
+                                manager.FilterByCategory("Guardian", "other");
+                                PortuTable.DataSource = manager.GetTable();
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            String guardian = FilterText1.Text;
 
-                        break;
-                    case "Father's education":
-                        int f1 = int.Parse(FilterText1.Text);
-                        int f2 = int.Parse(FilterText2.Text);
+                            break;
+                        case "Travel time":
+                            int t1 = int.Parse(FilterText1.Text);
+                            int t2 = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Mother's job":
-                        String mjob = FilterText1.Text;
+                            break;
+                        case "Study time":
+                            int s1 = int.Parse(FilterText1.Text);
+                            int s2 = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Father's job":
-                        String fjob = FilterText1.Text;
+                            break;
+                        case "Failures":
+                            int fai1 = int.Parse(FilterText1.Text);
+                            int fai2 = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Reason":
-                        String reason = FilterText1.Text;
+                            break;
+                        case "School support":
+                            if (BiComboBox.Text.Equals("Yes"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else if (BiComboBox.Text.Equals("No"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Family support":
+                            if (BiComboBox.Text.Equals("Yes"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else if (BiComboBox.Text.Equals("No"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Extra paid classes":
+                            if (BiComboBox.Text.Equals("Yes"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else if (BiComboBox.Text.Equals("No"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Extra activities":
+                            if (BiComboBox.Text.Equals("Yes"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else if (BiComboBox.Text.Equals("No"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Nursery":
+                            if (BiComboBox.Text.Equals("Yes"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else if (BiComboBox.Text.Equals("No"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Higher education":
+                            if (BiComboBox.Text.Equals("Yes"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else if (BiComboBox.Text.Equals("No"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Internet access":
+                            if (BiComboBox.Text.Equals("Yes"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else if (BiComboBox.Text.Equals("No"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Romantic relationship":
+                            if (BiComboBox.Text.Equals("Yes"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else if (BiComboBox.Text.Equals("No"))
+                            {
+                                //Pedir datos a model para cargar la tabla
+                            }
+                            else
+                            {
+                                BiComboBox.Text = "Please select a value";
+                            }
+                            break;
+                        case "Family relation":
+                            int fRel1 = int.Parse(FilterText1.Text);
+                            int fRel2 = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Guardian":
-                        String guardian = FilterText1.Text;
+                            break;
+                        case "Free time":
+                            int ft1 = int.Parse(FilterText1.Text);
+                            int ft2 = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Travel time":
-                        int t1 = int.Parse(FilterText1.Text);
-                        int t2 = int.Parse(FilterText2.Text);
+                            break;
+                        case "Go out":
+                            int g1 = int.Parse(FilterText1.Text);
+                            int g2 = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Study time":
-                        int s1 = int.Parse(FilterText1.Text);
-                        int s2 = int.Parse(FilterText2.Text);
+                            break;
+                        case "Weekday alcohol":
+                            int wd1 = int.Parse(FilterText1.Text);
+                            int wd2 = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Failures":
-                        int fai1 = int.Parse(FilterText1.Text);
-                        int fai2 = int.Parse(FilterText2.Text);
+                            break;
+                        case "Weekend alcohol":
+                            int we1 = int.Parse(FilterText1.Text);
+                            int we2 = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "School support":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Family support":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Extra paid classes":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Extra activities":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Nursery":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Higher education":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Internet access":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Romantic relationship":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            //Pedir datos a model para cargar la tabla
-                        }
-                        else
-                        {
-                            BiComboBox.Text = "Please select a value";
-                        }
-                        break;
-                    case "Family relation":
-                        int fRel1 = int.Parse(FilterText1.Text);
-                        int fRel2 = int.Parse(FilterText2.Text);
+                            break;
+                        case "Health":
+                            int h1 = int.Parse(FilterText1.Text);
+                            int h2 = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Free time":
-                        int ft1 = int.Parse(FilterText1.Text);
-                        int ft2 = int.Parse(FilterText2.Text);
+                            break;
+                        case "Absences":
+                            int abs1 = int.Parse(FilterText1.Text);
+                            int abs2 = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Go out":
-                        int g1 = int.Parse(FilterText1.Text);
-                        int g2 = int.Parse(FilterText2.Text);
+                            break;
+                        case "Grade 1":
+                            int grade1Min = int.Parse(FilterText1.Text);
+                            int grade1Max = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Weekday alcohol":
-                        int wd1 = int.Parse(FilterText1.Text);
-                        int wd2 = int.Parse(FilterText2.Text);
+                            break;
+                        case "Grade 2":
+                            int grade2Min = int.Parse(FilterText1.Text);
+                            int grade2Max = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Weekend alcohol":
-                        int we1 = int.Parse(FilterText1.Text);
-                        int we2 = int.Parse(FilterText2.Text);
+                            break;
+                        case "Grade 3":
+                            int grade3Min = int.Parse(FilterText1.Text);
+                            int grade3Max = int.Parse(FilterText2.Text);
 
-                        break;
-                    case "Health":
-                        int h1 = int.Parse(FilterText1.Text);
-                        int h2 = int.Parse(FilterText2.Text);
+                            break;
+                        default:
 
-                        break;
-                    case "Absences":
-                        int abs1 = int.Parse(FilterText1.Text);
-                        int abs2 = int.Parse(FilterText2.Text);
-
-                        break;
-                    case "Grade 1":
-                        int grade1Min = int.Parse(FilterText1.Text);
-                        int grade1Max = int.Parse(FilterText2.Text);
-
-                        break;
-                    case "Grade 2":
-                        int grade2Min = int.Parse(FilterText1.Text);
-                        int grade2Max = int.Parse(FilterText2.Text);
-
-                        break;
-                    case "Grade 3":
-                        int grade3Min = int.Parse(FilterText1.Text);
-                        int grade3Max = int.Parse(FilterText2.Text);
-
-                        break;
-                    default:
-
-                        break;
+                            break;
+                    }
+                } catch (IncorrectLimitsException e)
+                {
+                    MessageBox.Show(e.Message, "Error Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }
@@ -597,10 +718,30 @@ namespace PortugueseGradeClassification
                             String[] pstatus = new string[] { "Living together", "Apart" };
                             BiComboBox.Items.AddRange(pstatus);
                             break;
+                        case "Mother's job":
+                            BiComboBox.Items.Clear();
+                            String[] mjob = new string[] { "teacher", "health", "services","at_home","other" };
+                            BiComboBox.Items.AddRange(mjob);
+                            break;
+                        case "Father's job":
+                            BiComboBox.Items.Clear();
+                            String[] fjob = new string[] { "teacher", "health", "services", "at_home", "other" };
+                            BiComboBox.Items.AddRange(fjob);
+                            break;
                         case "School support":
                             BiComboBox.Items.Clear();
                             String[] scsupp = new string[] { "Yes", "No" };
                             BiComboBox.Items.AddRange(scsupp);
+                            break;
+                        case "Reason":
+                            BiComboBox.Items.Clear();
+                            String[] reason = new string[] { "home", "reputation","course","other" };
+                            BiComboBox.Items.AddRange(reason);
+                            break;
+                        case "Guardian":
+                            BiComboBox.Items.Clear();
+                            String[] guardian = new string[] { "mother", "father", "other" };
+                            BiComboBox.Items.AddRange(guardian);
                             break;
                         case "Family support":
                             BiComboBox.Items.Clear();
@@ -650,13 +791,6 @@ namespace PortugueseGradeClassification
                     FilterText2.Visible = true;
                     FilterText1.Text = "Min. Value...";
                     FilterText2.Text = "Max. Value...";
-                    break;
-
-                case Type.CHAIN:
-                    BiComboBox.Visible = false;
-                    FilterText1.Visible = true;
-                    FilterText2.Visible = false;
-                    FilterText1.Text = "Keyword...";
                     break;
             }
         }

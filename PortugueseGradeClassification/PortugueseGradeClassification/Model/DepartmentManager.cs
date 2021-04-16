@@ -181,7 +181,7 @@ namespace PortugueseGradeClassification.Model
         {
             if (lowerLimit>higherLimit)
             {
-                throw new IncorrectLimitsException("the lower limit is greater than the higher limit");
+                throw new IncorrectLimitsException("The lower limit is greater than the higher limit.");
             }
             table.Rows.Clear();
             int info = 0;
@@ -255,7 +255,7 @@ namespace PortugueseGradeClassification.Model
 
                 }
 
-                if (info<higherLimit && info>lowerLimit)
+                if (info<=higherLimit && info>=lowerLimit)
                 {
                     DataRow dr = table.NewRow();
                     String[] parameters = student.ToString().Split(',');

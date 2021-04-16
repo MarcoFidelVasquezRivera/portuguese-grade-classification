@@ -14,7 +14,7 @@ namespace PortugueseGradeClassification
 {
     public partial class MainWindow : Form
     {
-        enum Type { NUMERIC, CATEGORIC, CHAIN}
+        private enum Type { NUMERIC, CATEGORIC, CHAIN}
         private Dictionary<string, Type> columnTypes;
 
         //Seria bueno tener la hash de estudiantes como atributo
@@ -275,7 +275,6 @@ namespace PortugueseGradeClassification
         {
             if (!field.Equals(""))
             {
-                //Falta implementar el filtro de datos
                 switch (field)
                 {
                     case "School":
@@ -350,7 +349,7 @@ namespace PortugueseGradeClassification
                         }
                         else
                         {
-                            BiComboBox.Text = "Please select a value";
+                            BiComboBox.Text = "";
                         }
                         break;
                     case "Mother's education":

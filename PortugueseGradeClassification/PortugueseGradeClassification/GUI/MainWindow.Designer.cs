@@ -29,9 +29,9 @@ namespace PortugueseGradeClassification
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.BiComboBox = new System.Windows.Forms.ComboBox();
@@ -130,7 +130,6 @@ namespace PortugueseGradeClassification
             this.FilterButton.TabIndex = 4;
             this.FilterButton.Text = "Filter";
             this.FilterButton.UseVisualStyleBackColor = true;
-            this.FilterButton.Visible = false;
             this.FilterButton.Click += new System.EventHandler(this.FilterButton_Click);
             // 
             // FilterText2
@@ -442,17 +441,17 @@ namespace PortugueseGradeClassification
             // 
             // PortuGraph
             // 
-            chartArea6.Name = "ChartArea1";
-            this.PortuGraph.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.PortuGraph.Legends.Add(legend6);
+            chartArea3.Name = "ChartArea1";
+            this.PortuGraph.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.PortuGraph.Legends.Add(legend3);
             this.PortuGraph.Location = new System.Drawing.Point(284, 6);
             this.PortuGraph.Name = "PortuGraph";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.PortuGraph.Series.Add(series6);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.PortuGraph.Series.Add(series3);
             this.PortuGraph.Size = new System.Drawing.Size(443, 359);
             this.PortuGraph.TabIndex = 1;
             this.PortuGraph.Text = "chart1";

@@ -79,26 +79,13 @@ namespace PortugueseGradeClassification
                     PortuGraph.Titles.Add("School name");
                     PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
                     PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-                    //Tomamos la hash de estudiantes
-                    Hashtable students = new Hashtable();
-                    int msSchool = 0;
-                    int gpSchool = 0;   
-                    //conteo de estudiantes en cada escuela
-                    foreach (DictionaryEntry element in students)
+                  
+                    Dictionary <String,int> students = manager.GetStudentsInfo(1);    
+                    foreach (KeyValuePair<String,int> element in students)
                     {
-                        Student stu = (Student)element.Value;
-                        if (stu.SchoolName.Equals("MS"))
-                        {
-                            msSchool++;
-                        }
-                        else
-                        {
-                            gpSchool++;
-                        }
+                        PortuGraph.Series["Series1"].Points.AddXY(element.Key, element.Value);
                     }
-                    //Agregamos los datos a la torta
-                    PortuGraph.Series["Series1"].Points.AddXY("Mousinho da Silveira School", msSchool);
-                    PortuGraph.Series["Series1"].Points.AddXY("Gabriel Pereira School", gpSchool);
+                    
                     break;
                 case "Free time":
                     // Barra

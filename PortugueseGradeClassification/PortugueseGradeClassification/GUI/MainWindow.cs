@@ -95,91 +95,26 @@ namespace PortugueseGradeClassification
                     PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
                     PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
                     //Tomamos la hash de estudiantes
-                    Hashtable students2 = new Hashtable();
-                    int time1 = 0;
-                    int time2 = 0;
-                    int time3 = 0;
-                    int time4 = 0;
-                    int time5 = 0;
-
-                    //conteo de estudiantes en cada escuela
-                    foreach (DictionaryEntry element in students2)
+                    Dictionary<String, int>  students2 = manager.GetStudentsInfo(2);
+                    foreach (KeyValuePair<String, int> element in students2)
                     {
-                        Student stu = (Student)element.Value;
-                        if (stu.FreeTime == 1)
-                        {
-                            time1++;
-                        }
-                        else if(stu.FreeTime == 2)
-                        {
-                            time2++;
-
-                        }else if(stu.FreeTime == 3)
-                        {
-                            time3++;
-                        }else if(stu.FreeTime == 4)
-                        {
-                            time4++;
-                        }
-                        else
-                        {
-                            time5++;
-                        }
+                        PortuGraph.Series["Series1"].Points.AddXY(element.Key, element.Value);
                     }
-                    //Agregamos los datos a la torta
-                    PortuGraph.Series["Series1"].Points.AddXY("Almost none",time1 );
-                    PortuGraph.Series["Series1"].Points.AddXY("Few", time2);
-                    PortuGraph.Series["Series1"].Points.AddXY("Moderate", time3);
-                    PortuGraph.Series["Series1"].Points.AddXY("Many", time4);
-                    PortuGraph.Series["Series1"].Points.AddXY("A lot", time5);
+
                     break;
                 case "Study time":
-                    //Barra
+                    // Barra
                     PortuGraph.Titles.Clear();
                     PortuGraph.Series["Series1"].Points.Clear();
                     PortuGraph.Titles.Add("Study time");
                     PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
                     PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
                     //Tomamos la hash de estudiantes
-                    Hashtable students3 = new Hashtable();
-                    int study1 = 0;
-                    int study2 = 0;
-                    int study3 = 0;
-                    int study4 = 0;
-                    int study5 = 0;
-
-                    //conteo de estudiantes en cada escuela
-                    foreach (DictionaryEntry element in students3)
+                    Dictionary<String, int> students3 = manager.GetStudentsInfo(3);
+                    foreach (KeyValuePair<String, int> element in students3)
                     {
-                        Student stu = (Student)element.Value;
-                        if (stu.StudyTime == 1)
-                        {
-                            study1++;
-                        }
-                        else if (stu.StudyTime == 2)
-                        {
-                            study2++;
-
-                        }
-                        else if (stu.StudyTime == 3)
-                        {
-                            study3++;
-                        }
-                        else if (stu.StudyTime == 4)
-                        {
-                            study4++;
-                        }
-                        else
-                        {
-                            study5++;
-                        }
+                        PortuGraph.Series["Series1"].Points.AddXY(element.Key, element.Value);
                     }
-                    //Agregamos los datos a la torta
-                    PortuGraph.Series["Series1"].Points.AddXY("Almost none", study1);
-                    PortuGraph.Series["Series1"].Points.AddXY("Few", study2);
-                    PortuGraph.Series["Series1"].Points.AddXY("Moderate", study3);
-                    PortuGraph.Series["Series1"].Points.AddXY("Many", study4);
-                    PortuGraph.Series["Series1"].Points.AddXY("A lot", study5);
                     break;
                 case "Address":
                     //Torta

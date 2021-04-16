@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PortugueseGradeClassification.CustomExceptions;
 
 namespace PortugueseGradeClassification.Model
 {
@@ -168,7 +169,7 @@ namespace PortugueseGradeClassification.Model
         {
             if (lowerLimit>higherLimit)
             {
-                //poner que salte una excepcion o algo así
+                throw new IncorrectLimitsException("the lower limit is greater than the higher limit");
             }
             table.Rows.Clear();
             int info = 0;

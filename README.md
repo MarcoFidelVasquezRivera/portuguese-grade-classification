@@ -20,4 +20,4 @@ For more information about the program, visit the links below.
 
 [Model package object diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/LoadData%20Branch%20ObjectDiagram.pdf)
 
-[GUI package object diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/LoadData%20Branch%20ObjectDiagram.pdf)
+[GUI package object diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/GUI%20Diagram%20Object.pdf)

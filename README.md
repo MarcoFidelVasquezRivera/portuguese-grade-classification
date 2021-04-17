@@ -21,3 +21,20 @@ For more information about the program, visit the links below.
 [Model package object diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/LoadData%20Branch%20ObjectDiagram.pdf)
 
 [GUI package object diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/GUI%20Diagram%20Object.pdf)
+
+How the program works:
+
+This is the first window you see when the program is executed, you can open a file dialog by clicking the button:
+
+![image](https://user-images.githubusercontent.com/54712482/115126396-52ea6000-9f94-11eb-9cd0-295f1e5da682.png)
+
+In this file manager you can select the .csv file and load the students data:
+
+![image](https://user-images.githubusercontent.com/54712482/115126425-84632b80-9f94-11eb-9fea-a0fb5553dfac.png)
+
+Once you have loaded the students data from the .csv file, a new window with three tabs is displayed, the Table tab allows you to see the table of students.
+
+In the inferior left corner you have the filter, where you can choose any field and filter the table.
+
+![image](https://user-images.githubusercontent.com/54712482/115126579-a6a97900-9f95-11eb-9161-f07bb97836a3.png)
+

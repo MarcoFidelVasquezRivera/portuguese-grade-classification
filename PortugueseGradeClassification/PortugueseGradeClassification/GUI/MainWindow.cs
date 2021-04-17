@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using PortugueseGradeClassification.CustomExceptions;
 using PortugueseGradeClassification.Model;
 
@@ -109,13 +110,18 @@ namespace PortugueseGradeClassification
                     PortuGraph.Series["Series1"].Points.Clear();
                     PortuGraph.Titles.Add("Study time");
                     PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
-                    PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+                    PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
                     //Tomamos la hash de estudiantes
                     Dictionary<String, int> students3 = manager.GetStudentsInfo(3);
+
                     foreach (KeyValuePair<String, int> element in students3)
                     {
-                        PortuGraph.Series["Series1"].Points.AddXY(element.Key, element.Value);
+                        PortuGraph.Series["Series1"].Points.AddXY(Convert.ToInt32(element.Key), element.Value);
+                       
                     }
+
+
+                    PortuGraph.Series["Series1"].Sort(PointSortOrder.Ascending, "X");
                     break;
                 case "Address":
                     //Torta
@@ -136,29 +142,16 @@ namespace PortugueseGradeClassification
                     //Torta
                     PortuGraph.Titles.Clear();
                     PortuGraph.Series["Series1"].Points.Clear();
-                    PortuGraph.Titles.Add("Internet access");
+                    PortuGraph.Titles.Add("Address");
                     PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
                     PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
                     //Tomamos la hash de estudiantes
-                    Hashtable students5 = new Hashtable();
-                    int yes = 0;
-                    int no = 0;
-                    //conteo de estudiantes en cada escuela
-                    foreach (DictionaryEntry element in students5)
+                    Dictionary<String, int> students5 = manager.GetStudentsInfo(5);
+                    foreach (KeyValuePair<String, int> element in students5)
                     {
-                        Student stu = (Student)element.Value;
-                        if (stu.InternetAccess.Equals("yes"))
-                        {
-                            yes++;
-                        }
-                        else
-                        {
-                            no++;
-                        }
+                        PortuGraph.Series["Series1"].Points.AddXY(element.Key, element.Value);
                     }
-                    //Agregamos los datos a la torta
-                    PortuGraph.Series["Series1"].Points.AddXY("Yes", yes);
-                    PortuGraph.Series["Series1"].Points.AddXY("No", no);
+
                     break;
                 default:
 

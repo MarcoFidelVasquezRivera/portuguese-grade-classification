@@ -551,11 +551,13 @@ namespace PortugueseGradeClassification
                         case "Romantic relationship":
                             if (BiComboBox.Text.Equals("Yes"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Romantic relationship", "Yes");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else if (BiComboBox.Text.Equals("No"))
                             {
-                                //Pedir datos a model para cargar la tabla
+                                manager.FilterByCategory("Romantic relationship", "No");
+                                PortuTable.DataSource = manager.GetTable();
                             }
                             else
                             {
@@ -566,59 +568,89 @@ namespace PortugueseGradeClassification
                             int fRel1 = int.Parse(FilterText1.Text);
                             int fRel2 = int.Parse(FilterText2.Text);
 
+                            manager.FilterByInterval("FAMILY RELATION", fRel1, fRel2);
+                            PortuTable.DataSource = manager.GetTable();
+
                             break;
                         case "Free time":
                             int ft1 = int.Parse(FilterText1.Text);
                             int ft2 = int.Parse(FilterText2.Text);
+
+                            manager.FilterByInterval("FREE TIME", ft1, ft2);
+                            PortuTable.DataSource = manager.GetTable();
 
                             break;
                         case "Go out":
                             int g1 = int.Parse(FilterText1.Text);
                             int g2 = int.Parse(FilterText2.Text);
 
+                            manager.FilterByInterval("GO OUT", g1, g2);
+                            PortuTable.DataSource = manager.GetTable();
+
                             break;
                         case "Weekday alcohol":
                             int wd1 = int.Parse(FilterText1.Text);
                             int wd2 = int.Parse(FilterText2.Text);
+
+                            manager.FilterByInterval("WEEKDAY ALCOHOL", wd1, wd2);
+                            PortuTable.DataSource = manager.GetTable();
 
                             break;
                         case "Weekend alcohol":
                             int we1 = int.Parse(FilterText1.Text);
                             int we2 = int.Parse(FilterText2.Text);
 
+                            manager.FilterByInterval("WEEKEND ALCOHOL", we1, we2);
+                            PortuTable.DataSource = manager.GetTable();
+
                             break;
                         case "Health":
                             int h1 = int.Parse(FilterText1.Text);
                             int h2 = int.Parse(FilterText2.Text);
+
+                            manager.FilterByInterval("HEALTH", h1, h2);
+                            PortuTable.DataSource = manager.GetTable();
 
                             break;
                         case "Absences":
                             int abs1 = int.Parse(FilterText1.Text);
                             int abs2 = int.Parse(FilterText2.Text);
 
+                            manager.FilterByInterval("ABSENCES", abs1, abs2);
+                            PortuTable.DataSource = manager.GetTable();
+
                             break;
                         case "Grade 1":
                             int grade1Min = int.Parse(FilterText1.Text);
                             int grade1Max = int.Parse(FilterText2.Text);
+                            
+                            manager.FilterByInterval("GRADE 1", grade1Min, grade1Max);
+                            PortuTable.DataSource = manager.GetTable();
 
                             break;
                         case "Grade 2":
                             int grade2Min = int.Parse(FilterText1.Text);
                             int grade2Max = int.Parse(FilterText2.Text);
 
+                            manager.FilterByInterval("GRADE 2", grade2Min, grade2Max);
+                            PortuTable.DataSource = manager.GetTable();
+
                             break;
                         case "Grade 3":
                             int grade3Min = int.Parse(FilterText1.Text);
                             int grade3Max = int.Parse(FilterText2.Text);
 
+                            manager.FilterByInterval("GRADE 3", grade3Min, grade3Max);
+                            PortuTable.DataSource = manager.GetTable();
+
                             break;
                         default:
-
+                            MessageBox.Show("Please select a filter", "Select Filter", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             break;
                     }
                 } catch (IncorrectLimitsException e)
                 {
-                    MessageBox.Show(e.Message, "Error Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(e.Message, "Error Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

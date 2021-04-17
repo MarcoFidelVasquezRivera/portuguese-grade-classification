@@ -1,10 +1,10 @@
 # portuguese-grade-classification
 
-##Creators
+## Creators
 
 [Marco Vasquez](https://github.com/MarcoFidelVasquezRivera) - [Aleajandro Fonseca](https://github.com/AlejandroFonseca25) - [David Montoya](https://github.com/DSMontoyaP) - [Diego Garcia](https://github.com/Diego-ds)
 
-##Program explanation:
+## Program explanation:
 
 The idea of this program is to use machine learning to predict the final grade of the portuguese course of some students from Lisboa.
 
@@ -22,7 +22,7 @@ For more information about the program, visit the links below.
 
 [GUI package object diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/GUI%20Diagram%20Object.pdf)
 
-##How the program works:
+## How the program works:
 
 This is the first window you see when the program is executed, you can open a file dialog by clicking the button:
 

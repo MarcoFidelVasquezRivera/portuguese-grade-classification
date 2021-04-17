@@ -31,9 +31,9 @@ namespace PortugueseGradeClassification
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 manager.Load(openFileDialog1.FileName);
-            }
-            this.Hide();
+            }         
             mainWindow.Show();
+            this.Hide();
         }
     }
 }

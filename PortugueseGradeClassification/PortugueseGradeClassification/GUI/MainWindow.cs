@@ -123,7 +123,7 @@ namespace PortugueseGradeClassification
 
                     //PortuGraph.Series["Series1"].Sort(PointSortOrder.Ascending, "X");
                     PortuGraph.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
-
+                    PortuGraph.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
                     break;
 
                 case "Study time":
@@ -163,6 +163,7 @@ namespace PortugueseGradeClassification
 
                     //PortuGraph.Series["Series1"].Sort(PointSortOrder.Ascending, "X");
                     PortuGraph.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+                    PortuGraph.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
 
                     break;
 
@@ -888,6 +889,12 @@ namespace PortugueseGradeClassification
             PortuTable.Rows[n].Cells[30].Value = stu.FirstGrade;
             PortuTable.Rows[n].Cells[31].Value = stu.SecondGrade;
             PortuTable.Rows[n].Cells[32].Value = stu.ThirdGrade;
+        }
+
+        private void MainWindow_FormClosed_1(object sender, FormClosedEventArgs e)
+        {
+            LoadDataWindow obj = (LoadDataWindow)Application.OpenForms["LoadDataWindow"];
+            obj.Close();
         }
     }
 }

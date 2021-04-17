@@ -247,6 +247,7 @@ namespace PortugueseGradeClassification
             this.Controls.Add(this.TabControl1);
             this.Name = "MainWindow";
             this.Text = "Portuguese grade classification";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed_1);
             this.TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

@@ -1,10 +1,10 @@
 # portuguese-grade-classification
 
-Creators
+##Creators
 
 [Marco Vasquez](https://github.com/MarcoFidelVasquezRivera) - [Aleajandro Fonseca](https://github.com/AlejandroFonseca25) - [David Montoya](https://github.com/DSMontoyaP) - [Diego Garcia](https://github.com/Diego-ds)
 
-Program explanation:
+##Program explanation:
 
 The idea of this program is to use machine learning to predict the final grade of the portuguese course of some students from Lisboa.
 
@@ -22,7 +22,7 @@ For more information about the program, visit the links below.
 
 [GUI package object diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/GUI%20Diagram%20Object.pdf)
 
-How the program works:
+##How the program works:
 
 This is the first window you see when the program is executed, you can open a file dialog by clicking the button:
 
@@ -38,3 +38,14 @@ In the inferior left corner you have the filter, where you can choose any field 
 
 ![image](https://user-images.githubusercontent.com/54712482/115126579-a6a97900-9f95-11eb-9161-f07bb97836a3.png)
 
+The Charts tab allows you to see the information of some aspects of the student, when you first opent this tab it will look like this.
+
+![image](https://user-images.githubusercontent.com/54719844/115127523-c2fce400-9f9c-11eb-83e3-7d888e8c1aa6.png)
+
+if you choose "school name" then you will se a pie chart like this.
+
+![image](https://user-images.githubusercontent.com/54719844/115127543-ef186500-9f9c-11eb-90c0-d3df0011d95c.png)
+
+if you choose "free time" then you will se a pie chart like this.
+
+![image](https://user-images.githubusercontent.com/54719844/115127568-18d18c00-9f9d-11eb-8500-c93d1c86a2db.png)

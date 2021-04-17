@@ -294,7 +294,7 @@ namespace PortugueseGradeClassification.Model
                         break;
 
                     case 4:
-                        info = student.TravelTime.ToString();
+                        info = student.Address.ToString();
                         break;
 
                     case 5:

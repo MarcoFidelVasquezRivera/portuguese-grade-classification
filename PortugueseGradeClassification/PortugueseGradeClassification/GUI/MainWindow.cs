@@ -96,6 +96,7 @@ namespace PortugueseGradeClassification
                     PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
                     //Tomamos la hash de estudiantes
                     Dictionary<String, int>  students2 = manager.GetStudentsInfo(2);
+                    
                     foreach (KeyValuePair<String, int> element in students2)
                     {
                         PortuGraph.Series["Series1"].Points.AddXY(element.Key, element.Value);
@@ -124,25 +125,12 @@ namespace PortugueseGradeClassification
                     PortuGraph.Series["Series1"].IsValueShownAsLabel = true;
                     PortuGraph.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
                     //Tomamos la hash de estudiantes
-                    Hashtable students4 = new Hashtable();
-                    int rural = 0;
-                    int urban = 0;
-                    //conteo de estudiantes en cada escuela
-                    foreach (DictionaryEntry element in students4)
+                    Dictionary<String, int> students4 = manager.GetStudentsInfo(4);
+                    foreach (KeyValuePair<String, int> element in students4)
                     {
-                        Student stu = (Student)element.Value;
-                        if (stu.Address.Equals("U"))
-                        {
-                            urban++;
-                        }
-                        else
-                        {
-                            rural++;
-                        }
+                        PortuGraph.Series["Series1"].Points.AddXY(element.Key, element.Value);
                     }
-                    //Agregamos los datos a la torta
-                    PortuGraph.Series["Series1"].Points.AddXY("Urban", urban);
-                    PortuGraph.Series["Series1"].Points.AddXY("Rural", rural);
+
                     break;
                 case "Internet access":
                     //Torta

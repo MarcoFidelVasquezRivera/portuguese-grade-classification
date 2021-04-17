@@ -122,6 +122,8 @@ namespace PortugueseGradeClassification
 
 
                     PortuGraph.Series["Series1"].Sort(PointSortOrder.Ascending, "X");
+                    PortuGraph.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+
                     break;
                 case "Address":
                     //Torta

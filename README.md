@@ -24,6 +24,8 @@ For more information about the program, visit the links below.
 
 [GUI package object diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/GUI%20Diagram%20Object.pdf)
 
+[Explanation video](https://youtu.be/tOl-RGc9yCI)
+
 ## How the program works:
 
 This is the first window you see when the program is executed, you can open a file dialog by clicking the button:

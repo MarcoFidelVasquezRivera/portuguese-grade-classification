@@ -6,9 +6,11 @@
 
 ## Program explanation:
 
-The idea of this program is to use machine learning to predict the final grade of the portuguese course of some students from Lisboa.
+The objective of this program is to use machine learning to predict the final grade of the portuguese course of some students from Lisboa.
 
 This is the first release of the program in which you can load the students data from a .csv file, with the loaded data you can filter the table in any field and display charts based on the loaded data.
+
+Programming language used: C#.
 
 For more information about the program, visit the links below.
 
@@ -42,10 +44,22 @@ The Charts tab allows you to see the information of some aspects of the student,
 
 ![image](https://user-images.githubusercontent.com/54719844/115127523-c2fce400-9f9c-11eb-83e3-7d888e8c1aa6.png)
 
-if you choose "school name" then you will se a pie chart like this.
+If you choose "School name" then you will see a pie chart like this.
 
 ![image](https://user-images.githubusercontent.com/54719844/115127543-ef186500-9f9c-11eb-90c0-d3df0011d95c.png)
 
-if you choose "free time" then you will se a pie chart like this.
+If you choose "Free time" then you will see a column chart like this.
 
 ![image](https://user-images.githubusercontent.com/54719844/115127568-18d18c00-9f9d-11eb-8500-c93d1c86a2db.png)
+
+If you choose "Study time" then you will see a column chart like this.
+
+![image](https://user-images.githubusercontent.com/54719974/115131315-d15af800-9fbc-11eb-950c-3ceefedb4a22.png)
+
+If you choose "Address" then you will see a pie chart like this.
+
+![image](https://user-images.githubusercontent.com/54719974/115131327-e9cb1280-9fbc-11eb-9ebf-5b9dece5f404.png)
+
+If you choose "Internet access" then you will see a pie chart like this.
+
+![image](https://user-images.githubusercontent.com/54719974/115131333-f9e2f200-9fbc-11eb-9413-bc34717c9fd0.png)

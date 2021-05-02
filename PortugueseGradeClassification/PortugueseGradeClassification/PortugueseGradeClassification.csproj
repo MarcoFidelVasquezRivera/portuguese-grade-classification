@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="CustomExceptions\IncorrectLimitsException.cs" />
     <Compile Include="DecisionTree\Leaf.cs" />
+    <Compile Include="DecisionTree\Node.cs" />
     <Compile Include="DecisionTree\NodeInterface.cs" />
     <Compile Include="DecisionTree\Question.cs" />
     <Compile Include="GUI\LoadDataWindow.cs">

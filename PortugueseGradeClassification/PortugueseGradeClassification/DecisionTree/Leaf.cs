@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace PortugueseGradeClassification.DecisionTree
 {
-    [Serializable()]
-    abstract class Node
+    class Leaf : NodeInterface
     {
     }
 }

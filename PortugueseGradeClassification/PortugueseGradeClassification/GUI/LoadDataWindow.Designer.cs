@@ -1,5 +1,5 @@
 ﻿
-namespace PortugueseGradeClassification
+namespace PortugueseGradeClassification.Gui
 {
     partial class LoadDataWindow
     {

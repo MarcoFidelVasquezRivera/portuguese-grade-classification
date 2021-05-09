@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace PortugueseGradeClassification
+namespace PortugueseGradeClassification.Gui
 {
     public partial class MainWindow : Form
     {

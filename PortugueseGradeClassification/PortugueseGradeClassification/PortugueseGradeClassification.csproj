@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomExceptions\IncorrectLimitsException.cs" />
+    <Compile Include="GUI\GraphView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\GraphView.Designer.cs">
+      <DependentUpon>GraphView.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\LoadDataWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,14 +67,35 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Program.cs" />
+    <Compile Include="GUI\TabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\TabControl.Designer.cs">
+      <DependentUpon>TabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TableFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\TableFilter.Designer.cs">
+      <DependentUpon>TableFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\DepartmentManager.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\GraphView.resx">
+      <DependentUpon>GraphView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\LoadDataWindow.resx">
       <DependentUpon>LoadDataWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TabControl.resx">
+      <DependentUpon>TabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TableFilter.resx">
+      <DependentUpon>TableFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

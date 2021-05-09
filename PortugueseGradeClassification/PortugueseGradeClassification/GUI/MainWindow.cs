@@ -9,7 +9,7 @@ namespace PortugueseGradeClassification.GUI
 {
     public partial class MainWindow : Form
     {
-        private enum Type { NUMERIC, CATEGORIC, CHAIN }
+        public enum Type { NUMERIC, CATEGORIC, CHAIN }
 
         private Dictionary<string, Type> columnTypes;
         private DepartmentManager manager;

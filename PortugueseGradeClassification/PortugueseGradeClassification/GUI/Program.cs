@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PortugueseGradeClassification.Gui
+namespace PortugueseGradeClassification.GUI
 {
     static class Program
     {

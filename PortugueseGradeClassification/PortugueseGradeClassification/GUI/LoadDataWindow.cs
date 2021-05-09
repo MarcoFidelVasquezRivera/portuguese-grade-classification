@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PortugueseGradeClassification.Model;
 
-namespace PortugueseGradeClassification.Gui
+namespace PortugueseGradeClassification.GUI
 {
     public partial class LoadDataWindow : Form
     {

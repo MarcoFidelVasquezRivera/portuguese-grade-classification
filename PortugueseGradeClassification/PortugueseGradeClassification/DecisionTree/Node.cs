@@ -9,18 +9,26 @@ namespace PortugueseGradeClassification.DecisionTree
     class Node<T> : NodeInterface
     {
         private Question<T> Question { get; }
-        private List<Node<T>> Nodes { get; }
+        private Node<T> trueNode { get; }
+        private Node<T> falseNode { get; }
         private Dictionary<String, Int32> Labels { get; }
 
-        public Node(Question<T> Question, List<Node<T>> Nodes) 
+        public Node(Question<T> Question, Node<T> falseNode, Node<T> trueNode) 
         {
             this.Question = Question;
-            this.Nodes = Nodes;
+            this.falseNode = falseNode;
+            this.trueNode = falseNode;
         }
 
         public Node(Dictionary<String, Int32> labelCount)
         {
             this.Labels = labelCount;
+        }
+
+        public Dictionary<String, Int32> GetPredictions() 
+        {
+
+            return Labels;
         }
 
         override

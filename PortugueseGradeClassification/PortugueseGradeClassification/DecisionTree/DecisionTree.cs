@@ -51,13 +51,13 @@ namespace PortugueseGradeClassification.DecisionTree
             return distribution;
         }
 
-        public List<T[]>[] Partition(List<T[]> rows, Question<T> question)
+        public List<T>[] Partition(List<T> rows, Question<T> question)
         {
-            List<T[]> [] partition = { new List<T[]>(), new List<T[]>()};
+            List<T> [] partition = { new List<T>(), new List<T>()};
 
-            foreach (T[] row in rows)
+            foreach (T row in rows)
             {
-                if (question.compare(row))
+                if (question.Compare(row))
                 {
                     partition[0].Add(row);
                 }
@@ -70,5 +70,28 @@ namespace PortugueseGradeClassification.DecisionTree
             return partition;
         }
 
+        public double CalculateGini(List<T> rows)
+        {
+            double impurity = 1;
+
+            Dictionary<String, Int32> distribution = this.labelDistribution(rows);
+
+            foreach (String label in distribution.Keys)
+            {
+                double prob = Convert.ToDouble(distribution[label]) / Convert.ToDouble(rows.Count);
+                impurity -= Math.Pow(prob, 2);
+                       
+            }
+
+            return impurity;
+        }
+
+        public double infoGain(List<T> leftSide, List<T> rightSide, double impurity) 
+        {
+            double proportion = Convert.ToDouble(leftSide.Count) / ((Convert.ToDouble(leftSide.Count) + Convert.ToDouble(rightSide.Count));
+
+            return impurity - proportion * CalculateGini(leftSide) - (1 - proportion) * CalculateGini(rightSide);
+        
+        }
     }
 }

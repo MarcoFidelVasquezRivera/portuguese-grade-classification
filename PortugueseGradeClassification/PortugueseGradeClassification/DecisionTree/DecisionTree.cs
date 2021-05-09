@@ -22,13 +22,13 @@ namespace PortugueseGradeClassification.DecisionTree
 
 
         //Reparte la distribucion de los datos objetivo y las veces que se repiten 
-        private Dictionary<String, Int32> labelDistribution(List<T> rows) {
+        private Dictionary<String, Int32> labelDistribution(List<String[]> rows) {
             Dictionary<String, Int32> distribution = new Dictionary<String, Int32>();
         
 
-            foreach(T row in rows)
+            foreach(String[] row in rows)
             {
-                String[] attributes = row.attributes();
+                String[] attributes = row;
 
                 //El ultimo atributo es el label (el ejemplo lo muestra como el target a llegar, en nuestro caso, la nota 3)
                 String label = attributes[attributes.Length - 1];
@@ -51,23 +51,31 @@ namespace PortugueseGradeClassification.DecisionTree
             return distribution;
         }
 
-        public List<T[]>[] Partition(List<T[]> rows, Question<T> question)
+        public List<T[]>[] Partition(List<T[]> rows, Question<T> q)
         {
             List<T[]> [] partition = { new List<T[]>(), new List<T[]>()};
 
             foreach (T[] row in rows)
             {
-                if (question.compare(row))
-                {
-                    partition[0].Add(row);
-                }
-                else
-                {
-                    partition[1].Add(row);
-                }
+                if (q.compare(row)) partition[0].Add(row);
+                else partition[1].Add(row);
             }
 
             return partition;
+        }
+
+        public double Gini(List<String[]> rows)
+        {
+            Dictionary<String, Int32> dist = labelDistribution(rows);
+            double impurity = 1;
+
+            foreach (String key in dist.Keys)
+            {
+                double fraction = Convert.ToDouble(dist[key]) / Convert.ToDouble(rows.Count);
+                impurity -= Math.Pow(fraction, 2);
+            }
+
+            return impurity;
         }
 
     }

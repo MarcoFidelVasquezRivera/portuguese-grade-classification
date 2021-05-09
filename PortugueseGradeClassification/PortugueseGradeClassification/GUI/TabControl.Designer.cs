@@ -33,8 +33,8 @@ namespace PortugueseGradeClassification.GUI
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tableFilter1 = new PortugueseGradeClassification.GUI.TableFilter();
-            this.graphView1 = new PortugueseGradeClassification.GUI.GraphView();
+            this.tableFilter1 = new PortugueseGradeClassification.GUI.TableFilter(manager);
+            this.graphView1 = new PortugueseGradeClassification.GUI.GraphView(manager);
             this.TabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();

@@ -1,12 +1,16 @@
-﻿using System.Windows.Forms;
+﻿using PortugueseGradeClassification.Model;
+using System.Windows.Forms;
 
 namespace PortugueseGradeClassification.GUI
 {
     public partial class TabControl : UserControl
     {
-        public TabControl()
+        private DepartmentManager manager;
+
+        public TabControl(DepartmentManager manager)
         {
             InitializeComponent();
+            this.manager = manager;
         }
     }
 }

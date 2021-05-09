@@ -20,6 +20,7 @@ namespace PortugueseGradeClassification.DecisionTree
             this.dataDictionary = dataDictionary;
         }
 
+        
 
         //Reparte la distribucion de los datos objetivo y las veces que se repiten 
         private Dictionary<String, Int32> labelDistribution(List<String[]> rows) {
@@ -64,6 +65,7 @@ namespace PortugueseGradeClassification.DecisionTree
             return partition;
         }
 
+        //Calculo Gini
         public double Gini(List<String[]> rows)
         {
             Dictionary<String, Int32> dist = labelDistribution(rows);

@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomExceptions\IncorrectLimitsException.cs" />
+    <Compile Include="DecisionTree\DataRow.cs" />
+    <Compile Include="DecisionTree\DecisionTree.cs" />
     <Compile Include="DecisionTree\Leaf.cs" />
     <Compile Include="DecisionTree\Node.cs" />
     <Compile Include="DecisionTree\NodeInterface.cs" />

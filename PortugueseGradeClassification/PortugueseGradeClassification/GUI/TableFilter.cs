@@ -13,9 +13,14 @@ namespace PortugueseGradeClassification.GUI
         private Dictionary<string, Type> columnTypes;
         private DepartmentManager manager;
 
-        public TableFilter(DepartmentManager manager)
+        public TableFilter()
         {
             InitializeComponent();
+            
+        }
+
+        public void setManager(DepartmentManager manager)
+        {
             this.manager = manager;
             columnTypes = new Dictionary<string, Type>()
             {

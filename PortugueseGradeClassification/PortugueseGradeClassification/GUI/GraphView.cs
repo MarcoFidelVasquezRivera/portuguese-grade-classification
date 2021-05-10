@@ -1,22 +1,26 @@
-﻿using System;
+﻿using PortugueseGradeClassification.Model;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using PortugueseGradeClassification.Model;
 
 namespace PortugueseGradeClassification.GUI
 {
     public partial class GraphView : UserControl
     {
         private DepartmentManager manager { get; set; }
-        public GraphView(DepartmentManager manager)
+
+        public GraphView()
+        {
+            InitializeComponent();
+        }
+
+        public void setManager(DepartmentManager manager)
         {
             this.manager = manager;
-            InitializeComponent();
         }
 
         private void PortuComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (PortuComboBox.SelectedItem != null)
             {
                 String currentField = PortuComboBox.SelectedItem.ToString();

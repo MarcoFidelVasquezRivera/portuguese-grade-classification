@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PortugueseGradeClassification.Model
+﻿namespace PortugueseGradeClassification.Model
 {
     public class Student
     {
@@ -42,9 +36,9 @@ namespace PortugueseGradeClassification.Model
         public int SecondGrade { get; }
         public int ThirdGrade { get; }
 
-        public Student(string schoolName, char sex, int age, char address, string familySize, char parentsStatus, int motherEducation, int fatherEducation, string motherJob, 
-                        string fatherJob, string reasonToStudy, string guardian, int travelTime, int studyTime, int previousFailures, string schoolSupport, string familySupport, 
-                        string extraPaidClasses, string extraCurricularActivities, string nurserySchool, string higherEducation, string internetAccess, string inRomanticRelationship, 
+        public Student(string schoolName, char sex, int age, char address, string familySize, char parentsStatus, int motherEducation, int fatherEducation, string motherJob,
+                        string fatherJob, string reasonToStudy, string guardian, int travelTime, int studyTime, int previousFailures, string schoolSupport, string familySupport,
+                        string extraPaidClasses, string extraCurricularActivities, string nurserySchool, string higherEducation, string internetAccess, string inRomanticRelationship,
                         int familyRelationshipQuality, int freeTime, int goOutFrecuency, int drinksAlcoholLaboralDays, int drinksAlcoholNonLaroralDays, int healthStatus, int absences,
                         int firstGrade, int secondGrade, int thirdGrade)
         {
@@ -81,7 +75,6 @@ namespace PortugueseGradeClassification.Model
             this.FirstGrade = firstGrade;
             this.SecondGrade = secondGrade;
             this.ThirdGrade = thirdGrade;
-
         }
 
         public override string ToString()

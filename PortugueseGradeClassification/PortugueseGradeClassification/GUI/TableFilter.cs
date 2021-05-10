@@ -61,12 +61,6 @@ namespace PortugueseGradeClassification.GUI
             PortuTable.DataSource = manager.GetTable();
         }
 
-        private void FilterButton_Click(object sender, EventArgs e)
-        {
-            String field = FilterComboBox.Text;
-            filter(field);
-        }
-
         private void filter(String field)
         {
             try
@@ -741,6 +735,12 @@ namespace PortugueseGradeClassification.GUI
             PortuTable.Rows[n].Cells[30].Value = stu.FirstGrade;
             PortuTable.Rows[n].Cells[31].Value = stu.SecondGrade;
             PortuTable.Rows[n].Cells[32].Value = stu.ThirdGrade;
+        }
+
+        private void FilterButton_Click(object sender, EventArgs e)
+        {
+                String field = FilterComboBox.Text;
+                filter(field);
         }
     }
 }

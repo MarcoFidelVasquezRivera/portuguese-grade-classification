@@ -18,5 +18,15 @@ namespace PortugueseGradeClassification.GUI
             LoadDataWindow obj = (LoadDataWindow)Application.OpenForms["LoadDataWindow"];
             obj.Close();
         }
+
+        private void tableFilter1_Load(object sender, System.EventArgs e)
+        {
+            tableFilter1.setManager(manager);
+        }
+
+        private void graphView1_Load(object sender, System.EventArgs e)
+        {
+            graphView1.setManager(manager);
+        }
     }
 }

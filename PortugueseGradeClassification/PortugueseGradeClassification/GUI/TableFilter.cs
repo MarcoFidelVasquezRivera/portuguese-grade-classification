@@ -76,7 +76,9 @@ namespace PortugueseGradeClassification.GUI
                         int m1 = int.Parse(FilterText1.Text);
                         int m2 = int.Parse(FilterText2.Text);
 
-                        manager.FilterByInterval(BiComboBox.Text.ToUpper(), m1, m2);
+                        Console.WriteLine(m1+"--"+m2);
+
+                        manager.FilterByInterval(FilterComboBox.Text.ToUpper(), m1, m2);
                         PortuTable.DataSource = manager.GetTable();
                         break;
 

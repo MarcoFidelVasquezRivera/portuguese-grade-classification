@@ -48,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomExceptions\IncorrectLimitsException.cs" />
+    <Compile Include="GUI\DecisionTreeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\DecisionTreeControl.Designer.cs">
+      <DependentUpon>DecisionTreeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\GraphView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <Compile Include="Model\DepartmentManager.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\DecisionTreeControl.resx">
+      <DependentUpon>DecisionTreeControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\GraphView.resx">
       <DependentUpon>GraphView.cs</DependentUpon>
     </EmbeddedResource>

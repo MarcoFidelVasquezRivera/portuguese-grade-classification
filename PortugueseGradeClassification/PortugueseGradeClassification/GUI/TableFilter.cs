@@ -65,494 +65,113 @@ namespace PortugueseGradeClassification.GUI
         {
             try
             {
-                switch (field)
+                if (field.Equals("Filter by..."))
                 {
-                    case "School":
-                        if (BiComboBox.Text.Equals("Mousinho da Silveira School"))
-                        {
-                            manager.FilterByCategory("School", "MS");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("Gabriel Pereira School"))
-                        {
-                            manager.FilterByCategory("School", "GB");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
+                    throw new InvalidOperationException();
+                }
 
-                    case "Sex":
-                        if (BiComboBox.Text.Equals("Male"))
-                        {
-                            manager.FilterByCategory("Sex", "M");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("Female"))
-                        {
-                            manager.FilterByCategory("Sex", "F");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Age":
-                        int age1 = int.Parse(FilterText1.Text);
-                        int age2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("AGE", age1, age2);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Address":
-                        if (BiComboBox.Text.Equals("Rural"))
-                        {
-                            manager.FilterByCategory("Address", "R");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("Urban"))
-                        {
-                            manager.FilterByCategory("Address", "U");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Family size":
-                        if (BiComboBox.Text.Equals("Less or equal to 3"))
-                        {
-                            manager.FilterByCategory("Family Size", "LE3");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("Greater than 3"))
-                        {
-                            manager.FilterByCategory("Family Size", "GT3");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Parents status":
-                        if (BiComboBox.Text.Equals("Living together"))
-                        {
-                            manager.FilterByCategory("Parents status", "T");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("Apart"))
-                        {
-                            manager.FilterByCategory("Parents status", "A");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Mother's education":
+                switch (columnTypes[field])
+                {
+                    case Type.NUMERIC:
                         int m1 = int.Parse(FilterText1.Text);
                         int m2 = int.Parse(FilterText2.Text);
 
-                        manager.FilterByInterval("MOTHER'S EDUCATION", m1, m2);
+                        manager.FilterByInterval(BiComboBox.Text.ToUpper(), m1, m2);
                         PortuTable.DataSource = manager.GetTable();
-
                         break;
 
-                    case "Father's education":
-                        int f1 = int.Parse(FilterText1.Text);
-                        int f2 = int.Parse(FilterText2.Text);
+                    case Type.CATEGORIC:
 
-                        manager.FilterByInterval("FATHER'S EDUCATION", f1, f2);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Mother's job":
-                        if (BiComboBox.Text.Equals("teacher"))
-                        {
-                            manager.FilterByCategory("Mother's job", "teacher");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("health"))
-                        {
-                            manager.FilterByCategory("Mother's job", "health");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("services"))
-                        {
-                            manager.FilterByCategory("Mother's job", "services");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("at_home"))
-                        {
-                            manager.FilterByCategory("Mother's job", "at_home");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("other"))
-                        {
-                            manager.FilterByCategory("Mother's job", "other");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Father's job":
-
-                        if (BiComboBox.Text.Equals("teacher"))
-                        {
-                            manager.FilterByCategory("Father's job", "teacher");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("health"))
-                        {
-                            manager.FilterByCategory("Father's job", "health");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("services"))
-                        {
-                            manager.FilterByCategory("Father's job", "services");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("at_home"))
-                        {
-                            manager.FilterByCategory("Father's job", "at_home");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("other"))
-                        {
-                            manager.FilterByCategory("Father's job", "other");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Reason":
-
-                        if (BiComboBox.Text.Equals("home"))
-                        {
-                            manager.FilterByCategory("Reason", "home");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("reputation"))
-                        {
-                            manager.FilterByCategory("Reason", "reputation");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("course"))
-                        {
-                            manager.FilterByCategory("Reason", "course");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("other"))
-                        {
-                            manager.FilterByCategory("Reason", "other");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
+                        if (BiComboBox.Text == null || BiComboBox.Text.Equals("") || BiComboBox.Text.Equals("Pick a value..."))
                         {
                             throw new InvalidOperationException();
                         }
 
-                        break;
-
-                    case "Guardian":
-
-                        if (BiComboBox.Text.Equals("mother"))
+                        switch (field)
                         {
-                            manager.FilterByCategory("Guardian", "mother");
-                            PortuTable.DataSource = manager.GetTable();
+                            case "School":
+                                if (BiComboBox.Text.Equals("Mousinho da Silveira School"))
+                                {
+                                    Console.WriteLine("entraaaaa -2-2-2");
+                                    manager.FilterByCategory("School", "MS");
+                                    PortuTable.DataSource = manager.GetTable();
+                                }
+                                else if (BiComboBox.Text.Equals("Gabriel Pereira School"))
+                                {
+                                    Console.WriteLine("entraaaaa");
+                                    manager.FilterByCategory("School", "GP");
+                                    PortuTable.DataSource = manager.GetTable();
+                                }
+
+                                break;
+
+                            case "Sex":
+                                if (BiComboBox.Text.Equals("Male"))
+                                {
+                                    manager.FilterByCategory("Sex", "M");
+                                    PortuTable.DataSource = manager.GetTable();
+                                }
+                                else if (BiComboBox.Text.Equals("Female"))
+                                {
+                                    manager.FilterByCategory("Sex", "F");
+                                    PortuTable.DataSource = manager.GetTable();
+                                }
+
+                                break;
+
+                            case "Address":
+                                if (BiComboBox.Text.Equals("Rural"))
+                                {
+                                    manager.FilterByCategory("Address", "R");
+                                    PortuTable.DataSource = manager.GetTable();
+                                }
+                                else if (BiComboBox.Text.Equals("Urban"))
+                                {
+                                    manager.FilterByCategory("Address", "U");
+                                    PortuTable.DataSource = manager.GetTable();
+                                }
+
+                                break;
+
+                            case "Family size":
+                                if (BiComboBox.Text.Equals("Less or equal to 3"))
+                                {
+                                    manager.FilterByCategory("Family Size", "LE3");
+                                    PortuTable.DataSource = manager.GetTable();
+                                }
+                                else if (BiComboBox.Text.Equals("Greater than 3"))
+                                {
+                                    manager.FilterByCategory("Family Size", "GT3");
+                                    PortuTable.DataSource = manager.GetTable();
+                                }
+
+                                break;
+
+                            case "Parents status":
+                                if (BiComboBox.Text.Equals("Living together"))
+                                {
+                                    manager.FilterByCategory("Parents status", "T");
+                                    PortuTable.DataSource = manager.GetTable();
+                                }
+                                else if (BiComboBox.Text.Equals("Apart"))
+                                {
+                                    manager.FilterByCategory("Parents status", "A");
+                                    PortuTable.DataSource = manager.GetTable();
+                                }
+
+                                break;
+
+                            default:
+
+                                manager.FilterByCategory(field, BiComboBox.Text);
+                                PortuTable.DataSource = manager.GetTable();
+
+                                break;
+
                         }
-                        else if (BiComboBox.Text.Equals("father"))
-                        {
-                            manager.FilterByCategory("Guardian", "father");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("other"))
-                        {
-                            manager.FilterByCategory("Guardian", "other");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        String guardian = FilterText1.Text;
-
-                        break;
-
-                    case "Travel time":
-                        int t1 = int.Parse(FilterText1.Text);
-                        int t2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("TRAVEL TIME", t1, t2);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Study time":
-                        int s1 = int.Parse(FilterText1.Text);
-                        int s2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("STUDY TIME", s1, s2);
-                        PortuTable.DataSource = manager.GetTable();
-                        break;
-
-                    case "Failures":
-                        int fai1 = int.Parse(FilterText1.Text);
-                        int fai2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("FAILURES", fai1, fai2);
-                        PortuTable.DataSource = manager.GetTable();
-                        break;
-
-                    case "School support":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            manager.FilterByCategory("School support", "yes");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            manager.FilterByCategory("School support", "no");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Family support":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            manager.FilterByCategory("Family support", "yes");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            manager.FilterByCategory("Family support", "no");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Extra paid classes":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            manager.FilterByCategory("Extra paid classes", "yes");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            manager.FilterByCategory("Extra paid classes", "no");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Extra activities":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            manager.FilterByCategory("Extra activities", "yes");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            manager.FilterByCategory("Extra activities", "no");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Nursery":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            manager.FilterByCategory("Nursery", "yes");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            manager.FilterByCategory("Nursery", "no");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Higher education":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            manager.FilterByCategory("Higher education", "yes");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            manager.FilterByCategory("Higher education", "no");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Internet access":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            manager.FilterByCategory("Internet access", "yes");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            manager.FilterByCategory("Internet access", "no");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Romantic relationship":
-                        if (BiComboBox.Text.Equals("Yes"))
-                        {
-                            manager.FilterByCategory("Romantic relationship", "Yes");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else if (BiComboBox.Text.Equals("No"))
-                        {
-                            manager.FilterByCategory("Romantic relationship", "No");
-                            PortuTable.DataSource = manager.GetTable();
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException();
-                        }
-                        break;
-
-                    case "Family relation":
-                        int fRel1 = int.Parse(FilterText1.Text);
-                        int fRel2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("FAMILY RELATION", fRel1, fRel2);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Free time":
-                        int ft1 = int.Parse(FilterText1.Text);
-                        int ft2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("FREE TIME", ft1, ft2);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Go out":
-                        int g1 = int.Parse(FilterText1.Text);
-                        int g2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("GO OUT", g1, g2);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Weekday alcohol":
-                        int wd1 = int.Parse(FilterText1.Text);
-                        int wd2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("WEEKDAY ALCOHOL", wd1, wd2);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Weekend alcohol":
-                        int we1 = int.Parse(FilterText1.Text);
-                        int we2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("WEEKEND ALCOHOL", we1, we2);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Health":
-                        int h1 = int.Parse(FilterText1.Text);
-                        int h2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("HEALTH", h1, h2);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Absences":
-                        int abs1 = int.Parse(FilterText1.Text);
-                        int abs2 = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("ABSENCES", abs1, abs2);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Grade 1":
-                        int grade1Min = int.Parse(FilterText1.Text);
-                        int grade1Max = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("GRADE 1", grade1Min, grade1Max);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Grade 2":
-                        int grade2Min = int.Parse(FilterText1.Text);
-                        int grade2Max = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("GRADE 2", grade2Min, grade2Max);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    case "Grade 3":
-                        int grade3Min = int.Parse(FilterText1.Text);
-                        int grade3Max = int.Parse(FilterText2.Text);
-
-                        manager.FilterByInterval("GRADE 3", grade3Min, grade3Max);
-                        PortuTable.DataSource = manager.GetTable();
-
-                        break;
-
-                    default:
-                        MessageBox.Show("Please select a filter.", "Select Filter", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         break;
                 }
+                
             }
             catch (IncorrectLimitsException e)
             {
@@ -623,12 +242,6 @@ namespace PortugueseGradeClassification.GUI
                             BiComboBox.Items.AddRange(fjob);
                             break;
 
-                        case "School support":
-                            BiComboBox.Items.Clear();
-                            String[] scsupp = new string[] { "Yes", "No" };
-                            BiComboBox.Items.AddRange(scsupp);
-                            break;
-
                         case "Reason":
                             BiComboBox.Items.Clear();
                             String[] reason = new string[] { "home", "reputation", "course", "other" };
@@ -641,50 +254,10 @@ namespace PortugueseGradeClassification.GUI
                             BiComboBox.Items.AddRange(guardian);
                             break;
 
-                        case "Family support":
+                        default:
                             BiComboBox.Items.Clear();
                             String[] fsupp = new string[] { "Yes", "No" };
                             BiComboBox.Items.AddRange(fsupp);
-                            break;
-
-                        case "Extra paid classes":
-                            BiComboBox.Items.Clear();
-                            String[] extraPaid = new string[] { "Yes", "No" };
-                            BiComboBox.Items.AddRange(extraPaid);
-                            break;
-
-                        case "Extra activities":
-                            BiComboBox.Items.Clear();
-                            String[] extraAct = new string[] { "Yes", "No" };
-                            BiComboBox.Items.AddRange(extraAct);
-                            break;
-
-                        case "Nursery":
-                            BiComboBox.Items.Clear();
-                            String[] nursery = new string[] { "Yes", "No" };
-                            BiComboBox.Items.AddRange(nursery);
-                            break;
-
-                        case "Higher education":
-                            BiComboBox.Items.Clear();
-                            String[] higher = new string[] { "Yes", "No" };
-                            BiComboBox.Items.AddRange(higher);
-                            break;
-
-                        case "Internet access":
-                            BiComboBox.Items.Clear();
-                            String[] internet = new string[] { "Yes", "No" };
-                            BiComboBox.Items.AddRange(internet);
-                            break;
-
-                        case "Romantic relationship":
-                            BiComboBox.Items.Clear();
-                            String[] roman = new string[] { "Yes", "No" };
-                            BiComboBox.Items.AddRange(roman);
-                            break;
-
-                        default:
-
                             break;
                     }
                     break;
@@ -697,44 +270,6 @@ namespace PortugueseGradeClassification.GUI
                     FilterText2.Text = "Max. Value...";
                     break;
             }
-        }
-
-        private void loadStudentToTable(Student stu)
-        {
-            int n = PortuTable.Rows.Add();
-            PortuTable.Rows[n].Cells[0].Value = stu.SchoolName;
-            PortuTable.Rows[n].Cells[1].Value = stu.Sex;
-            PortuTable.Rows[n].Cells[2].Value = stu.Age;
-            PortuTable.Rows[n].Cells[3].Value = stu.Address;
-            PortuTable.Rows[n].Cells[4].Value = stu.FamilySize;
-            PortuTable.Rows[n].Cells[5].Value = stu.ParentsStatus;
-            PortuTable.Rows[n].Cells[6].Value = stu.MotherEducation;
-            PortuTable.Rows[n].Cells[7].Value = stu.FatherEducation;
-            PortuTable.Rows[n].Cells[8].Value = stu.MotherJob;
-            PortuTable.Rows[n].Cells[9].Value = stu.FatherJob;
-            PortuTable.Rows[n].Cells[10].Value = stu.ReasonToStudy;
-            PortuTable.Rows[n].Cells[11].Value = stu.Guardian;
-            PortuTable.Rows[n].Cells[12].Value = stu.TravelTime;
-            PortuTable.Rows[n].Cells[13].Value = stu.StudyTime;
-            PortuTable.Rows[n].Cells[14].Value = stu.PreviousFailures;
-            PortuTable.Rows[n].Cells[15].Value = stu.SchoolSupport;
-            PortuTable.Rows[n].Cells[16].Value = stu.FamilySupport;
-            PortuTable.Rows[n].Cells[17].Value = stu.ExtraPaidClasses;
-            PortuTable.Rows[n].Cells[18].Value = stu.ExtraCurricularActivities;
-            PortuTable.Rows[n].Cells[19].Value = stu.NurserySchool;
-            PortuTable.Rows[n].Cells[20].Value = stu.HigherEducation;
-            PortuTable.Rows[n].Cells[21].Value = stu.InternetAccess;
-            PortuTable.Rows[n].Cells[22].Value = stu.InRomanticRelationship;
-            PortuTable.Rows[n].Cells[23].Value = stu.FamilyRelationshipQuality;
-            PortuTable.Rows[n].Cells[24].Value = stu.FreeTime;
-            PortuTable.Rows[n].Cells[25].Value = stu.GoOutFrecuency;
-            PortuTable.Rows[n].Cells[26].Value = stu.DrinksAlcoholLaboralDays;
-            PortuTable.Rows[n].Cells[27].Value = stu.DrinksAlcoholNonLaroralDays;
-            PortuTable.Rows[n].Cells[28].Value = stu.HealthStatus;
-            PortuTable.Rows[n].Cells[29].Value = stu.Absences;
-            PortuTable.Rows[n].Cells[30].Value = stu.FirstGrade;
-            PortuTable.Rows[n].Cells[31].Value = stu.SecondGrade;
-            PortuTable.Rows[n].Cells[32].Value = stu.ThirdGrade;
         }
 
         private void FilterButton_Click(object sender, EventArgs e)

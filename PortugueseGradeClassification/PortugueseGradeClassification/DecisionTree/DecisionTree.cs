@@ -1,97 +1,60 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PortugueseGradeClassification.DecisionTree;
 
 namespace PortugueseGradeClassification.DecisionTree
 {
-    class DecisionTree<T> where T: DataRow
+    internal class DecisionTree
     {
-        private Node<T> root { get; set; }
-        private Dictionary<String, T> dataDictionary { get; set; }
-        private DataTable info { get; set; }
+        public Node rootNode { get; private set; }
+        public string[] rows { get; private set; }
+        public int[] ordinalIndex { get; private set; }
 
-        //constructor
-        public DecisionTree(Dictionary<String, T> dataDictionary)
+        public DecisionTree(string[] r)
         {
-            this.dataDictionary = dataDictionary;
+            rows = r;
         }
 
-
-        //Reparte la distribucion de los datos objetivo y las veces que se repiten 
-        private Dictionary<String, Int32> labelDistribution(List<T> rows) {
-            Dictionary<String, Int32> distribution = new Dictionary<String, Int32>();
-        
-
-            foreach(T row in rows)
-            {
-                String[] attributes = row.attributes();
-
-                //El ultimo atributo es el label (el ejemplo lo muestra como el target a llegar, en nuestro caso, la nota 3)
-                String label = attributes[attributes.Length - 1];
-
-                if (distribution.Keys.Contains(label))
-                {
-                    distribution[label] += 1;
-
-                }
-                else
-                {
-
-                    distribution.Add(label,0);
-                
-                }
-
-
-            }
-
-            return distribution;
+        public void BuildTree()
+        {
         }
 
-        public List<T>[] Partition(List<T> rows, Question<T> question)
+        static public Node BuildNode()
         {
-            List<T> [] partition = { new List<T>(), new List<T>()};
-
-            foreach (T row in rows)
-            {
-                if (question.Compare(row))
-                {
-                    partition[0].Add(row);
-                }
-                else
-                {
-                    partition[1].Add(row);
-                }
-            }
-
-            return partition;
+            return null;
         }
 
-        public double CalculateGini(List<T> rows)
+        public LeafNode Classify(string row)
         {
-            double impurity = 1;
-
-            Dictionary<String, Int32> distribution = this.labelDistribution(rows);
-
-            foreach (String label in distribution.Keys)
-            {
-                double prob = Convert.ToDouble(distribution[label]) / Convert.ToDouble(rows.Count);
-                impurity -= Math.Pow(prob, 2);
-                       
-            }
-
-            return impurity;
+            return null;
         }
 
-        public double infoGain(List<T> leftSide, List<T> rightSide, double impurity) 
+        public static Tuple<double, Question> FindBestQuestion(string[] rows)
         {
-            double proportion = Convert.ToDouble(leftSide.Count) / ((Convert.ToDouble(leftSide.Count) + Convert.ToDouble(rightSide.Count));
+            return null;
+        }
 
-            return impurity - proportion * CalculateGini(leftSide) - (1 - proportion) * CalculateGini(rightSide);
-        
+        static public double Gini(string[] rows)
+        {
+            return 0;
+        }
+
+        public static double CalcInfoGain(string[] leftRows, string[] rightRows, double uncertainty)
+        {
+            return 0;
+        }
+
+        public static string[] UniqueValues(string[] rows)
+        {
+            return null;
+        }
+
+        public static Tuple<string, int>[] GetValueCounts()
+        {
+            return null;
+        }
+
+        public static Tuple<string[], string[]> Partitions(string[] rows, Question q)
+        {
+            return null;
         }
     }
 }

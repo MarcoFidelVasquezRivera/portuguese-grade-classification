@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PortugueseGradeClassification.DecisionTree
 {
-    class Question<T>
+    class Question
     {
         public int Column{ get; private set; }
         private string[] row;
@@ -24,7 +24,7 @@ namespace PortugueseGradeClassification.DecisionTree
             return (obj is double || obj is int);//retorna si el objeto es numerico o no
         }
         
-        public bool compare(T[] row)
+        public bool compare(string[] row)
         {
             object rowValue = row[this.Column];
             

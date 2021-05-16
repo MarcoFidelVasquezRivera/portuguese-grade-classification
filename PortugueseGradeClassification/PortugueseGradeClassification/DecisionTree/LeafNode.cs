@@ -12,7 +12,7 @@ namespace PortugueseGradeClassification.DecisionTree
         public LeafNode(DataTable rows)
         {
             this.rows = rows;
-            this.predictions = DecisionTree.GetValueCounts();
+            this.predictions = DecisionTree.GetValueCounts(rows);
         }
 
         public override string ToString()

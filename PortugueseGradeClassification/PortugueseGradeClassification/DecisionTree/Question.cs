@@ -10,10 +10,10 @@ namespace PortugueseGradeClassification.DecisionTree
     class Question
     {
         public int Column{ get; private set; }
-        public object Value{get; private set; }
+        public string Value{get; private set; }
 
 
-        public Question(int column, object value)
+        public Question(int column, string value)
         {
             this.Column = column;
             this.Value = value;
@@ -43,11 +43,11 @@ namespace PortugueseGradeClassification.DecisionTree
             string message = "";
             if (IsNumeric(Value))
             {
-                message = $"Is col.{Column} >= {(double)Value}?";
+                message = $"Is col.{Column} >= {Convert.ToDouble(Value)}?";
             }
             else
             {
-                message = $"Is col.{Column} == {(string)Value}?";
+                message = $"Is col.{Column} == {Value}?";
             }
             return message;
         }

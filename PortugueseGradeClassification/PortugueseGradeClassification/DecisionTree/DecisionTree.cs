@@ -91,14 +91,14 @@ namespace PortugueseGradeClassification.DecisionTree
             double bestGain = 0;
             Question bestQuestion = null;
             double uncertainty = Gini(rows);
-            int actualRow = 0;
+            int actualColumn = 0;
 
             foreach(DataRow row in rows.Rows)
             {
                 foreach (DataColumn column in rows.Columns)
                 {
-                    Question q = new Question(actualRow, row[column]);
-
+                    Question q = new Question(actualColumn, row[column]);
+                    actualColumn++;
                     Tuple<DataTable, DataTable> truefalse_rows = Partitions(rows, q);
 
                     if (truefalse_rows.Item1.Columns.Count == 0 || truefalse_rows.Item2.Columns.Count == 0) continue;
@@ -110,8 +110,9 @@ namespace PortugueseGradeClassification.DecisionTree
                         bestGain = gain;
                         bestQuestion = q;
                     }
+                    
                 }
-                actualRow++;
+                
             }    
             return new Tuple<double, Question>(bestGain, bestQuestion);
         }

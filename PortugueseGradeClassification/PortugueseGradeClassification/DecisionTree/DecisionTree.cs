@@ -6,7 +6,7 @@ namespace PortugueseGradeClassification.DecisionTree
 {
     internal class DecisionTree
     {
-        public Node rootNode { get; private set; }
+        public Node RootNode { get; private set; }
         public DataTable Rows { get; private set; }
         public List<int> TypeIndex { get; private set; }
 
@@ -18,9 +18,9 @@ namespace PortugueseGradeClassification.DecisionTree
 
         public void BuildTree()
         {
-            rootNode = BuildNode(Rows);
+            RootNode = BuildNode(Rows);
             Stack<Node> treeNodes = new Stack<Node>();
-            treeNodes.Push(rootNode);
+            treeNodes.Push(RootNode);
 
             while (treeNodes.Count > 0)
             {
@@ -58,8 +58,8 @@ namespace PortugueseGradeClassification.DecisionTree
         public LeafNode Classify(DataRow row)
         {
             Node thisNode;
-            if (rootNode is DecisionNode) thisNode = (Node)(rootNode as DecisionNode);
-            else thisNode = (Node)(rootNode as LeafNode);
+            if (RootNode is DecisionNode) thisNode = (Node)(RootNode as DecisionNode);
+            else thisNode = (Node)(RootNode as LeafNode);
 
             Question question = (thisNode as DecisionNode).Question;
 

@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace PortugueseGradeClassification.DecisionTree
 {
     internal class DecisionTree
     {
         public Node rootNode { get; private set; }
-        public string[] rows { get; private set; }
+        public DataTable Rows { get; private set; }
         public int[] ordinalIndex { get; private set; }
 
-        public DecisionTree(string[] r)
+        public DecisionTree(DataTable Rows)
         {
-            rows = r;
+            this.Rows = Rows;
         }
 
         public void BuildTree()
         {
-            rootNode = BuildNode(rows);
+            rootNode = BuildNode(Rows);
             Stack<Node> treeNodes = new Stack<Node>();
             treeNodes.Push(rootNode);
 
@@ -41,14 +42,14 @@ namespace PortugueseGradeClassification.DecisionTree
 
         }
 
-        static public Node BuildNode(string[] rows)
+        static public Node BuildNode(DataTable rows)
         {
             Tuple<double, Question> bestQuestion = FindBestQuestion(rows);
 
             if (bestQuestion.Item1 == 0) {
                 return new LeafNode(rows);
             } 
-            Tuple<String[], String[]> truefalse_rows = Partitions(rows, bestQuestion.Item2);
+            Tuple<DataTable, DataTable> truefalse_rows = Partitions(rows, bestQuestion.Item2);
 
             return new DecisionNode(bestQuestion.Item2, truefalse_rows.Item1, truefalse_rows.Item2);
         }
@@ -58,22 +59,47 @@ namespace PortugueseGradeClassification.DecisionTree
             return null;
         }
 
-        public static Tuple<double, Question> FindBestQuestion(string[] rows)
+        public static Tuple<double, Question> FindBestQuestion(DataTable rows)
         {
-            return null;
+            double bestGain = 0;
+            Question bestQuestion = null;
+            double uncertainty = Gini(rows);
+            int actualRow = 0;
+
+            foreach(DataRow row in rows.Rows)
+            {
+                foreach (DataColumn column in rows.Columns)
+                {
+                    Question q = new Question(actualRow, row[column]);
+
+                    Tuple<DataTable, DataTable> truefalse_rows = Partitions(rows, q);
+
+                    if (truefalse_rows.Item1.Columns.Count == 0 || truefalse_rows.Item2.Columns.Count == 0) continue;
+
+                    double gain = CalcInfoGain(truefalse_rows.Item1, truefalse_rows.Item2, uncertainty);
+
+                    if (gain > bestGain)
+                    {
+                        bestGain = gain;
+                        bestQuestion = q;
+                    }
+                }
+                actualRow++;
+            }    
+            return new Tuple<double, Question>(bestGain, bestQuestion);
         }
 
-        static public double Gini(string[] rows)
+        static public double Gini(DataTable rows)
         {
             return 0;
         }
 
-        public static double CalcInfoGain(string[] leftRows, string[] rightRows, double uncertainty)
+        public static double CalcInfoGain(DataTable leftRows, DataTable rightRows, double uncertainty)
         {
             return 0;
         }
 
-        public static string[] UniqueValues(string[] rows)
+        public static string[] UniqueValues(DataTable rows)
         {
             return null;
         }
@@ -83,7 +109,7 @@ namespace PortugueseGradeClassification.DecisionTree
             return null;
         }
 
-        public static Tuple<string[], string[]> Partitions(string[] rows, Question q)
+        public static Tuple<DataTable,DataTable> Partitions(DataTable rows, Question q)
         {
             return null;
         }

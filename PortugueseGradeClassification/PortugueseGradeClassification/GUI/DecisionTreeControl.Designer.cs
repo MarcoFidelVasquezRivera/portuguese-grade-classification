@@ -29,9 +29,9 @@ namespace PortugueseGradeClassification.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.TrainButton = new System.Windows.Forms.Button();
             this.guessesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.schoolComboBox = new System.Windows.Forms.ComboBox();
@@ -96,7 +96,7 @@ namespace PortugueseGradeClassification.GUI
             this.pStatusComboBox = new System.Windows.Forms.ComboBox();
             this.fSizeComboBox = new System.Windows.Forms.ComboBox();
             this.addressComboBox = new System.Windows.Forms.ComboBox();
-            this.sexComboBox2 = new System.Windows.Forms.ComboBox();
+            this.sexComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ClasiffyButton = new System.Windows.Forms.Button();
             this.ClassificationTextBox = new System.Windows.Forms.TextBox();
@@ -113,19 +113,20 @@ namespace PortugueseGradeClassification.GUI
             this.TrainButton.TabIndex = 0;
             this.TrainButton.Text = "Entrenar arbol";
             this.TrainButton.UseVisualStyleBackColor = true;
+            this.TrainButton.Click += new System.EventHandler(this.TrainButton_Click);
             // 
             // guessesChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.guessesChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.guessesChart.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.guessesChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.guessesChart.Legends.Add(legend4);
             this.guessesChart.Location = new System.Drawing.Point(669, 54);
             this.guessesChart.Name = "guessesChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.guessesChart.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.guessesChart.Series.Add(series4);
             this.guessesChart.Size = new System.Drawing.Size(249, 211);
             this.guessesChart.TabIndex = 1;
             this.guessesChart.Text = "chart1";
@@ -209,7 +210,7 @@ namespace PortugueseGradeClassification.GUI
             this.tableLayoutPanel1.Controls.Add(this.pStatusComboBox, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.fSizeComboBox, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.addressComboBox, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.sexComboBox2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.sexComboBox, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.schoolComboBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(20, 13);
@@ -847,16 +848,16 @@ namespace PortugueseGradeClassification.GUI
             this.addressComboBox.Size = new System.Drawing.Size(109, 21);
             this.addressComboBox.TabIndex = 41;
             // 
-            // sexComboBox2
+            // sexComboBox
             // 
-            this.sexComboBox2.FormattingEnabled = true;
-            this.sexComboBox2.Items.AddRange(new object[] {
+            this.sexComboBox.FormattingEnabled = true;
+            this.sexComboBox.Items.AddRange(new object[] {
             "M",
             "F"});
-            this.sexComboBox2.Location = new System.Drawing.Point(157, 40);
-            this.sexComboBox2.Name = "sexComboBox2";
-            this.sexComboBox2.Size = new System.Drawing.Size(109, 21);
-            this.sexComboBox2.TabIndex = 41;
+            this.sexComboBox.Location = new System.Drawing.Point(157, 40);
+            this.sexComboBox.Name = "sexComboBox";
+            this.sexComboBox.Size = new System.Drawing.Size(109, 21);
+            this.sexComboBox.TabIndex = 41;
             // 
             // label1
             // 
@@ -876,6 +877,7 @@ namespace PortugueseGradeClassification.GUI
             this.ClasiffyButton.TabIndex = 39;
             this.ClasiffyButton.Text = "Clasificar estudiante";
             this.ClasiffyButton.UseVisualStyleBackColor = true;
+            this.ClasiffyButton.Click += new System.EventHandler(this.ClasiffyButton_Click);
             // 
             // ClassificationTextBox
             // 
@@ -964,7 +966,7 @@ namespace PortugueseGradeClassification.GUI
         private System.Windows.Forms.ComboBox pStatusComboBox;
         private System.Windows.Forms.ComboBox fSizeComboBox;
         private System.Windows.Forms.ComboBox addressComboBox;
-        private System.Windows.Forms.ComboBox sexComboBox2;
+        private System.Windows.Forms.ComboBox sexComboBox;
         private System.Windows.Forms.Button ClasiffyButton;
         private System.Windows.Forms.TextBox ClassificationTextBox;
         private System.Windows.Forms.Label label1;

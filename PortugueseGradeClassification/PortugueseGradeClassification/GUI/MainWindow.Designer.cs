@@ -32,13 +32,15 @@ namespace PortugueseGradeClassification.GUI
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableFilter1 = new PortugueseGradeClassification.GUI.TableFilter();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.graphView1 = new PortugueseGradeClassification.GUI.GraphView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.decisionTreeControl1 = new PortugueseGradeClassification.GUI.DecisionTreeControl();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -68,26 +70,6 @@ namespace PortugueseGradeClassification.GUI
             this.tabPage1.Text = "Table";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.graphView1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(908, 429);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Graph";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(908, 429);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Decision Tree";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
             // tableFilter1
             // 
             this.tableFilter1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -97,14 +79,43 @@ namespace PortugueseGradeClassification.GUI
             this.tableFilter1.TabIndex = 0;
             this.tableFilter1.Load += new System.EventHandler(this.tableFilter1_Load);
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.graphView1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(803, 429);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Graph";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // graphView1
             // 
             this.graphView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graphView1.Location = new System.Drawing.Point(3, 3);
             this.graphView1.Name = "graphView1";
-            this.graphView1.Size = new System.Drawing.Size(902, 423);
+            this.graphView1.Size = new System.Drawing.Size(797, 423);
             this.graphView1.TabIndex = 0;
             this.graphView1.Load += new System.EventHandler(this.graphView1_Load);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.decisionTreeControl1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(803, 429);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Decision Tree";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // decisionTreeControl1
+            // 
+            this.decisionTreeControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.decisionTreeControl1.Location = new System.Drawing.Point(0, 0);
+            this.decisionTreeControl1.Name = "decisionTreeControl1";
+            this.decisionTreeControl1.Size = new System.Drawing.Size(803, 429);
+            this.decisionTreeControl1.TabIndex = 0;
             // 
             // MainWindow
             // 
@@ -118,6 +129,7 @@ namespace PortugueseGradeClassification.GUI
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -130,5 +142,6 @@ namespace PortugueseGradeClassification.GUI
         private System.Windows.Forms.TabPage tabPage3;
         private TableFilter tableFilter1;
         private GraphView graphView1;
+        private DecisionTreeControl decisionTreeControl1;
     }
 }

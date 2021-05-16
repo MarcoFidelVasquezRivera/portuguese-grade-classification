@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace PortugueseGradeClassification.DecisionTree
 {
@@ -19,14 +16,23 @@ namespace PortugueseGradeClassification.DecisionTree
             this.Value = value;
         }
 
-        private bool IsNumeric(object obj)
+        private bool IsNumeric(string obj)
         {
-            return (obj is double || obj is int);//retorna si el objeto es numerico o no
+            try
+            {
+                Convert.ToInt32(obj);
+                Convert.ToDouble(obj);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         
         public bool compare(DataRow row)
         {
-            object rowValue = row[this.Column];
+            string rowValue = Convert.ToString(row[this.Column]);
             
             if (IsNumeric(this.Value) && IsNumeric(rowValue))
             {

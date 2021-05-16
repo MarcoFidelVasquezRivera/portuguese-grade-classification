@@ -44,7 +44,7 @@ namespace PortugueseGradeClassification.DecisionTree
 
         public Node BuildNode(DataTable rows)
         {
-            Tuple<double, Question[]> bestQuestion = FindBestQuestion(rows);
+            Tuple<double, Question> bestQuestion = FindBestQuestion(rows);
 
             if (bestQuestion.Item1 == 0)
             {
@@ -61,20 +61,11 @@ namespace PortugueseGradeClassification.DecisionTree
             if (rootNode is DecisionNode) thisNode = (Node)(rootNode as DecisionNode);
             else thisNode = (Node)(rootNode as LeafNode);
 
-            Question[] questions = (thisNode as DecisionNode).Question;
-            bool val = false;
+            Question question = (thisNode as DecisionNode).Question;
 
             while (!(thisNode is LeafNode))
             {
-                for (int i = 0; i < questions.Length && !val; i++)
-                {
-                    if (!(thisNode is LeafNode))
-                    {
-                        val = questions[i].compare(row);
-                    }
-                }
-
-                if (val)
+                if (question.compare(row))
                 {
                     thisNode = (thisNode as DecisionNode).TrueNode;
                 }
@@ -83,75 +74,45 @@ namespace PortugueseGradeClassification.DecisionTree
                     thisNode = (thisNode as DecisionNode).FalseNode;
                 }
             }
-            return (LeafNode)thisNode;
+            return (LeafNode) thisNode;
         }
 
         //Si es numerico: Se organiza de menor a mayor y se utiliza el promedio entre dos valores para el gini
         //Si es categorico ordinal: Se organiza y se utilizan todos los valores menos el inicial para el gini
         //Si es categorico no ordinal: Se usan todas las posibles combinaciones no repetidas para el gini
-        public Tuple<double, Question[]> FindBestQuestion(DataTable rows)
+        public Tuple<double, Question> FindBestQuestion(DataTable rows)
         {
             double bestGain = 0;
             Question bestQuestion = null;
-            Question[] bestQuestions = null;
             double uncertainty = Gini(rows);
             int actualColumn = 0;
 
             foreach (DataColumn column in rows.Columns)
             {
-                List<string> value = VariableClassification(actualColumn, rows);
-
-                //FALTA AÑADIR LA INSERCIÓN DE VALORES A LAS QUESTIONS
-
-                Question q = new Question(actualColumn, value);
-                Question[] qs = new Question[1];
-
-                Tuple<DataTable, DataTable> truefalse_rows = Partitions(rows, qs);
-
-                if (truefalse_rows.Item1.Columns.Count == 0 || truefalse_rows.Item2.Columns.Count == 0) continue;
-
-                double gain = CalcInfoGain(truefalse_rows.Item1, truefalse_rows.Item2, uncertainty);
-
-                if (gain > bestGain)
+                List<string> allValues = new List<string>(UniqueValues(rows, actualColumn));
+                allValues.Sort();
+                
+                for (int i = 0; i < allValues.Count; i++)
                 {
-                    bestGain = gain;
-                    bestQuestion = q;
-                }
+                    Question q = new Question(actualColumn, allValues[i]);
 
+                    Tuple<DataTable, DataTable> truefalse_rows = Partitions(rows, q);
+
+                    if (truefalse_rows.Item1.Rows.Count == 0 || truefalse_rows.Item2.Rows.Count == 0) continue;
+
+                    double gain = CalcInfoGain(truefalse_rows.Item1, truefalse_rows.Item2, uncertainty);
+
+                    if (gain > bestGain)
+                    {
+                        bestGain = gain;
+                        bestQuestion = q;
+                    }
+                }
+                
                 actualColumn++;
             }
-            return new Tuple<double, Question[]>(bestGain, bestQuestions);
-        }
 
-        public List<string> VariableClassification(int column, DataTable rows)
-        {
-            //0 = Numeric variables
-            //1 = Categorical, ordinal variables
-            //2 = Categorical, non ordinal variables
-
-            List<string> value = null;
-            List<string> uniqueValues = new List<string>(UniqueValues(rows, column));
-
-            if (TypeIndex[column] == 0 || TypeIndex[column] == 0)
-            {
-                value = uniqueValues;
-            }
-            else
-            {
-                int quant = uniqueValues.Count / 2;
-                int[] indexes = new int[quant];
-
-                for (int i = 0; i < indexes.Length; i++)
-                {
-                    indexes[i] = i;
-                }
-
-                while (true)
-                {
-                    //HACERLO
-                }
-            }
-            return value;
+            return new Tuple<double, Question>(bestGain, bestQuestion);
         }
 
         public double Gini(DataTable rows)
@@ -221,21 +182,14 @@ namespace PortugueseGradeClassification.DecisionTree
             return valueCounts;
         }
 
-        public Tuple<DataTable, DataTable> Partitions(DataTable rows, Question[] questions)
+        public Tuple<DataTable, DataTable> Partitions(DataTable rows, Question question)
         {
             DataTable trueRows = new DataTable();
             DataTable falseRows = new DataTable();
 
             foreach (DataRow row in rows.Rows)
             {
-                bool val = false;
-
-                for (int i = 0; i < questions.Length && !val; i++)
-                {
-                    val = questions[i].compare(row);
-                }
-
-                if (val)
+                if (question.compare(row))
                 {
                     trueRows.Rows.Add(row);
                 }

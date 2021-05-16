@@ -5,13 +5,13 @@ namespace PortugueseGradeClassification.DecisionTree
 {
     class DecisionNode : Node
     {
-        public Question[] Question { get; private set; }
+        public Question Question { get; private set; }
         public Node TrueNode { get; set; }
         public Node FalseNode { get; set; }
         public DataTable TrueRows { get; private set; }
         public DataTable FalseRows { get; private set; }
 
-        public DecisionNode (Question[] q, DataTable tRows, DataTable fRows)
+        public DecisionNode (Question q, DataTable tRows, DataTable fRows)
         {
             Question = q;
             TrueRows = tRows;

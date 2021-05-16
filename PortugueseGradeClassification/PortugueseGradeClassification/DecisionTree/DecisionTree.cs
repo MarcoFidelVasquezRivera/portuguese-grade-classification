@@ -96,12 +96,23 @@ namespace PortugueseGradeClassification.DecisionTree
 
         public static double CalcInfoGain(DataTable leftRows, DataTable rightRows, double uncertainty)
         {
-            return 0;
+            double prop = (double)leftRows.Columns.Count / ((double)leftRows.Columns.Count + (double)rightRows.Columns.Count);
+            return uncertainty - prop * Gini(leftRows) - (1 - prop) * Gini(rightRows);
         }
 
         public static string[] UniqueValues(DataTable rows)
         {
-            return null;
+            List<string> uniqueValues = new List<string>();
+            
+            foreach(DataRow row in rows.Rows)
+            {
+                string val = (string)row[rows.Columns.Count-1];
+                if (!uniqueValues.Contains(val))
+                {
+                    uniqueValues.Add(val);
+                }
+            }
+            return uniqueValues.ToArray();
         }
 
         public static Tuple<string, int>[] GetValueCounts()

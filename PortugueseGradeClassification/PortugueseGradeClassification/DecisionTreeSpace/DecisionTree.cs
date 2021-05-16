@@ -66,12 +66,10 @@ namespace PortugueseGradeClassification.DecisionTreeSpace
                 if (question.compare(row))
                 {
                     thisNode = (thisNode as DecisionNode).TrueNode;
-                    Console.WriteLine("Derecha "+question.ToString());
                 }
                 else
                 {
                     thisNode = (thisNode as DecisionNode).FalseNode;
-                    Console.WriteLine("Izquierda "+question.ToString());
                 }
             }
             return ((LeafNode) thisNode).ToString();

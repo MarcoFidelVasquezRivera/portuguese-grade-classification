@@ -39,7 +39,6 @@ namespace PortugueseGradeClassification.Model
             
             foreach (DataRow dr in table.Rows) 
             {
-                Console.WriteLine(dr.ItemArray);
                 copy.Rows.Add(dr.ItemArray);
             }
 
@@ -54,8 +53,8 @@ namespace PortugueseGradeClassification.Model
             
             tree = new DecisionTree(training);
             tree.BuildTree();
-            Console.WriteLine(tree.Classify(table.Rows[400]));
-        
+            Console.WriteLine(tree.Classify(table.Rows[400]));           
+            Console.WriteLine(tree.Classify(table.Rows[100]));
         }
 
         public void Load(string path)

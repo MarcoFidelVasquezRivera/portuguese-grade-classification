@@ -67,10 +67,12 @@ namespace PortugueseGradeClassification.DecisionTreeSpace
                 if (question.compare(row))
                 {
                     thisNode = (thisNode as DecisionNode).TrueNode;
+                    Console.WriteLine("Derecha "+question.ToString());
                 }
                 else
                 {
                     thisNode = (thisNode as DecisionNode).FalseNode;
+                    Console.WriteLine("Izquierda "+question.ToString());
                 }
             }
             return ((LeafNode) thisNode).ToString();
@@ -85,30 +87,35 @@ namespace PortugueseGradeClassification.DecisionTreeSpace
             Question bestQuestion = null;
             double uncertainty = Gini(rows);
             int actualColumn = 0;
+            
 
             foreach (DataColumn column in rows.Columns)
+
             {
-                List<string> allValues = new List<string>(UniqueValues(rows, actualColumn));
-                allValues.Sort();
-                
-                for (int i = 0; i < allValues.Count; i++)
+                if (actualColumn != 32)
                 {
-                    Question q = new Question(actualColumn, allValues[i]);
+                    List<string> allValues = new List<string>(UniqueValues(rows, actualColumn));
+                    allValues.Sort();
 
-                    Tuple<DataTable, DataTable> truefalse_rows = Partitions(rows, q);
-
-                    if (truefalse_rows.Item1.Rows.Count == 0 || truefalse_rows.Item2.Rows.Count == 0) continue;
-
-                    double gain = CalcInfoGain(truefalse_rows.Item1, truefalse_rows.Item2, uncertainty);
-
-                    if (gain > bestGain)
+                    for (int i = 0; i < allValues.Count; i++)
                     {
-                        bestGain = gain;
-                        bestQuestion = q;
+                        Question q = new Question(actualColumn, allValues[i]);
+
+                        Tuple<DataTable, DataTable> truefalse_rows = Partitions(rows, q);
+
+                        if (truefalse_rows.Item1.Rows.Count != 0 && truefalse_rows.Item2.Rows.Count != 0)
+                        {
+                            double gain = CalcInfoGain(truefalse_rows.Item1, truefalse_rows.Item2, uncertainty);
+
+                            if (gain > bestGain)
+                            {
+                                bestGain = gain;
+                                bestQuestion = q;
+                            }
+                        }                  
                     }
-                }
-                
-                actualColumn++;
+                    actualColumn++;
+                }             
             }
 
             return new Tuple<double, Question>(bestGain, bestQuestion);

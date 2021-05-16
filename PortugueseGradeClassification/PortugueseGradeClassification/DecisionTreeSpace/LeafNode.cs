@@ -18,32 +18,11 @@ namespace PortugueseGradeClassification.DecisionTreeSpace
 
         public override string ToString()
         {
-            Dictionary<String, int> count = new Dictionary<string, int>();
-            foreach (DataRow dr in rows.Rows)
-            {
-                if (count.ContainsKey(Convert.ToString(dr[32])))
-                {
-                    count[Convert.ToString(dr[32])]++;
-                }
+            string message = "Predict: { ";
+            foreach (Tuple<string, int> prediction in predictions) message += $"{prediction.Item1.ToString()}:{prediction.Item2} ";
+            message += "}";
 
-                else count.Add(Convert.ToString(dr[32]), 1);
-            }
-
-            string mostCommonValue = "";
-            int repeats = 0;
-
-            foreach(KeyValuePair<String,int> kvp in count)
-            {
-                if(kvp.Value > repeats)
-                {
-
-                    mostCommonValue = kvp.Key;
-                    repeats = kvp.Value;
-
-                }
-            }
-
-            return mostCommonValue;
+            return message;
         }
     }
 }

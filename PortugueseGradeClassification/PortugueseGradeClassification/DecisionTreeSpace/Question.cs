@@ -16,25 +16,24 @@ namespace PortugueseGradeClassification.DecisionTreeSpace
             this.Value = value;
         }
 
-        private bool IsNumeric(string obj)
+        private bool IsNumeric(int obj)
         {
-            try
+            int [] numColumns= {2,6,7,12,13,14,23,24,25,26,27,28,29,30,31,32};
+            foreach (int i in numColumns)
             {
-                Convert.ToInt32(obj);
-                Convert.ToDouble(obj);
-                return true;
+                if (i == obj)
+                {
+                    return true; ;
+                }
             }
-            catch (Exception)
-            {
-                return false;
-            }
+            return false;
         }
         
         public bool compare(DataRow row)
         {
             string rowValue = Convert.ToString(row[this.Column]);
             
-            if (IsNumeric(this.Value) && IsNumeric(rowValue))
+            if (IsNumeric(this.Column))
             {
                 return Convert.ToDouble(rowValue) >= Convert.ToDouble(Value);
             }
@@ -47,7 +46,7 @@ namespace PortugueseGradeClassification.DecisionTreeSpace
         public override string ToString()
         {
             string message = "";
-            if (IsNumeric(Value))
+            if (IsNumeric(this.Column))
             {
                 message = $"Is col.{Column} >= {Convert.ToDouble(Value)}?";
             }

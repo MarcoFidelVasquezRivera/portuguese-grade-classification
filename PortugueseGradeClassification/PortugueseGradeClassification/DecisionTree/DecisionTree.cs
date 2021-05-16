@@ -29,14 +29,14 @@ namespace PortugueseGradeClassification.DecisionTree
                 {
                     DecisionNode decisionNode = (DecisionNode)actualNode;
                     
-                    string[] trueRows = decisionNode.trueRows;
-                    string[] falseRows = decisionNode.falseRows;
+                    DataTable trueRows = decisionNode.TrueRows;
+                    DataTable falseRows = decisionNode.FalseRows;
 
-                    decisionNode.trueNode = BuildNode(trueRows);
-                    decisionNode.falseNode = BuildNode(falseRows);
+                    decisionNode.TrueNode = BuildNode(trueRows);
+                    decisionNode.FalseNode = BuildNode(falseRows);
 
-                    treeNodes.Push(decisionNode.trueNode);
-                    treeNodes.Push(decisionNode.falseNode);
+                    treeNodes.Push(decisionNode.TrueNode);
+                    treeNodes.Push(decisionNode.FalseNode);
                 }
             }
 

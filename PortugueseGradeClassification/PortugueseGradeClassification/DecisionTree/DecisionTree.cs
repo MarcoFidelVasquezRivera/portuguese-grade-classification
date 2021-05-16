@@ -54,9 +54,36 @@ namespace PortugueseGradeClassification.DecisionTree
             return new DecisionNode(bestQuestion.Item2, truefalse_rows.Item1, truefalse_rows.Item2);
         }
 
-        public LeafNode Classify(string row)
+        public LeafNode Classify(DataRow row)
         {
-            return null;
+            Node thisNode;
+            if (rootNode is DecisionNode) thisNode = (Node)(rootNode as DecisionNode);
+            else thisNode = (Node)(rootNode as LeafNode);
+
+            Question[] questions = (thisNode as DecisionNode).Question;
+            bool val = false;
+
+            while(!(thisNode is LeafNode))
+            {
+                for (int i = 0; i < questions.Length && !val; i++)
+                {
+                    if (!(thisNode is LeafNode))
+                    {
+                        val = questions[i].compare(row);
+                    }
+                }
+
+                if (val)
+                {
+                    thisNode = (thisNode as DecisionNode).TrueNode;
+                }
+                else
+                {
+                    thisNode = (thisNode as DecisionNode).FalseNode;
+                }
+
+            }
+            return (LeafNode)thisNode;
         }
 
         public static Tuple<double, Question> FindBestQuestion(DataTable rows)
@@ -134,7 +161,16 @@ namespace PortugueseGradeClassification.DecisionTree
 
         public static Tuple<DataTable,DataTable> Partitions(DataTable rows, Question q)
         {
-            return null;
+            DataTable true_rows = new DataTable();
+            DataTable false_rows = new DataTable();
+
+            foreach (DataRow row in rows.Rows)
+            {
+                if (q.compare(row)) true_rows.Rows.Add(row);
+                else false_rows.Rows.Add(row);
+            }
+
+            return new Tuple<DataTable, DataTable>(true_rows, false_rows);
         }
     }
 }

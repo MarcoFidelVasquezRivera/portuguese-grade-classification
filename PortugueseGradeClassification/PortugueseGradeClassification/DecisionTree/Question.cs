@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace PortugueseGradeClassification.DecisionTree
             return (obj is double || obj is int);//retorna si el objeto es numerico o no
         }
         
-        public bool compare(string[] row)
+        public bool compare(DataRow row)
         {
             object rowValue = row[this.Column];
             

@@ -48,11 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomExceptions\IncorrectLimitsException.cs" />
-    <Compile Include="DecisionTree\DecisionTree.cs" />
-    <Compile Include="DecisionTree\LeafNode.cs" />
-    <Compile Include="DecisionTree\DecisionNode.cs" />
-    <Compile Include="DecisionTree\Node.cs" />
-    <Compile Include="DecisionTree\Question.cs" />
+    <Compile Include="DecisionTreeSpace\DecisionTree.cs" />
+    <Compile Include="DecisionTreeSpace\LeafNode.cs" />
+    <Compile Include="DecisionTreeSpace\DecisionNode.cs" />
+    <Compile Include="DecisionTreeSpace\Node.cs" />
+    <Compile Include="DecisionTreeSpace\Question.cs" />
     <Compile Include="GUI\LoadDataWindow.cs">
       <SubType>Form</SubType>
     </Compile>

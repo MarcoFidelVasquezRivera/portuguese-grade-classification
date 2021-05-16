@@ -1,9 +1,9 @@
 ﻿using System.Data;
 
 
-namespace PortugueseGradeClassification.DecisionTree
+namespace PortugueseGradeClassification.DecisionTreeSpace
 {
-    class DecisionNode : Node
+    public class DecisionNode : Node
     {
         public Question Question { get; private set; }
         public Node TrueNode { get; set; }

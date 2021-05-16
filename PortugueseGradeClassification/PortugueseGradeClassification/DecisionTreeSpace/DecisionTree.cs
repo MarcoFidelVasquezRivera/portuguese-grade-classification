@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace PortugueseGradeClassification.DecisionTree
+namespace PortugueseGradeClassification.DecisionTreeSpace
 {
-    internal class DecisionTree
+    public class DecisionTree
     {
         public Node RootNode { get; private set; }
         public DataTable Rows { get; private set; }
         public List<int> TypeIndex { get; private set; }
 
-        public DecisionTree(DataTable rows, List<int> ordinalIndex)
+        public DecisionTree(DataTable rows)
         {
             this.Rows = rows;
-            this.TypeIndex = ordinalIndex;
         }
 
         public void BuildTree()
@@ -55,7 +54,7 @@ namespace PortugueseGradeClassification.DecisionTree
             return new DecisionNode(bestQuestion.Item2, truefalse_rows.Item1, truefalse_rows.Item2);
         }
 
-        public LeafNode Classify(DataRow row)
+        public string Classify(DataRow row)
         {
             Node thisNode;
             if (RootNode is DecisionNode) thisNode = (Node)(RootNode as DecisionNode);
@@ -74,7 +73,7 @@ namespace PortugueseGradeClassification.DecisionTree
                     thisNode = (thisNode as DecisionNode).FalseNode;
                 }
             }
-            return (LeafNode) thisNode;
+            return ((LeafNode) thisNode).ToString();
         }
 
         //Si es numerico: Se organiza de menor a mayor y se utiliza el promedio entre dos valores para el gini
@@ -138,7 +137,7 @@ namespace PortugueseGradeClassification.DecisionTree
             return uncertainty - prop * Gini(leftRows) - (1 - prop) * Gini(rightRows);
         }
 
-        public string[] UniqueValues(DataTable rows, int column)
+        public static string[] UniqueValues(DataTable rows, int column)
         {
             List<string> uniqueValues = new List<string>();
 
@@ -153,7 +152,7 @@ namespace PortugueseGradeClassification.DecisionTree
             return uniqueValues.ToArray();
         }
 
-        public Tuple<string, int>[] GetValueCounts(DataTable rows)
+        public static Tuple<string, int>[] GetValueCounts(DataTable rows)
         {
             List<string> uniqueValues = new List<string>(UniqueValues(rows, rows.Columns.Count - 1));
             int[] quant = new int[uniqueValues.Count];
@@ -186,16 +185,21 @@ namespace PortugueseGradeClassification.DecisionTree
         {
             DataTable trueRows = new DataTable();
             DataTable falseRows = new DataTable();
+            for(int i = 0; i<33; i++)
+            {
+                trueRows.Columns.Add();
+                falseRows.Columns.Add();
+            }
 
             foreach (DataRow row in rows.Rows)
             {
                 if (question.compare(row))
                 {
-                    trueRows.Rows.Add(row);
+                    trueRows.Rows.Add(row.ItemArray);
                 }
                 else
                 {
-                    falseRows.Rows.Add(row);
+                    falseRows.Rows.Add(row.ItemArray);
                 }
             }
 

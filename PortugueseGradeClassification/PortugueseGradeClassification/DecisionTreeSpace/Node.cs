@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PortugueseGradeClassification.DecisionTree
+namespace PortugueseGradeClassification.DecisionTreeSpace
 {
-    abstract class Node
+    public abstract class Node
     {
     }
 }

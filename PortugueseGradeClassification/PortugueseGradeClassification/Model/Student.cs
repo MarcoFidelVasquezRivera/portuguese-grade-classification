@@ -1,4 +1,4 @@
-﻿using PortugueseGradeClassification.DecisionTree;
+﻿using PortugueseGradeClassification.DecisionTreeSpace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PortugueseGradeClassification.Model
 {
-    public class Student : DataRow
+    public class Student
     {
         public string SchoolName { get; }
         public char Sex { get; }
@@ -93,18 +93,7 @@ namespace PortugueseGradeClassification.Model
                 + "," + NurserySchool + "," + HigherEducation + "," + InternetAccess + "," + InRomanticRelationship + "," + FamilyRelationshipQuality
                 + "," + FreeTime + "," + GoOutFrecuency + "," + DrinksAlcoholLaboralDays + "," + DrinksAlcoholNonLaroralDays + "," + HealthStatus
                 + "," + Absences + "," + FirstGrade + "," + SecondGrade + "," + ThirdGrade;
-        }
-
-        public String[] attributes()
-        {
-            string[] info = {SchoolName + "", Sex + "", Age + "", Address + "",FamilySize + "",ParentsStatus +"",MotherEducation
-                + "", FatherEducation + "",MotherJob + "",FatherJob + "",ReasonToStudy + "",Guardian + "", TravelTime + "", StudyTime + "",PreviousFailures + "", SchoolSupport + "",
-                FamilySupport + "",ExtraPaidClasses + "",ExtraCurricularActivities + "",NurserySchool + "",HigherEducation + "", InternetAccess + "", InRomanticRelationship + "", FamilyRelationshipQuality
-                + "", FreeTime + "", GoOutFrecuency + "", DrinksAlcoholLaboralDays + "", DrinksAlcoholNonLaroralDays + "",HealthStatus
-                + "", Absences + "", FirstGrade + "", SecondGrade + "", ThirdGrade + ""};
-            return info;
-        }
-    
+        }   
     
     }
 }

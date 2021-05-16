@@ -2,9 +2,9 @@
 using System.Data;
 
 
-namespace PortugueseGradeClassification.DecisionTree
+namespace PortugueseGradeClassification.DecisionTreeSpace
 {
-    class Question
+    public class Question
     {
         public int Column{ get; private set; }
         public string Value{get; private set; }

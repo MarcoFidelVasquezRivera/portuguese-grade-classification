@@ -7,19 +7,69 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PortugueseGradeClassification.CustomExceptions;
+using PortugueseGradeClassification.DecisionTreeSpace;
 
 namespace PortugueseGradeClassification.Model
 {
     public class DepartmentManager
-    {
+    {      
+        private List<Student> students;
         private DataTable table;
-        private List<Student> students; 
+        private DecisionTree tree;
 
         public DepartmentManager()
         {
             table = new DataTable();
             students = new List<Student>();
+        }
 
+        public void TrainTree() 
+        {
+            DataTable copy = new DataTable();
+            DataTable training = new DataTable();
+
+            for (int i = 0; i < 33; i++) 
+            {
+
+                copy.Columns.Add();
+                training.Columns.Add();
+
+            }
+
+            
+            foreach (DataRow dr in table.Rows) 
+            {
+                copy.Rows.Add(dr.ItemArray);
+            }
+
+            Random a = new Random();
+            for (int i = 0; i < table.Rows.Count*0.8; i++) 
+            {
+                int randmNum = a.Next(0,copy.Rows.Count);
+                training.Rows.Add(copy.Rows[randmNum].ItemArray);
+                copy.Rows[randmNum].Delete();
+            
+            }
+            
+            tree = new DecisionTree(training);
+            tree.BuildTree();
+
+            double correct = 0;
+
+            foreach (DataRow dr in copy.Rows)
+            {
+                string classification = tree.Classify(dr);
+
+                if (classification.Equals(dr[32]))
+                {
+                    correct++;
+                }
+
+            }
+
+            double percent= correct/Convert.ToDouble(copy.Rows.Count);
+
+            Console.WriteLine(percent);
         }
 
         public void Load(string path)
@@ -70,6 +120,7 @@ namespace PortugueseGradeClassification.Model
                 line = reader.ReadLine();
             }
 
+            TrainTree();
         }
 
 

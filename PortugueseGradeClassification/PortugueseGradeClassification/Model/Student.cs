@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PortugueseGradeClassification.DecisionTreeSpace;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -92,6 +93,7 @@ namespace PortugueseGradeClassification.Model
                 + "," + NurserySchool + "," + HigherEducation + "," + InternetAccess + "," + InRomanticRelationship + "," + FamilyRelationshipQuality
                 + "," + FreeTime + "," + GoOutFrecuency + "," + DrinksAlcoholLaboralDays + "," + DrinksAlcoholNonLaroralDays + "," + HealthStatus
                 + "," + Absences + "," + FirstGrade + "," + SecondGrade + "," + ThirdGrade;
-        }
+        }   
+    
     }
 }

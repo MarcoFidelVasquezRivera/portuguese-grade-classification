@@ -43,7 +43,14 @@ namespace PortugueseGradeClassification.DecisionTree
 
         static public Node BuildNode(string[] rows)
         {
-            return null;
+            Tuple<double, Question> bestQuestion = FindBestQuestion(rows);
+
+            if (bestQuestion.Item1 == 0) {
+                return new LeafNode(rows);
+            } 
+            Tuple<String[], String[]> truefalse_rows = Partitions(rows, bestQuestion.Item2);
+
+            return new DecisionNode(bestQuestion.Item2, truefalse_rows.Item1, truefalse_rows.Item2);
         }
 
         public LeafNode Classify(string row)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace PortugueseGradeClassification.DecisionTree
 {
@@ -63,9 +64,21 @@ namespace PortugueseGradeClassification.DecisionTree
             return null;
         }
 
-        static public double Gini(string[] rows)
+        static public double Gini(DataTable rows)
         {
-            return 0;
+            //El gini se hace para encontrar la variedad de datos DESPUES de una partición
+            //El infoGain se hace utilizan el gini del nodo antes de la partición 
+
+            Tuple<string, int>[] vars = GetValueCounts(rows);
+            double impurity = 1;
+
+            foreach (Tuple<string, int> var in vars)
+            {
+                double prop = (double)var.Item2 / (double)rows.Rows.Count;
+                double powerOfTwo = (prop * prop);
+                impurity -= powerOfTwo;
+            }
+            return impurity;
         }
 
         public static double CalcInfoGain(string[] leftRows, string[] rightRows, double uncertainty)
@@ -78,7 +91,7 @@ namespace PortugueseGradeClassification.DecisionTree
             return null;
         }
 
-        public static Tuple<string, int>[] GetValueCounts()
+        public static Tuple<string, int>[] GetValueCounts(DataTable rows)
         {
             return null;
         }

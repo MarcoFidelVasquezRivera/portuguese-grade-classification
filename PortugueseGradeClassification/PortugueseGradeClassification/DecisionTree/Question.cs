@@ -9,7 +9,6 @@ namespace PortugueseGradeClassification.DecisionTree
     class Question
     {
         public int Column{ get; private set; }
-        private string[] row;
         public object Value{get; private set; }
 
 

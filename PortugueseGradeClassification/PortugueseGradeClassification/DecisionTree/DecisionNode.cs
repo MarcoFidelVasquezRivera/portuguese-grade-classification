@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
+
 
 namespace PortugueseGradeClassification.DecisionTree
 {
     class DecisionNode : Node
     {
-        public Question question { get; private set; }
-        public Node trueNode { get; set; }
-        public Node falseNode { get; set; }
-        public string[] trueRows { get; private set; }
-        public string[] falseRows { get; private set; }
+        public Question[] Question { get; private set; }
+        public Node TrueNode { get; set; }
+        public Node FalseNode { get; set; }
+        public DataTable TrueRows { get; private set; }
+        public DataTable FalseRows { get; private set; }
 
-        public DecisionNode (Question q, string[] tRows, string[] fRows)
+        public DecisionNode (Question[] q, DataTable tRows, DataTable fRows)
         {
-            question = q;
-            trueRows = tRows;
-            falseRows = fRows;
+            Question = q;
+            TrueRows = tRows;
+            FalseRows = fRows;
         }
 
         public override string ToString()
         {
-            return question.ToString();
+            return "";
+            //Cuando vayamos a imprimir lo miramos
         }
 
     }

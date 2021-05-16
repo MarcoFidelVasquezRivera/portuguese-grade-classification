@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+
 
 namespace PortugueseGradeClassification.DecisionTree
 {
     class LeafNode : Node
     {
-        public string[] rows { get; private set; } //Las filas que pertecen a la hoja
+        public DataTable rows { get; private set; } //Las filas que pertecen a la hoja
         public Tuple<string, int>[] predictions { get; private set; } //Sujeto a cambiar dependiendo del arbol
 
-        public LeafNode(string[] rows)
+        public LeafNode(DataTable rows)
         {
             this.rows = rows;
             this.predictions = DecisionTree.GetValueCounts();

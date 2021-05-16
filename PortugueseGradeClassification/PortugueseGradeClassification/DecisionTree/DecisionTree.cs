@@ -129,7 +129,31 @@ namespace PortugueseGradeClassification.DecisionTree
 
         public static Tuple<string, int>[] GetValueCounts(DataTable rows)
         {
-            return null;
+            List<string> uniqueValues = new List<string>(UniqueValues(rows));
+            int[] quant = new int[uniqueValues.Count];
+
+            for (int i = 0; i < quant.Length; i++)
+            {
+                quant[i] = 0;
+            }
+
+            foreach (DataRow row in rows.Rows)
+            {
+                string rowValue = (string) row[rows.Columns.Count - 1];
+                if (uniqueValues.Contains(rowValue))
+                {
+                    quant[uniqueValues.IndexOf(rowValue)] += 1; 
+                }
+            }
+
+            Tuple<string, int>[] valueCounts = new Tuple<string, int>[uniqueValues.Count];
+
+            for (int i = 0; i < valueCounts.Length; i++)
+            {
+                valueCounts[i] = new Tuple<string, int>(uniqueValues[i],quant[i]);
+            }
+
+            return valueCounts;
         }
 
         public static Tuple<DataTable,DataTable> Partitions(DataTable rows, Question q)

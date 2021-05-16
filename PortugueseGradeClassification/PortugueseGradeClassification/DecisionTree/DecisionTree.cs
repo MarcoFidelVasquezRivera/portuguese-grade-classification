@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PortugueseGradeClassification.DecisionTree
 {
@@ -15,9 +16,32 @@ namespace PortugueseGradeClassification.DecisionTree
 
         public void BuildTree()
         {
+            rootNode = BuildNode(rows);
+            Stack<Node> treeNodes = new Stack<Node>();
+            treeNodes.Push(rootNode);
+
+            while (treeNodes.Count > 0)
+            {
+                Node actualNode = treeNodes.Pop();
+
+                if (actualNode is DecisionNode)
+                {
+                    DecisionNode decisionNode = (DecisionNode)actualNode;
+                    
+                    string[] trueRows = decisionNode.trueRows;
+                    string[] falseRows = decisionNode.falseRows;
+
+                    decisionNode.trueNode = BuildNode(trueRows);
+                    decisionNode.falseNode = BuildNode(falseRows);
+
+                    treeNodes.Push(decisionNode.trueNode);
+                    treeNodes.Push(decisionNode.falseNode);
+                }
+            }
+
         }
 
-        static public Node BuildNode()
+        static public Node BuildNode(string[] rows)
         {
             return null;
         }

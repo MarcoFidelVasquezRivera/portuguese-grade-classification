@@ -53,8 +53,23 @@ namespace PortugueseGradeClassification.Model
             
             tree = new DecisionTree(training);
             tree.BuildTree();
-            Console.WriteLine(tree.Classify(table.Rows[400]));           
-            Console.WriteLine(tree.Classify(table.Rows[100]));
+
+            double correct = 0;
+
+            foreach (DataRow dr in copy.Rows)
+            {
+                string classification = tree.Classify(dr);
+
+                if (classification.Equals(dr[32]))
+                {
+                    correct++;
+                }
+
+            }
+
+            double percent= correct/Convert.ToDouble(copy.Rows.Count);
+
+            Console.WriteLine(percent);
         }
 
         public void Load(string path)

@@ -60,10 +60,9 @@ namespace PortugueseGradeClassification.DecisionTreeSpace
             if (RootNode is DecisionNode) thisNode = (Node)(RootNode as DecisionNode);
             else thisNode = (Node)(RootNode as LeafNode);
 
-            Question question = (thisNode as DecisionNode).Question;
-
             while (!(thisNode is LeafNode))
             {
+                Question question = (thisNode as DecisionNode).Question;
                 if (question.compare(row))
                 {
                     thisNode = (thisNode as DecisionNode).TrueNode;

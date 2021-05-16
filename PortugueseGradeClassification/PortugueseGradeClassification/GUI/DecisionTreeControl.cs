@@ -24,6 +24,5 @@ namespace PortugueseGradeClassification.GUI
             this.manager = manager;
         }
 
-
     }
 }

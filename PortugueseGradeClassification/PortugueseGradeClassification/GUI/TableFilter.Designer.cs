@@ -45,16 +45,16 @@ namespace PortugueseGradeClassification.GUI
             this.PortuTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PortuTable.Location = new System.Drawing.Point(0, 0);
             this.PortuTable.Name = "PortuTable";
-            this.PortuTable.Size = new System.Drawing.Size(797, 378);
+            this.PortuTable.Size = new System.Drawing.Size(933, 519);
             this.PortuTable.TabIndex = 1;
             // 
             // BiComboBox
             // 
             this.BiComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.BiComboBox.FormattingEnabled = true;
-            this.BiComboBox.Location = new System.Drawing.Point(321, 8);
+            this.BiComboBox.Location = new System.Drawing.Point(375, 8);
             this.BiComboBox.Name = "BiComboBox";
-            this.BiComboBox.Size = new System.Drawing.Size(153, 21);
+            this.BiComboBox.Size = new System.Drawing.Size(180, 21);
             this.BiComboBox.TabIndex = 10;
             this.BiComboBox.Text = "Pick a value...";
             this.BiComboBox.Visible = false;
@@ -62,9 +62,9 @@ namespace PortugueseGradeClassification.GUI
             // FilterButton
             // 
             this.FilterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.FilterButton.Location = new System.Drawing.Point(162, 7);
+            this.FilterButton.Location = new System.Drawing.Point(189, 7);
             this.FilterButton.Name = "FilterButton";
-            this.FilterButton.Size = new System.Drawing.Size(153, 23);
+            this.FilterButton.Size = new System.Drawing.Size(180, 23);
             this.FilterButton.TabIndex = 9;
             this.FilterButton.Text = "Filter";
             this.FilterButton.UseVisualStyleBackColor = true;
@@ -73,18 +73,18 @@ namespace PortugueseGradeClassification.GUI
             // FilterText2
             // 
             this.FilterText2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.FilterText2.Location = new System.Drawing.Point(639, 9);
+            this.FilterText2.Location = new System.Drawing.Point(747, 9);
             this.FilterText2.Name = "FilterText2";
-            this.FilterText2.Size = new System.Drawing.Size(155, 20);
+            this.FilterText2.Size = new System.Drawing.Size(183, 20);
             this.FilterText2.TabIndex = 8;
             this.FilterText2.Visible = false;
             // 
             // FilterText1
             // 
             this.FilterText1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.FilterText1.Location = new System.Drawing.Point(480, 9);
+            this.FilterText1.Location = new System.Drawing.Point(561, 9);
             this.FilterText1.Name = "FilterText1";
-            this.FilterText1.Size = new System.Drawing.Size(153, 20);
+            this.FilterText1.Size = new System.Drawing.Size(180, 20);
             this.FilterText1.TabIndex = 7;
             this.FilterText1.Visible = false;
             // 
@@ -128,7 +128,7 @@ namespace PortugueseGradeClassification.GUI
             "Grade 3"});
             this.FilterComboBox.Location = new System.Drawing.Point(3, 8);
             this.FilterComboBox.Name = "FilterComboBox";
-            this.FilterComboBox.Size = new System.Drawing.Size(153, 21);
+            this.FilterComboBox.Size = new System.Drawing.Size(180, 21);
             this.FilterComboBox.TabIndex = 6;
             this.FilterComboBox.Text = "Filter by...";
             this.FilterComboBox.SelectedIndexChanged += new System.EventHandler(this.FilterComboBox_SelectedIndexChanged);
@@ -147,12 +147,12 @@ namespace PortugueseGradeClassification.GUI
             this.tableLayoutPanel1.Controls.Add(this.FilterText1, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.FilterButton, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 384);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 518);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(797, 38);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(933, 38);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
             // TableFilter
@@ -162,7 +162,7 @@ namespace PortugueseGradeClassification.GUI
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.PortuTable);
             this.Name = "TableFilter";
-            this.Size = new System.Drawing.Size(797, 422);
+            this.Size = new System.Drawing.Size(933, 556);
             ((System.ComponentModel.ISupportInitialize)(this.PortuTable)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

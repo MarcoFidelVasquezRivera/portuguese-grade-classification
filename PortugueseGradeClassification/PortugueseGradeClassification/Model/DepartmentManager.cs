@@ -23,7 +23,7 @@ namespace PortugueseGradeClassification.Model
             students = new List<Student>();
         }
 
-        public void TrainTree() 
+        public double TrainTree() 
         {
             DataTable copy = new DataTable();
             DataTable training = new DataTable();
@@ -68,10 +68,10 @@ namespace PortugueseGradeClassification.Model
             }
 
             double percent= correct/Convert.ToDouble(copy.Rows.Count);
-
+            return percent;
         }
 
-        public void Clasify(String[] info)
+        public string Clasify(String[] info)
         {
             DataRow dr = table.NewRow();
             for (int i = 0; i < info.Length; i++)
@@ -79,7 +79,7 @@ namespace PortugueseGradeClassification.Model
                 dr[i] = info[i]; //carga los datos de cada columna para su respectiva fila
             }
             
-            Console.WriteLine(tree.Classify(dr));
+            return tree.Classify(dr);
 
         }
 
@@ -126,7 +126,6 @@ namespace PortugueseGradeClassification.Model
                 line = reader.ReadLine();
             }
 
-            TrainTree();
         }
 
         public void CreateHeaders(String[] headers)
@@ -372,6 +371,16 @@ namespace PortugueseGradeClassification.Model
         public DataTable GetTable()
         {
             return this.table;
+        }
+
+        public Node getTreeRootNode()
+        {
+            if (tree != null)
+            {
+                Node nodeToReturn = tree.RootNode;
+                return nodeToReturn;
+            }
+            else { return null; }   
         }
     }
 }

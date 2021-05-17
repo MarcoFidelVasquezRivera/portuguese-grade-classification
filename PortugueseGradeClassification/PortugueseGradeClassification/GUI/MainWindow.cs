@@ -33,5 +33,11 @@ namespace PortugueseGradeClassification.GUI
         {
             decisionTreeControl1.SetManager(manager);
         }
+
+        private void treeVisualizer1_Load(object sender, System.EventArgs e)
+        {
+            treeVisualizer1.SetManager(manager);
+
+        }
     }
 }

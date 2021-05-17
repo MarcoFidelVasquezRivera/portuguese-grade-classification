@@ -20,8 +20,7 @@ namespace PortugueseGradeClassification.DecisionTreeSpace
 
         public override string ToString()
         {
-            return "";
-            //Cuando vayamos a imprimir lo miramos
+            return Question.ToString();
         }
 
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -7,18 +6,80 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PortugueseGradeClassification.CustomExceptions;
+using PortugueseGradeClassification.DecisionTreeSpace;
 
 namespace PortugueseGradeClassification.Model
 {
     public class DepartmentManager
-    {
+    {      
+        private List<Student> students;
         private DataTable table;
-        private List<Student> students; 
+        private DecisionTree tree;
+
 
         public DepartmentManager()
         {
             table = new DataTable();
             students = new List<Student>();
+        }
+
+        public double TrainTree() 
+        {
+            DataTable copy = new DataTable();
+            DataTable training = new DataTable();
+
+            for (int i = 0; i < 33; i++) 
+            {
+
+                copy.Columns.Add();
+                training.Columns.Add();
+
+            }
+
+            
+            foreach (DataRow dr in table.Rows) 
+            {
+                copy.Rows.Add(dr.ItemArray);
+            }
+
+            Random a = new Random();
+            for (int i = 0; i < table.Rows.Count*0.8; i++) 
+            {
+                int randmNum = a.Next(0,copy.Rows.Count);
+                training.Rows.Add(copy.Rows[randmNum].ItemArray);
+                copy.Rows[randmNum].Delete();
+            
+            }
+            
+            tree = new DecisionTree(training);
+            tree.BuildTree();
+
+            double correct = 0;
+
+            foreach (DataRow dr in copy.Rows)
+            {
+                string classification = tree.Classify(dr);
+
+                if (classification.Equals(dr[32]))
+                {
+                    correct++;
+                }
+
+            }
+
+            double percent= correct/Convert.ToDouble(copy.Rows.Count);
+            return percent;
+        }
+
+        public string Clasify(String[] info)
+        {
+            DataRow dr = table.NewRow();
+            for (int i = 0; i < info.Length; i++)
+            {
+                dr[i] = info[i]; //carga los datos de cada columna para su respectiva fila
+            }
+            
+            return tree.Classify(dr);
 
         }
 
@@ -35,19 +96,16 @@ namespace PortugueseGradeClassification.Model
             CreateHeaders(headers);
 
             line = reader.ReadLine();
-           
-            while(line != null && line != "" )
+
+            while (line != null && line != "")
             {
-                string[] info = line.Split(';',',');
+                string[] info = line.Split(';', ',');
 
-                for(int i = 0; i < info.Length; i++)
+                for (int i = 0; i < info.Length; i++)
                 {
-                    info[i] =  info[i].TrimStart('"');
-                    info[i] =  info[i].TrimEnd('"');
-
+                    info[i] = info[i].TrimStart('"');
+                    info[i] = info[i].TrimEnd('"');
                 }
-
-               
 
                 //Cuestionable cantidad de parametros pero it do be like that sometimes ¯\_(ツ)_/¯
                 Student toAdd = new Student(info[0], char.Parse(info[1]), int.Parse(info[2]), char.Parse(info[3]), info[4], char.Parse(info[5]),
@@ -59,37 +117,33 @@ namespace PortugueseGradeClassification.Model
                 students.Add(toAdd);
 
                 DataRow dr = table.NewRow();
-                for (int i=0; i<info.Length;i++)
+                for (int i = 0; i < info.Length; i++)
                 {
                     dr[i] = info[i]; //carga los datos de cada columna para su respectiva fila
-                    
                 }
                 table.Rows.Add(dr);
 
-                
                 line = reader.ReadLine();
             }
 
         }
 
-
         public void CreateHeaders(String[] headers)
         {
-            for(int i = 0; i<headers.Length; i++)
+            for (int i = 0; i < headers.Length; i++)
             {
                 this.table.Columns.Add(headers[i]);
             }
-
         }
 
-        public void FilterByCategory(String rowName, String category) 
+        public void FilterByCategory(String rowName, String category)
         {
             table.Rows.Clear();
             String info = "";
 
             foreach (Student st in students)
             {
-                switch (rowName) 
+                switch (rowName)
                 {
                     case "Mother's job":
                         info = st.MotherJob;
@@ -126,31 +180,31 @@ namespace PortugueseGradeClassification.Model
                     case "Parents status":
                         info = Convert.ToString(st.ParentsStatus);
                         break;
-                    
+
                     case "School support":
                         info = st.SchoolSupport;
                         break;
-                    
+
                     case "Family support":
                         info = st.FamilySupport;
                         break;
-                   
+
                     case "Extra paid classes":
                         info = st.ExtraPaidClasses;
                         break;
-                   
+
                     case "Extra activities":
                         info = st.ExtraCurricularActivities;
                         break;
-                    
+
                     case "Nursery":
                         info = st.NurserySchool;
                         break;
-                   
+
                     case "Higher education":
                         info = st.HigherEducation;
                         break;
-                    
+
                     case "Internet access":
                         info = st.InternetAccess;
                         break;
@@ -159,7 +213,7 @@ namespace PortugueseGradeClassification.Model
                         info = st.InRomanticRelationship;
                         break;
                 }
-                
+
                 info = info.ToUpper();
                 if (info.Equals(category.ToUpper()))
                 {
@@ -169,24 +223,22 @@ namespace PortugueseGradeClassification.Model
                     for (int i = 0; i < parameters.Length; i++)
                     {
                         dr[i] = parameters[i];
-
                     }
                     table.Rows.Add(dr);
-
                 }
             }
         }
 
         public void FilterByInterval(string rowName, int lowerLimit, int higherLimit)
         {
-            if (lowerLimit>higherLimit)
+            if (lowerLimit > higherLimit)
             {
                 throw new IncorrectLimitsException("The lower limit is greater than the higher limit.");
             }
             table.Rows.Clear();
             int info = 0;
-            foreach(Student student in students){
-
+            foreach (Student student in students)
+            {
                 switch (rowName.ToUpper())
                 {
                     case "AGE":
@@ -252,10 +304,9 @@ namespace PortugueseGradeClassification.Model
                     case "GRADE 3":
                         info = student.ThirdGrade;
                         break;
-
                 }
 
-                if (info<=higherLimit && info>=lowerLimit)
+                if (info <= higherLimit && info >= lowerLimit)
                 {
                     DataRow dr = table.NewRow();
                     String[] parameters = student.ToString().Split(',');
@@ -263,16 +314,13 @@ namespace PortugueseGradeClassification.Model
                     for (int i = 0; i < parameters.Length; i++)
                     {
                         dr[i] = parameters[i];
-
                     }
                     table.Rows.Add(dr);
-
                 }
             }
-
         }
 
-        public Dictionary<string,int> GetStudentsInfo(int typeOfInfo)
+        public Dictionary<string, int> GetStudentsInfo(int typeOfInfo)
         {
             Dictionary<string, int> studentsInfo = new Dictionary<string, int>();
 
@@ -300,7 +348,6 @@ namespace PortugueseGradeClassification.Model
                     case 5:
                         info = student.InternetAccess;
                         break;
-                    
                 }
 
                 if (studentsInfo.ContainsKey(info))
@@ -311,7 +358,6 @@ namespace PortugueseGradeClassification.Model
                 {
                     studentsInfo.Add(info, 1);
                 }
-
             }
 
             return studentsInfo;
@@ -322,10 +368,19 @@ namespace PortugueseGradeClassification.Model
             return students;
         }
 
-
         public DataTable GetTable()
         {
             return this.table;
+        }
+
+        public Node getTreeRootNode()
+        {
+            if (tree != null)
+            {
+                Node nodeToReturn = tree.RootNode;
+                return nodeToReturn;
+            }
+            else { return null; }   
         }
     }
 }

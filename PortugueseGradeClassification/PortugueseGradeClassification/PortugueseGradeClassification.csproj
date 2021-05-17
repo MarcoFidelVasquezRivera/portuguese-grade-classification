@@ -47,7 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomExceptions\IncorrectLimitsException.cs" />
+    <Compile Include="GUI\DecisionTreeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\DecisionTreeControl.Designer.cs">
+      <DependentUpon>DecisionTreeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\GraphView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\GraphView.Designer.cs">
+      <DependentUpon>GraphView.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\LoadDataWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,14 +72,46 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Program.cs" />
+    <Compile Include="GUI\TableFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\TableFilter.Designer.cs">
+      <DependentUpon>TableFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TreeVisualizer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\TreeVisualizer.Designer.cs">
+      <DependentUpon>TreeVisualizer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\DepartmentManager.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CustomExceptions\IncorrectLimitsException.cs" />
+    <Compile Include="DecisionTreeSpace\DecisionTree.cs" />
+    <Compile Include="DecisionTreeSpace\LeafNode.cs" />
+    <Compile Include="DecisionTreeSpace\DecisionNode.cs" />
+    <Compile Include="DecisionTreeSpace\Node.cs" />
+    <Compile Include="DecisionTreeSpace\Question.cs" />
+    <Compile Include="TreeView\InformationNode.cs" />
+    <Compile Include="TreeView\TreeNode.cs" />
+    <EmbeddedResource Include="GUI\DecisionTreeControl.resx">
+      <DependentUpon>DecisionTreeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\GraphView.resx">
+      <DependentUpon>GraphView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\LoadDataWindow.resx">
       <DependentUpon>LoadDataWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TableFilter.resx">
+      <DependentUpon>TableFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TreeVisualizer.resx">
+      <DependentUpon>TreeVisualizer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

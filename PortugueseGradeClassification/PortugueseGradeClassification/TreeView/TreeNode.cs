@@ -22,7 +22,7 @@ namespace PortugueseGradeClassification.TreeView
 
         private PointF dataCenter;
 
-        public Font font = new Font("Snap ITC", 12);
+        public Font font = new Font("Aharoni", 12);
         public Pen pen = Pens.Black;
         public Brush fontBrush = Brushes.Black;
         public Brush backgroundBrush = Brushes.White;

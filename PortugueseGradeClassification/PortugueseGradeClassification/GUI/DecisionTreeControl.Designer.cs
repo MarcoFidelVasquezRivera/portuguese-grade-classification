@@ -29,13 +29,14 @@ namespace PortugueseGradeClassification.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.TrainButton = new System.Windows.Forms.Button();
             this.guessesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.schoolComboBox = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.absencesTextBox = new System.Windows.Forms.TextBox();
             this.gTwoTextBox = new System.Windows.Forms.TextBox();
             this.gOneTextBox = new System.Windows.Forms.TextBox();
             this.healthTextBox = new System.Windows.Forms.TextBox();
@@ -99,8 +100,6 @@ namespace PortugueseGradeClassification.GUI
             this.sexComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ClasiffyButton = new System.Windows.Forms.Button();
-            this.ClassificationTextBox = new System.Windows.Forms.TextBox();
-            this.absencesTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.guessesChart)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -117,19 +116,20 @@ namespace PortugueseGradeClassification.GUI
             // 
             // guessesChart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.guessesChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.guessesChart.Legends.Add(legend4);
+            chartArea2.Name = "ChartArea1";
+            this.guessesChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.guessesChart.Legends.Add(legend2);
             this.guessesChart.Location = new System.Drawing.Point(669, 54);
             this.guessesChart.Name = "guessesChart";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.guessesChart.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.guessesChart.Series.Add(series2);
             this.guessesChart.Size = new System.Drawing.Size(249, 211);
             this.guessesChart.TabIndex = 1;
             this.guessesChart.Text = "chart1";
+            this.guessesChart.Visible = false;
             // 
             // schoolComboBox
             // 
@@ -250,6 +250,14 @@ namespace PortugueseGradeClassification.GUI
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(617, 604);
             this.tableLayoutPanel1.TabIndex = 38;
+            // 
+            // absencesTextBox
+            // 
+            this.absencesTextBox.Location = new System.Drawing.Point(465, 484);
+            this.absencesTextBox.Name = "absencesTextBox";
+            this.absencesTextBox.Size = new System.Drawing.Size(109, 20);
+            this.absencesTextBox.TabIndex = 50;
+            this.absencesTextBox.Text = " Entre 0 y 93";
             // 
             // gTwoTextBox
             // 
@@ -879,27 +887,10 @@ namespace PortugueseGradeClassification.GUI
             this.ClasiffyButton.UseVisualStyleBackColor = true;
             this.ClasiffyButton.Click += new System.EventHandler(this.ClasiffyButton_Click);
             // 
-            // ClassificationTextBox
-            // 
-            this.ClassificationTextBox.Enabled = false;
-            this.ClassificationTextBox.Location = new System.Drawing.Point(726, 493);
-            this.ClassificationTextBox.Name = "ClassificationTextBox";
-            this.ClassificationTextBox.Size = new System.Drawing.Size(148, 20);
-            this.ClassificationTextBox.TabIndex = 40;
-            // 
-            // absencesTextBox
-            // 
-            this.absencesTextBox.Location = new System.Drawing.Point(465, 484);
-            this.absencesTextBox.Name = "absencesTextBox";
-            this.absencesTextBox.Size = new System.Drawing.Size(109, 20);
-            this.absencesTextBox.TabIndex = 50;
-            this.absencesTextBox.Text = " Entre 0 y 93";
-            // 
             // DecisionTreeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ClassificationTextBox);
             this.Controls.Add(this.ClasiffyButton);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.guessesChart);
@@ -910,7 +901,6 @@ namespace PortugueseGradeClassification.GUI
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -968,7 +958,6 @@ namespace PortugueseGradeClassification.GUI
         private System.Windows.Forms.ComboBox addressComboBox;
         private System.Windows.Forms.ComboBox sexComboBox;
         private System.Windows.Forms.Button ClasiffyButton;
-        private System.Windows.Forms.TextBox ClassificationTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox ageTextBox;
         private System.Windows.Forms.TextBox gTwoTextBox;

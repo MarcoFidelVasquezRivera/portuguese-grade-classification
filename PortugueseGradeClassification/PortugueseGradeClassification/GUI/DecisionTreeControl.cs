@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace PortugueseGradeClassification.GUI
 {
@@ -26,7 +27,16 @@ namespace PortugueseGradeClassification.GUI
 
         private void TrainButton_Click(object sender, EventArgs e)
         {
-            manager.TrainTree();
+            double accuracy = manager.TrainTree();
+
+            guessesChart.Titles.Add("Accuracy");
+            guessesChart.Series["Series1"].IsValueShownAsLabel = true;
+            guessesChart.Series["Series1"].ChartType = SeriesChartType.Pie;
+            guessesChart.Series["Series1"].Points.AddXY("Correct", Math.Round(accuracy,2));
+            guessesChart.Series["Series1"].Points.AddXY("Incorrect", Math.Round(1.0 - accuracy,2));
+
+            guessesChart.Visible = true;
+
         }
 
         private void ClasiffyButton_Click(object sender, EventArgs e)
@@ -128,7 +138,7 @@ namespace PortugueseGradeClassification.GUI
 
             if (errors != "")
             {
-                MessageBox.Show(errors, errors, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errors, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
            {
@@ -137,8 +147,8 @@ namespace PortugueseGradeClassification.GUI
                 sTimeTextBox.Text, failTextBox.Text, sSupComboBox.Text, fSuppComboBox.Text, paidComboBox.Text, activityComboBox.Text, nurseryComboBox.Text,
                 hEduComboBox.Text, internetComboBox.Text, romanticComboBox.Text, fRelationTextBox.Text, fTimeTextBox.Text, goOutTextBox.Text, aWeekTextBox.Text,
                 aWeekendTextBox.Text, healthTextBox.Text, absencesTextBox.Text, gOneTextBox.Text, gTwoTextBox.Text};
-                
-                manager.Clasify(info);
+
+                MessageBox.Show("Result prediction: " + manager.Clasify(info), "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

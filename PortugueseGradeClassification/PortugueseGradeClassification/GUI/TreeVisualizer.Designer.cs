@@ -44,6 +44,7 @@ namespace PortugueseGradeClassification.GUI
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Draw_Tree);
             // 
             // panel1
             // 
@@ -51,7 +52,7 @@ namespace PortugueseGradeClassification.GUI
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(877, 604);
+            this.panel1.Size = new System.Drawing.Size(1121, 604);
             this.panel1.TabIndex = 2;
             // 
             // TreeVisualizer
@@ -60,7 +61,7 @@ namespace PortugueseGradeClassification.GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Name = "TreeVisualizer";
-            this.Size = new System.Drawing.Size(877, 604);
+            this.Size = new System.Drawing.Size(1123, 604);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

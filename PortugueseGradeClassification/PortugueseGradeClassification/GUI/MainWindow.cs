@@ -37,6 +37,7 @@ namespace PortugueseGradeClassification.GUI
         private void treeVisualizer1_Load(object sender, System.EventArgs e)
         {
             treeVisualizer1.SetManager(manager);
+
         }
     }
 }

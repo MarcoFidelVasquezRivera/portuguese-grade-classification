@@ -30,11 +30,19 @@ namespace PortugueseGradeClassification.GUI
         public void SetManager(DepartmentManager manager)
         {
             this.manager = manager;
-            this.rootNode = manager.getTreeRootNode();
 
-            this.graphRoot = new TreeNode(new InformationNode(rootNode.ToString()));
-            this.GenerateTree(rootNode);
-            this.Arrange();
+            this.rootNode = manager.getTreeRootNode();
+            if (rootNode != null)
+            {
+                this.graphRoot = new TreeNode(new InformationNode(rootNode.ToString()));
+                this.GenerateTree(rootNode);
+                this.Arrange();
+            }
+            else
+            {
+                MessageBox.Show("The tree needs to be trained first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void drawTreeButton_Click(object sender, EventArgs e)
@@ -120,6 +128,19 @@ namespace PortugueseGradeClassification.GUI
             }
         }
 
-
+        private void Draw_Tree(object sender, MouseEventArgs e)
+        {
+            this.rootNode = manager.getTreeRootNode();
+            if (rootNode != null)
+            {
+                this.graphRoot = new TreeNode(new InformationNode(rootNode.ToString()));
+                this.GenerateTree(rootNode);
+                this.Arrange();
+            }
+            else
+            {
+                MessageBox.Show("The tree needs to be trained first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

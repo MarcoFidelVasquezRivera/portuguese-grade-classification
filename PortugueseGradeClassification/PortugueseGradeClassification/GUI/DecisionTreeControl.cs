@@ -29,6 +29,10 @@ namespace PortugueseGradeClassification.GUI
         {
             double accuracy = manager.TrainTree();
 
+            guessesChart.Series.Clear();
+            guessesChart.Series.Add("Series1");
+            guessesChart.Titles.Clear();
+
             guessesChart.Titles.Add("Accuracy");
             guessesChart.Series["Series1"].IsValueShownAsLabel = true;
             guessesChart.Series["Series1"].ChartType = SeriesChartType.Pie;

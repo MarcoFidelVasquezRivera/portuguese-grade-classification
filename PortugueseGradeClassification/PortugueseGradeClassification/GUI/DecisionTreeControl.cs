@@ -58,7 +58,6 @@ namespace PortugueseGradeClassification.GUI
             {
                 if (!comboBoxConditional)
                 {
-                    Console.WriteLine("ComboBoxConditional");
                     if (schoolComboBox.Text == "") errors += "school, ";
                     if (sexComboBox.Text == "") errors += "gender, ";
                     if (addressComboBox.Text == "") errors += "address, ";
@@ -83,7 +82,7 @@ namespace PortugueseGradeClassification.GUI
 
                 if (!textBoxVoidConditional)
                 {
-                    Console.WriteLine("textBoxVoidConditional");
+                   
                     if (ageTextBox.Text == " Entre 15 y 22") errors += "age, ";
                     if (mEduTextBox.Text == " Entre 0 y 4") errors += "mother's education, ";
                     if (fEduTextBox.Text == " Entre 0 y 4") errors += "father's education, ";
@@ -106,7 +105,7 @@ namespace PortugueseGradeClassification.GUI
 
                 if (!textBoxStringConditional) 
                 {
-                    Console.WriteLine("textBoxStringConditional");
+                    
                     if (!IsNumeric(ageTextBox.Text, 15, 22)) errors += "age must be a number between 15 and 20 \n";
                     if (!IsNumeric(mEduTextBox.Text, 0, 4)) errors += "mother's education must be a number between 0 and 4 \n";
                     if (!IsNumeric(fEduTextBox.Text, 0, 4)) errors += "father's education must be a number between 0 and 4 \n";

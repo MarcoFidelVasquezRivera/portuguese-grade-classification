@@ -44,5 +44,16 @@ namespace PortugueseGradeClassification.DecisionTreeSpace
             }
             return mostCommonValue;
         }
+
+        public string GetAllPredictions()
+        {
+            string message = "Predict: { ";
+            foreach (Tuple<string, int> prediction in predictions) message += $"{prediction.Item1.ToString()}:{prediction.Item2} ";
+            message += "}";
+
+            return message;
+        }
+
+
     }
 }

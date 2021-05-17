@@ -373,5 +373,10 @@ namespace PortugueseGradeClassification.Model
         {
             return this.table;
         }
+
+        public Node getTreeRootNode()
+        {
+            return tree.RootNode;
+        }
     }
 }

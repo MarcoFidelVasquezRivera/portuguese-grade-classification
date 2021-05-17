@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PortugueseGradeClassification.TreeView
 {
-    class InformationNode
+    public class InformationNode
     {
         private string data;
 
@@ -25,7 +25,7 @@ namespace PortugueseGradeClassification.TreeView
         {
             SizeF size = this.GetSize(graph, font);
 
-            Rectangle rect = new Rectangle((int)(x - size.Width / 2), (int)(y - size.Height / 2), (int)size.Width, (int)size.Height);
+            Rectangle rect = new Rectangle((int)(x - size.Width / 2)+1, (int)(y - size.Height / 2)+1, (int)size.Width, (int)size.Height);
 
             graph.FillRectangle(background, rect);
             graph.DrawRectangle(pen, rect);

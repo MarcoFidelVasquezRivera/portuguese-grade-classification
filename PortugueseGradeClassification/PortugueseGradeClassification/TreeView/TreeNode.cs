@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PortugueseGradeClassification.TreeView
 {
-    class TreeNode
+    public class TreeNode
     {
         private InformationNode data;
 

@@ -116,6 +116,7 @@ namespace PortugueseGradeClassification.GUI
             this.decisionTreeControl1.Name = "decisionTreeControl1";
             this.decisionTreeControl1.Size = new System.Drawing.Size(803, 429);
             this.decisionTreeControl1.TabIndex = 0;
+            this.decisionTreeControl1.Load += new System.EventHandler(this.decisionTreeView_Load);
             // 
             // MainWindow
             // 

@@ -71,6 +71,18 @@ namespace PortugueseGradeClassification.Model
 
         }
 
+        public void Clasify(String[] info)
+        {
+            DataRow dr = table.NewRow();
+            for (int i = 0; i < info.Length; i++)
+            {
+                dr[i] = info[i]; //carga los datos de cada columna para su respectiva fila
+            }
+            
+            Console.WriteLine(tree.Classify(dr));
+
+        }
+
         public void Load(string path)
         {
             this.table.Clear();
@@ -113,6 +125,7 @@ namespace PortugueseGradeClassification.Model
 
                 line = reader.ReadLine();
             }
+
             TrainTree();
         }
 

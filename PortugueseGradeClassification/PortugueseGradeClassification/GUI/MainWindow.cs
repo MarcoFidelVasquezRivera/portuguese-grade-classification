@@ -28,5 +28,10 @@ namespace PortugueseGradeClassification.GUI
         {
             graphView1.setManager(manager);
         }
+
+        private void decisionTreeView_Load(object sender, System.EventArgs e)
+        {
+            decisionTreeControl1.SetManager(manager);
+        }
     }
 }

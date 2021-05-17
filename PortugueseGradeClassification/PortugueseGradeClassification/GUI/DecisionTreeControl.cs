@@ -26,7 +26,7 @@ namespace PortugueseGradeClassification.GUI
 
         private void TrainButton_Click(object sender, EventArgs e)
         {
-            //llamar al metodo del boton que se encargue del entrenamiento del arbol
+            manager.TrainTree();
         }
 
         private void ClasiffyButton_Click(object sender, EventArgs e)
@@ -36,17 +36,17 @@ namespace PortugueseGradeClassification.GUI
                 && sSupComboBox.Text != "" && fSuppComboBox.Text != "" && paidComboBox.Text != "" && activityComboBox.Text != "" && nurseryComboBox.Text != ""
                 && hEduComboBox.Text != "" && internetComboBox.Text != "" && romanticComboBox.Text != "");
 
-            bool textBoxVoidConditional = (!(ageTextBox.Text != "" && mEduTextBox.Text != "" && fEduTextBox.Text != "" && tTimeTextBox.Text != ""
+            bool textBoxVoidConditional = ((ageTextBox.Text != "" && mEduTextBox.Text != "" && fEduTextBox.Text != "" && tTimeTextBox.Text != ""
                 && sTimeTextBox.Text != "" && failTextBox.Text != "" && fRelationTextBox.Text != "" && fTimeTextBox.Text != "" && goOutTextBox.Text != ""
                 && aWeekTextBox.Text!="" && aWeekendTextBox.Text!="" && healthTextBox.Text!="" && absencesTextBox.Text!="" && gOneTextBox.Text!=""
-                && gTwoTextBox.Text!="") 
+                && gTwoTextBox.Text!="") == true
                 
                 && 
                 
-                !(ageTextBox.Text == " Entre 15 y 22" && mEduTextBox.Text == " Entre 0 y 4" && fEduTextBox.Text == " Entre 0 y 4" && tTimeTextBox.Text == " Entre 1 y 4"
-                && sTimeTextBox.Text == " Entre 1 y 4" && failTextBox.Text == " Entre 0 y 3" && fRelationTextBox.Text == " Entre 1 y 5" && fTimeTextBox.Text == " Entre 1 y 5" && goOutTextBox.Text == " Entre 1 y 5"
-                && aWeekTextBox.Text == " Entre 1 y 5" && aWeekendTextBox.Text == " Entre 1 y 5" && healthTextBox.Text == " Entre 1 y 5" && absencesTextBox.Text == " Entre 0 y 93" && gOneTextBox.Text == " Entre 0 y 20"
-                && gTwoTextBox.Text == " Entre 0 y 20"));
+                (ageTextBox.Text != " Entre 15 y 22" && mEduTextBox.Text != " Entre 0 y 4" && fEduTextBox.Text != " Entre 0 y 4" && tTimeTextBox.Text != " Entre 1 y 4"
+                && sTimeTextBox.Text != " Entre 1 y 4" && failTextBox.Text != " Entre 0 y 3" && fRelationTextBox.Text != " Entre 1 y 5" && fTimeTextBox.Text != " Entre 1 y 5" && goOutTextBox.Text != " Entre 1 y 5"
+                && aWeekTextBox.Text != " Entre 1 y 5" && aWeekendTextBox.Text != " Entre 1 y 5" && healthTextBox.Text != " Entre 1 y 5" && absencesTextBox.Text != " Entre 0 y 93" && gOneTextBox.Text != " Entre 0 y 20"
+                && gTwoTextBox.Text != " Entre 0 y 20") == true);
 
             bool textBoxStringConditional = (IsNumeric(ageTextBox.Text,15,22) && IsNumeric(mEduTextBox.Text,0,4) && IsNumeric(fEduTextBox.Text,0,4) 
                 && IsNumeric(tTimeTextBox.Text,1,4) && IsNumeric(sTimeTextBox.Text,1,4) && IsNumeric(failTextBox.Text,0,3) && IsNumeric(fRelationTextBox.Text,1,5)
@@ -58,6 +58,7 @@ namespace PortugueseGradeClassification.GUI
             {
                 if (!comboBoxConditional)
                 {
+                    Console.WriteLine("ComboBoxConditional");
                     if (schoolComboBox.Text == "") errors += "school, ";
                     if (sexComboBox.Text == "") errors += "gender, ";
                     if (addressComboBox.Text == "") errors += "address, ";
@@ -82,6 +83,7 @@ namespace PortugueseGradeClassification.GUI
 
                 if (!textBoxVoidConditional)
                 {
+                    Console.WriteLine("textBoxVoidConditional");
                     if (ageTextBox.Text == " Entre 15 y 22") errors += "age, ";
                     if (mEduTextBox.Text == " Entre 0 y 4") errors += "mother's education, ";
                     if (fEduTextBox.Text == " Entre 0 y 4") errors += "father's education, ";
@@ -104,6 +106,7 @@ namespace PortugueseGradeClassification.GUI
 
                 if (!textBoxStringConditional) 
                 {
+                    Console.WriteLine("textBoxStringConditional");
                     if (!IsNumeric(ageTextBox.Text, 15, 22)) errors += "age must be a number between 15 and 20 \n";
                     if (!IsNumeric(mEduTextBox.Text, 0, 4)) errors += "mother's education must be a number between 0 and 4 \n";
                     if (!IsNumeric(fEduTextBox.Text, 0, 4)) errors += "father's education must be a number between 0 and 4 \n";
@@ -129,9 +132,14 @@ namespace PortugueseGradeClassification.GUI
                 MessageBox.Show(errors, errors, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-            {
-
-                //Clasificar
+           {
+                String[] info = { schoolComboBox.Text, sexComboBox.Text, ageTextBox.Text,addressComboBox.Text, fSizeComboBox.Text, pStatusComboBox.Text,
+                mEduTextBox.Text, fEduTextBox.Text, mJobComboBox.Text, fJobComboBox.Text, reasonComboBox.Text, GuardianComboBox.Text, tTimeTextBox.Text,
+                sTimeTextBox.Text, failTextBox.Text, sSupComboBox.Text, fSuppComboBox.Text, paidComboBox.Text, activityComboBox.Text, nurseryComboBox.Text,
+                hEduComboBox.Text, internetComboBox.Text, romanticComboBox.Text, fRelationTextBox.Text, fTimeTextBox.Text, goOutTextBox.Text, aWeekTextBox.Text,
+                aWeekendTextBox.Text, healthTextBox.Text, absencesTextBox.Text, gOneTextBox.Text, gTwoTextBox.Text};
+                
+                manager.Clasify(info);
             }
         }
 

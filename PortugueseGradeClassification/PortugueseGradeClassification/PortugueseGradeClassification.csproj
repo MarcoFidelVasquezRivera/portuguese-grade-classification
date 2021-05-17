@@ -88,6 +88,7 @@
     <Compile Include="DecisionTreeSpace\Node.cs" />
     <Compile Include="DecisionTreeSpace\Question.cs" />
     <Compile Include="TreeView\InformationNode.cs" />
+    <Compile Include="TreeView\TreeNode.cs" />
     <EmbeddedResource Include="GUI\DecisionTreeControl.resx">
       <DependentUpon>DecisionTreeControl.cs</DependentUpon>
     </EmbeddedResource>

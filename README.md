@@ -72,4 +72,26 @@ The Decision Tree tab allows you to build a decision tree from the database seen
 
 For classification of an user-inserted student, the user will provide data for several fields corresponding to all variables found within a student. If the data is valid, the program will show the predicted grade for that student. 
 
+The objective variable for classification is the 3rd grade of an student. It ranges between 0 and 20, and the prediction done by the decision tree represents an interval that ranges from 0 to 10, with the following values from the 3rd grade:
+
+Interval  |  Grade
+1         |   0-1
+2         |   2-3
+3         |   4-5
+4         |   6-7
+5         |   8-9
+6         |   10-11
+7         |   12-13
+8         |   14-15
+9         |   16-17
+10        |   18-19
+11        |   20
+
+![image](https://user-images.githubusercontent.com/54719974/118566880-52cbb480-b73a-11eb-9208-57856405fa16.png)
+
 The Tree Graph tab allows graphic visualization of the decision tree built in the Decision Tree tab. The numbers found on the leaf nodes corresponds to the grade predicted by that leaf.
+
+![image](https://user-images.githubusercontent.com/54719974/118567440-6af00380-b73b-11eb-93ab-6fd2c9d7dfb8.png)
+
+
+

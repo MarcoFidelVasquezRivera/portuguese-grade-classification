@@ -47,9 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
+    <Compile Include="GUI\DecisionTreeControl.cs">
       <SubType>UserControl</SubType>
-    </Compile>
+	</Compile>
     <Compile Include="GUI\DecisionTreeControl.Designer.cs">
       <DependentUpon>DecisionTreeControl.cs</DependentUpon>
     </Compile>
@@ -87,7 +87,7 @@
     <Compile Include="DecisionTreeSpace\DecisionNode.cs" />
     <Compile Include="DecisionTreeSpace\Node.cs" />
     <Compile Include="DecisionTreeSpace\Question.cs" />
-    <Compile Include="GUI\DecisionTreeControl.cs">
+
     <EmbeddedResource Include="GUI\DecisionTreeControl.resx">
       <DependentUpon>DecisionTreeControl.cs</DependentUpon>
     </EmbeddedResource>

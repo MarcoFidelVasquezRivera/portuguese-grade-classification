@@ -1,5 +1,4 @@
-﻿using PortugueseGradeClassification.CustomExceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -16,7 +15,7 @@ namespace PortugueseGradeClassification.Model
         private List<Student> students;
         private DataTable table;
         private DecisionTree tree;
-        private List<Student> students;
+
 
         public DepartmentManager()
         {
@@ -70,7 +69,6 @@ namespace PortugueseGradeClassification.Model
 
             double percent= correct/Convert.ToDouble(copy.Rows.Count);
 
-            Console.WriteLine(percent);
         }
 
         public void Load(string path)

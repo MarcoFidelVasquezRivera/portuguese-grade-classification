@@ -2,7 +2,7 @@
 
 ## Creators
 
-[Marco Vasquez](https://github.com/MarcoFidelVasquezRivera) - [Aleajandro Fonseca](https://github.com/AlejandroFonseca25) - [David Montoya](https://github.com/DSMontoyaP) - [Diego Garcia](https://github.com/Diego-ds)
+[Marco Vasquez](https://github.com/MarcoFidelVasquezRivera) - [Alejandro Fonseca](https://github.com/AlejandroFonseca25) - [David Montoya](https://github.com/DSMontoyaP) - [Diego Garcia](https://github.com/Diego-ds)
 
 ## Program explanation:
 
@@ -14,17 +14,29 @@ Programming language used: C#.
 
 For more information about the program, visit the links below.
 
-[Engineering method](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/Método%20de%20Ingeniería%20-%20portuguese%20grade%20classification.pdf)
+[Engineering method](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/M%C3%A9todo%20de%20Ingenier%C3%ADa%20-%20Portuguese%20grade%20classification%20(1).pdf)
 
-[Model package class diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/LoadData%20Branch%20ClassDiagram.pdf)
+[Model package class diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/Model%20Class%20Diagram.pdf)
 
 [GUI package class diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/GUI%20class%20diagram.pdf)
+
+[TreeView class diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/TreeView%20Class%20Diagram.pdf)
+
+[DecisionTreeSpace class diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/DecisionTreeSpace%20Class%20Diagram.pdf)
 
 [Model package object diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/LoadData%20Branch%20ObjectDiagram.pdf)
 
 [GUI package object diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/GUI%20Diagram%20Object.pdf)
 
-[Explanation video](https://youtu.be/tOl-RGc9yCI)
+[Classify method sequence diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/ClassifyMethod%20sequence%20diagram.pdf)
+
+[LoadData method sequence diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/LoadDataMethod%20sequence%20diagram.pdf)
+
+[TrainTree method sequence diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/TrainTreeMethod%20sequence%20diagram.pdf)
+
+[Explanation video 1st release](https://youtu.be/tOl-RGc9yCI)
+
+[Explanation video 2nd release](https://youtu.be/DN5U29EkHuI)
 
 ## How the program works:
 
@@ -75,21 +87,32 @@ For classification of an user-inserted student, the user will provide data for s
 The objective variable for classification is the 3rd grade of an student. It ranges between 0 and 20, and the prediction done by the decision tree represents an interval that ranges from 0 to 10, with the following values from the 3rd grade:
 
 Interval  |  Grade
+
 1         |   0-1
+
 2         |   2-3
+
 3         |   4-5
+
 4         |   6-7
+
 5         |   8-9
+
 6         |   10-11
+
 7         |   12-13
+
 8         |   14-15
+
 9         |   16-17
+
 10        |   18-19
+
 11        |   20
 
 ![image](https://user-images.githubusercontent.com/54719974/118566880-52cbb480-b73a-11eb-9208-57856405fa16.png)
 
-The Tree Graph tab allows graphic visualization of the decision tree built in the Decision Tree tab. The numbers found on the leaf nodes corresponds to the grade predicted by that leaf.
+The Tree Graph tab allows graphic visualization of the decision tree built in the Decision Tree tab. The numbers found on the leaf nodes corresponds to the grade interval predicted by that leaf. For generation, DOUBLE CLICK the canvas.
 
 ![image](https://user-images.githubusercontent.com/54719974/118567440-6af00380-b73b-11eb-93ab-6fd2c9d7dfb8.png)
 

@@ -65,3 +65,11 @@ If you choose "Address" then you will see a pie chart like this.
 If you choose "Internet access" then you will see a pie chart like this.
 
 ![image](https://user-images.githubusercontent.com/54719974/115131333-f9e2f200-9fbc-11eb-9413-bc34717c9fd0.png)
+
+The Decision Tree tab allows you to build a decision tree from the database seen in the Table tab, visualize its precision with use of a pie chart and classify a custom, user-inserted student. 
+
+80% of the database is used for tree training, picking rows at random and 20% is then used to check its precision. The percentage of correct and incorrect guesses is shown in a pie chart.
+
+For classification of an user-inserted student, the user will provide data for several fields corresponding to all variables found within a student. If the data is valid, the program will show the predicted grade for that student. 
+
+The Tree Graph tab allows graphic visualization of the decision tree built in the Decision Tree tab. The numbers found on the leaf nodes corresponds to the grade predicted by that leaf.

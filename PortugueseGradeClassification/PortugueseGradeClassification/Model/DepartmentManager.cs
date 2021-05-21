@@ -15,12 +15,14 @@ namespace PortugueseGradeClassification.Model
         private List<Student> students;
         private DataTable table;
         private DecisionTree tree;
+        private DecisionTreeLibrary treeLibrary;
 
 
         public DepartmentManager()
         {
             table = new DataTable();
             students = new List<Student>();
+            treeLibrary = new DecisionTreeLibrary();
         }
 
         public double TrainTree() 

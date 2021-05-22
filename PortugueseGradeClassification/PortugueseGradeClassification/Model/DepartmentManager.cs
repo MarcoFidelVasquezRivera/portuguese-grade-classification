@@ -22,7 +22,6 @@ namespace PortugueseGradeClassification.Model
         {
             table = new DataTable();
             students = new List<Student>();
-            treeLibrary = new DecisionTreeLibrary();
         }
 
         public double TrainTree() 
@@ -127,6 +126,9 @@ namespace PortugueseGradeClassification.Model
 
                 line = reader.ReadLine();
             }
+
+            treeLibrary = new DecisionTreeLibrary(table);
+
 
         }
 

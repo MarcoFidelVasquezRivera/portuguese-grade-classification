@@ -14,11 +14,11 @@ namespace PortugueseGradeClassification.Model
 {
     class DecisionTreeLibrary
     {
-        private ID3Learning teacher;
+        private DecisionTree tree;
+        private Codification codeBook;
 
         public DecisionTreeLibrary(DataTable data)
         {
-            teacher = new ID3Learning();
             TrainTree(data);
         }
 
@@ -28,7 +28,7 @@ namespace PortugueseGradeClassification.Model
         public double TrainTree(DataTable data)
         {
             //Codebook convierte los datos de texto a labels numéricos (esto **podria** molestar con numéricos)
-            var codeBook = new Codification(data);
+            codeBook = new Codification(data);
             DataTable convertedData = codeBook.Apply(data);
 
             String[] headers = new string[33];
@@ -81,15 +81,23 @@ namespace PortugueseGradeClassification.Model
             };
 
             //Entrenamiento del arbol
-            DecisionTree tree = id3learning.Learn(inputs, outputs);
+            tree = id3learning.Learn(inputs, outputs);
 
             //Calculo del error de las predicciones.
             double error = new ZeroOneLoss(outputs).Loss(tree.Decide(inputs));
+
+            return error;
         }
 
-        public string Classify(DataRow data)
+        public string Classify(DataRow data, string headers)
         {   
-            return "";
+            string [] info = data.ToArray<string>(headers);
+            int[] querty = codeBook.Transform(info);//revisr que si este funcionando correctamente, hacer una impresion en consola para probarlo
+            int prediction = tree.Decide(querty);
+
+            string answer = codeBook.Revert("G3",prediction);
+
+            return answer;//lo que devuelva debería ser la nota, aunque existe la opcion "G3 {nota}"
         }
 
     }

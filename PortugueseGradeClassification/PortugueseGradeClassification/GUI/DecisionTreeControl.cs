@@ -27,7 +27,9 @@ namespace PortugueseGradeClassification.GUI
 
         private void TrainButton_Click(object sender, EventArgs e)
         {
-            double accuracy = manager.TrainTree();
+            Tuple<double, double> accuracies = manager.TrainTree();
+            double impAccuracy = accuracies.Item1;
+            double libAccuracy = accuracies.Item2;
 
             guessesChart.Series.Clear();
             guessesChart.Series.Add("Series1");
@@ -36,10 +38,13 @@ namespace PortugueseGradeClassification.GUI
             guessesChart.Titles.Add("Accuracy");
             guessesChart.Series["Series1"].IsValueShownAsLabel = true;
             guessesChart.Series["Series1"].ChartType = SeriesChartType.Pie;
-            guessesChart.Series["Series1"].Points.AddXY("Correct", Math.Round(accuracy,2));
-            guessesChart.Series["Series1"].Points.AddXY("Incorrect", Math.Round(1.0 - accuracy,2));
+            guessesChart.Series["Series1"].Points.AddXY("Correct", Math.Round(impAccuracy,2));
+            guessesChart.Series["Series1"].Points.AddXY("Incorrect", Math.Round(1.0 - impAccuracy, 2));
 
             guessesChart.Visible = true;
+
+            LibAccuracyLabel.Text = "Library Tree Accuracy: " + libAccuracy;
+            LibAccuracyLabel.Visible = true;
 
         }
 
@@ -152,7 +157,7 @@ namespace PortugueseGradeClassification.GUI
                 hEduComboBox.Text, internetComboBox.Text, romanticComboBox.Text, fRelationTextBox.Text, fTimeTextBox.Text, goOutTextBox.Text, aWeekTextBox.Text,
                 aWeekendTextBox.Text, healthTextBox.Text, absencesTextBox.Text, gOneTextBox.Text, gTwoTextBox.Text};
 
-                MessageBox.Show("Result prediction: " + manager.Clasify(info), "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Implemented tree prediction: " + manager.Clasify(info) + "\nLibrary tree prediction: " + manager.LibraryClassify(info), "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

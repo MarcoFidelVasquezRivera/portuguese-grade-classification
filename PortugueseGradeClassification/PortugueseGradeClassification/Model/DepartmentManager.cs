@@ -17,24 +17,22 @@ namespace PortugueseGradeClassification.Model
         private DecisionTree tree;
         private DecisionTreeLibrary treeLibrary;
 
-
         public DepartmentManager()
         {
             table = new DataTable();
             students = new List<Student>();
         }
 
-        public double TrainTree() 
+        public Tuple<double, double> TrainTree() 
         {
             DataTable copy = new DataTable();
             DataTable training = new DataTable();
 
             for (int i = 0; i < 33; i++) 
             {
-
-                copy.Columns.Add();
-                training.Columns.Add();
-
+                string header = Convert.ToString(table.Columns[i].ColumnName);
+                copy.Columns.Add(header);
+                training.Columns.Add(header);
             }
 
             
@@ -68,8 +66,14 @@ namespace PortugueseGradeClassification.Model
 
             }
 
-            double percent= correct/Convert.ToDouble(copy.Rows.Count);
-            return percent;
+            double impPercent = correct/Convert.ToDouble(copy.Rows.Count);
+
+            treeLibrary.TrainTree(table);
+
+            double libPercent = treeLibrary.Test(copy);
+
+            Tuple<double, double> percents = new Tuple<double,double>(impPercent, libPercent);
+            return percents;
         }
 
         public string Clasify(String[] info)
@@ -81,7 +85,11 @@ namespace PortugueseGradeClassification.Model
             }
             
             return tree.Classify(dr);
+        }
 
+        public string LibraryClassify(String[] info)
+        {
+            return treeLibrary.Classify(info, table);
         }
 
         public void Load(string path)

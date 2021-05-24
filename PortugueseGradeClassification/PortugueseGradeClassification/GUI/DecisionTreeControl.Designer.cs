@@ -29,9 +29,9 @@ namespace PortugueseGradeClassification.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.TrainButton = new System.Windows.Forms.Button();
             this.guessesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.schoolComboBox = new System.Windows.Forms.ComboBox();
@@ -100,6 +100,7 @@ namespace PortugueseGradeClassification.GUI
             this.sexComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ClasiffyButton = new System.Windows.Forms.Button();
+            this.LibAccuracyLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.guessesChart)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -116,16 +117,16 @@ namespace PortugueseGradeClassification.GUI
             // 
             // guessesChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.guessesChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.guessesChart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.guessesChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.guessesChart.Legends.Add(legend1);
             this.guessesChart.Location = new System.Drawing.Point(669, 54);
             this.guessesChart.Name = "guessesChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.guessesChart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.guessesChart.Series.Add(series1);
             this.guessesChart.Size = new System.Drawing.Size(249, 211);
             this.guessesChart.TabIndex = 1;
             this.guessesChart.Text = "chart1";
@@ -887,10 +888,21 @@ namespace PortugueseGradeClassification.GUI
             this.ClasiffyButton.UseVisualStyleBackColor = true;
             this.ClasiffyButton.Click += new System.EventHandler(this.ClasiffyButton_Click);
             // 
+            // LibAccuracyLabel
+            // 
+            this.LibAccuracyLabel.AutoSize = true;
+            this.LibAccuracyLabel.Location = new System.Drawing.Point(781, 312);
+            this.LibAccuracyLabel.Name = "LibAccuracyLabel";
+            this.LibAccuracyLabel.Size = new System.Drawing.Size(36, 13);
+            this.LibAccuracyLabel.TabIndex = 40;
+            this.LibAccuracyLabel.Text = "holder";
+            this.LibAccuracyLabel.Visible = false;
+            // 
             // DecisionTreeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.LibAccuracyLabel);
             this.Controls.Add(this.ClasiffyButton);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.guessesChart);
@@ -901,6 +913,7 @@ namespace PortugueseGradeClassification.GUI
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -974,5 +987,6 @@ namespace PortugueseGradeClassification.GUI
         private System.Windows.Forms.TextBox fEduTextBox;
         private System.Windows.Forms.TextBox mEduTextBox;
         private System.Windows.Forms.TextBox absencesTextBox;
+        private System.Windows.Forms.Label LibAccuracyLabel;
     }
 }

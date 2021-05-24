@@ -15,9 +15,9 @@ namespace PortugueseGradeClassification.Model
         private Codification codeBook;
         private string[] headers;
 
-        public DecisionTreeLibrary(DataTable data)
+        public DecisionTreeLibrary()
         {
-            TrainTree(data);
+           
         }
 
 
@@ -37,81 +37,85 @@ namespace PortugueseGradeClassification.Model
 
             setHeaders(headers);
 
-            //Convierte los valores traducidos a inputs y el output esperado.
-            int[][] inputs = convertedData.ToJagged<int>(headers);
-            int[] outputs = convertedData.ToArray<int>("G3");
-
-            var id3learning = new ID3Learning()
+            DecisionVariable[] attributes =
             {
-
-
-            new DecisionVariable("school",  2), 
-            new DecisionVariable("sex", 2), 
-            
-            //Numérico, revisar como funciona esto, por ahora uso el intervalo
-            new DecisionVariable("age", 8),  
-            new DecisionVariable("address", 2),
-            new DecisionVariable("famsize", 2),
-            new DecisionVariable("Pstatus", 2),
-            new DecisionVariable("Medu", 5),
-            new DecisionVariable("Fedu", 5),
-            new DecisionVariable("Mjob", 5),
-            new DecisionVariable("Fjob", 5),
-            new DecisionVariable("reason", 4),
-            new DecisionVariable("guardian", 3),
-            new DecisionVariable("traveltime", 5),
-            new DecisionVariable("studytime", 5),
-            new DecisionVariable("failures", 4),
-            new DecisionVariable("schoolsup", 2),
-            new DecisionVariable("famsup", 2),
-            new DecisionVariable("paid", 2),
-            new DecisionVariable("activities", 2),
-            new DecisionVariable("nursery", 2),
-            new DecisionVariable("higher", 2),
-            new DecisionVariable("internet", 2),
-            new DecisionVariable("romantic", 2),
-            new DecisionVariable("famrel", 5),
-            new DecisionVariable("freetime", 5),
-            new DecisionVariable("goout", 5),
-            new DecisionVariable("Dalc", 5),
-            new DecisionVariable("Walc", 5),
-            new DecisionVariable("health", 5),
-            new DecisionVariable("absences", 94),
-            new DecisionVariable("G1", 21),
-            new DecisionVariable("G2", 21),
+                new DecisionVariable("school", 2),
+                new DecisionVariable("sex", 2), 
+                new DecisionVariable("age", 8),// revisar
+                new DecisionVariable("address", 2),
+                new DecisionVariable("famsize", 2),
+                new DecisionVariable("Pstatus", 2),
+                new DecisionVariable("Medu", 5),
+                new DecisionVariable("Fedu", 5),
+                new DecisionVariable("Mjob", 5),
+                new DecisionVariable("Fjob", 5),
+                new DecisionVariable("reason", 4),
+                new DecisionVariable("guardian", 3),
+                new DecisionVariable("traveltime", 5),
+                new DecisionVariable("studytime", 5),
+                new DecisionVariable("failures", 4),
+                new DecisionVariable("schoolsup", 2),
+                new DecisionVariable("famsup", 2),
+                new DecisionVariable("paid", 2),
+                new DecisionVariable("activities", 2),
+                new DecisionVariable("nursery", 2),
+                new DecisionVariable("higher", 2),
+                new DecisionVariable("internet", 2),
+                new DecisionVariable("romantic", 2),
+                new DecisionVariable("famrel", 5),
+                new DecisionVariable("freetime", 5),
+                new DecisionVariable("goout", 5),
+                new DecisionVariable("Dalc", 5),
+                new DecisionVariable("Walc", 5),
+                new DecisionVariable("health", 5),
+                new DecisionVariable("absences", DecisionVariableKind.Continuous),
+                new DecisionVariable("G1", DecisionVariableKind.Continuous),
+                new DecisionVariable("G2", DecisionVariableKind.Continuous)
             };
 
+
+            tree = new DecisionTree(attributes, 11);
+            C45Learning c45 = new C45Learning(tree);
+
+            //Convierte los valores traducidos a inputs y el output esperado.
+            double[][] inputs = convertedData.ToJagged(headers);
+            int[] outputs = convertedData.ToArray<int>("G3");
+
+
+
             //Entrenamiento del arbol
-            tree = id3learning.Learn(inputs, outputs); 
+            c45.Learn(inputs, outputs);
         }
 
         public double Test(DataTable test)
         {
             DataTable convertedData = codeBook.Apply(test);
 
-            String[] headers = new string[32];
-            for (int i = 0; i < 32; i++)
-            {
-                headers[i] = test.Columns[i].ColumnName;
-            }
-
             //Convierte los valores traducidos a inputs y el output esperado.
-            int[][] inputs = convertedData.ToJagged<int>(headers);
+            double[][] inputs = convertedData.ToJagged(headers);
             int[] outputs = convertedData.ToArray<int>("G3");
 
             double error = new ZeroOneLoss(outputs).Loss(tree.Decide(inputs));
             return (1 - error);
         }
 
-        public string Classify(String[] info, DataTable data)
+        public string Classify(DataTable data)
         {
-            data.Columns.RemoveAt(32);
-            Codification cd = new Codification(data);
-            int[] query = cd.Transform(headers, info);//revisr que si este funcionando correctamente, hacer una impresion en consola para probarlo
-            int prediction = tree.Decide(query);
+            DataTable convertedData = codeBook.Apply(data);
 
-            string answer = codeBook.Revert("G3",prediction);
+            double[][] inputs = convertedData.ToJagged(headers);
+            int prediction = tree.Decide(inputs[0]);
 
+            string answer;
+            Console.WriteLine("prediction: "+prediction);
+            try
+            {
+                answer = codeBook.Revert("G3", prediction);
+            }
+            catch (Exception)
+            {
+                answer = "na";
+            }
             return answer; //lo que devuelva debería ser la nota, aunque existe la opcion "G3 {nota}"
         }
 

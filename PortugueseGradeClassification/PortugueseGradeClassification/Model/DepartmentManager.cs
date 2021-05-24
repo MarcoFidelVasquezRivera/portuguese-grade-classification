@@ -21,6 +21,7 @@ namespace PortugueseGradeClassification.Model
         {
             table = new DataTable();
             students = new List<Student>();
+            treeLibrary = new DecisionTreeLibrary();
         }
 
         public Tuple<double, double> TrainTree() 
@@ -42,7 +43,7 @@ namespace PortugueseGradeClassification.Model
             }
 
             Random a = new Random();
-            for (int i = 0; i < table.Rows.Count*0.8; i++) 
+            for (int i = 0; i < table.Rows.Count*0.8; i++)
             {
                 int randmNum = a.Next(0,copy.Rows.Count);
                 training.Rows.Add(copy.Rows[randmNum].ItemArray);
@@ -89,7 +90,21 @@ namespace PortugueseGradeClassification.Model
 
         public string LibraryClassify(String[] info)
         {
-            return treeLibrary.Classify(info, table);
+            DataTable dt = new DataTable();
+            for (int i = 0; i < 32; i++)
+            {
+                string header = Convert.ToString(table.Columns[i].ColumnName);
+                Console.WriteLine(header);
+                dt.Columns.Add(header);
+            }
+
+            DataRow dr = dt.NewRow();
+            for (int i = 0; i < info.Length; i++)
+            {
+                dr[i] = info[i]; //carga los datos de cada columna para su respectiva fila
+            }
+            dt.Rows.Add(dr);
+            return treeLibrary.Classify(dt);
         }
 
         public void Load(string path)
@@ -134,9 +149,6 @@ namespace PortugueseGradeClassification.Model
 
                 line = reader.ReadLine();
             }
-
-            treeLibrary = new DecisionTreeLibrary(table);
-
 
         }
 

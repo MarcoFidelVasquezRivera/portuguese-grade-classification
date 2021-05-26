@@ -97,8 +97,6 @@ namespace PortugueseGradeClassification.Model
             treeLibrary.TrainTree(traininglibrary);
 
             double libPercent = treeLibrary.Test(copylibrary);
-            Console.WriteLine(treeLibrary.Classify(copylibrary));
-            Console.WriteLine(tree.Classify(copy.Rows[0]));
 
             Tuple<double, double> percents = new Tuple<double,double>(impPercent, libPercent);
             return percents;
@@ -121,7 +119,6 @@ namespace PortugueseGradeClassification.Model
             for (int i = 0; i < 32; i++)
             {
                 string header = Convert.ToString(table.Columns[i].ColumnName);
-                Console.WriteLine(header);
                 if (i == 2 || i == 6 || i == 7 || (i >= 12 && i <= 14) || i >= 23)
                 {
                     dt.Columns.Add(header, typeof(double));

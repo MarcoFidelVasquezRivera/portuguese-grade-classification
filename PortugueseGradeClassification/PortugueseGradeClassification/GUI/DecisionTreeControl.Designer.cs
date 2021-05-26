@@ -29,9 +29,9 @@ namespace PortugueseGradeClassification.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.TrainButton = new System.Windows.Forms.Button();
             this.guessesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.schoolComboBox = new System.Windows.Forms.ComboBox();
@@ -117,16 +117,16 @@ namespace PortugueseGradeClassification.GUI
             // 
             // guessesChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.guessesChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.guessesChart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.guessesChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.guessesChart.Legends.Add(legend1);
             this.guessesChart.Location = new System.Drawing.Point(686, 99);
             this.guessesChart.Name = "guessesChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.guessesChart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.guessesChart.Series.Add(series1);
             this.guessesChart.Size = new System.Drawing.Size(249, 211);
             this.guessesChart.TabIndex = 1;
             this.guessesChart.Text = "chart1";
@@ -880,7 +880,7 @@ namespace PortugueseGradeClassification.GUI
             // 
             // ClasiffyButton
             // 
-            this.ClasiffyButton.Location = new System.Drawing.Point(746, 464);
+            this.ClasiffyButton.Location = new System.Drawing.Point(756, 346);
             this.ClasiffyButton.Name = "ClasiffyButton";
             this.ClasiffyButton.Size = new System.Drawing.Size(111, 23);
             this.ClasiffyButton.TabIndex = 39;

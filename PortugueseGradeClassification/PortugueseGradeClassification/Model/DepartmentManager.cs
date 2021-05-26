@@ -14,12 +14,14 @@ namespace PortugueseGradeClassification.Model
     {      
         private List<Student> students;
         private DataTable table;
+        private DataTable tableTwo;//esta tabla es necesaria para el arbol con libreria
         private DecisionTree tree;
         private DecisionTreeLibrary treeLibrary;
 
         public DepartmentManager()
         {
             table = new DataTable();
+            tableTwo = new DataTable();
             students = new List<Student>();
             treeLibrary = new DecisionTreeLibrary();
         }
@@ -27,13 +29,26 @@ namespace PortugueseGradeClassification.Model
         public Tuple<double, double> TrainTree() 
         {
             DataTable copy = new DataTable();
+            DataTable copylibrary = new DataTable();
             DataTable training = new DataTable();
+            DataTable traininglibrary = new DataTable();
 
             for (int i = 0; i < 33; i++) 
             {
                 string header = Convert.ToString(table.Columns[i].ColumnName);
+                if (i == 2 || i == 6 || i == 7 || (i >= 12 && i <= 14) || i >= 23)
+                {
+                    copylibrary.Columns.Add(header,typeof(double));
+                    traininglibrary.Columns.Add(header, typeof(double));
+                }
+                else
+                {
+                    copylibrary.Columns.Add(header, typeof(string));
+                    traininglibrary.Columns.Add(header, typeof(string));
+                }
                 copy.Columns.Add(header);
                 training.Columns.Add(header);
+
             }
 
             
@@ -42,13 +57,23 @@ namespace PortugueseGradeClassification.Model
                 copy.Rows.Add(dr.ItemArray);
             }
 
+            foreach (DataRow dr in tableTwo.Rows)
+            {
+                copylibrary.Rows.Add(dr.ItemArray);
+            }
+
+
             Random a = new Random();
             for (int i = 0; i < table.Rows.Count*0.8; i++)
             {
                 int randmNum = a.Next(0,copy.Rows.Count);
+
                 training.Rows.Add(copy.Rows[randmNum].ItemArray);
+                traininglibrary.Rows.Add(copylibrary.Rows[randmNum].ItemArray);
+
+
                 copy.Rows[randmNum].Delete();
-            
+                copylibrary.Rows[randmNum].Delete();
             }
             
             tree = new DecisionTree(training);
@@ -69,9 +94,11 @@ namespace PortugueseGradeClassification.Model
 
             double impPercent = correct/Convert.ToDouble(copy.Rows.Count);
 
-            treeLibrary.TrainTree(table);
+            treeLibrary.TrainTree(traininglibrary);
 
-            double libPercent = treeLibrary.Test(copy);
+            double libPercent = treeLibrary.Test(copylibrary);
+            Console.WriteLine(treeLibrary.Classify(copylibrary));
+            Console.WriteLine(tree.Classify(copy.Rows[0]));
 
             Tuple<double, double> percents = new Tuple<double,double>(impPercent, libPercent);
             return percents;
@@ -95,13 +122,28 @@ namespace PortugueseGradeClassification.Model
             {
                 string header = Convert.ToString(table.Columns[i].ColumnName);
                 Console.WriteLine(header);
-                dt.Columns.Add(header);
+                if (i == 2 || i == 6 || i == 7 || (i >= 12 && i <= 14) || i >= 23)
+                {
+                    dt.Columns.Add(header, typeof(double));
+                }
+                else
+                {
+                    dt.Columns.Add(header, typeof(string));
+                }
+                
             }
 
             DataRow dr = dt.NewRow();
             for (int i = 0; i < info.Length; i++)
             {
-                dr[i] = info[i]; //carga los datos de cada columna para su respectiva fila
+                if (i == 2 || i == 6 || i == 7 || (i >= 12 && i <= 14) || i >= 23)
+                {
+                    dr[i] = Convert.ToDouble(info[i]); //carga los datos de cada columna para su respectiva fila
+                }
+                else
+                {
+                    dr[i] = info[i]; //carga los datos de cada columna para su respectiva fila
+                }
             }
             dt.Rows.Add(dr);
             return treeLibrary.Classify(dt);
@@ -147,6 +189,21 @@ namespace PortugueseGradeClassification.Model
                 }
                 table.Rows.Add(dr);
 
+                DataRow dr2 = tableTwo.NewRow();
+                for (int i = 0; i < info.Length; i++)
+                {
+                    if (i == 2 || i == 6 || i == 7 || (i >= 12 && i <= 14) || i >= 23)
+                    {
+                        dr2[i] = Convert.ToDouble(info[i]); //carga los datos de cada columna para su respectiva fila
+                    }
+                    else
+                    {
+                        dr2[i] = info[i]; //carga los datos de cada columna para su respectiva fila
+                    }
+
+                }
+                tableTwo.Rows.Add(dr2);
+
                 line = reader.ReadLine();
             }
 
@@ -156,6 +213,14 @@ namespace PortugueseGradeClassification.Model
         {
             for (int i = 0; i < headers.Length; i++)
             {
+                if (i == 2 || i == 6 || i == 7 || (i >= 12 && i <= 14) || i >= 23)
+                {
+                    this.tableTwo.Columns.Add(headers[i], typeof(double));
+                }
+                else
+                {
+                    this.tableTwo.Columns.Add(headers[i], typeof(string));
+                }
                 this.table.Columns.Add(headers[i]);
             }
         }

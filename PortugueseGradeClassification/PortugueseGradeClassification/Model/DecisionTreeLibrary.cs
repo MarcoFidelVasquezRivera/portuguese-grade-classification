@@ -26,7 +26,9 @@ namespace PortugueseGradeClassification.Model
         public void TrainTree(DataTable data)
         {
             //Codebook convierte los datos de texto a labels numéricos (esto **podria** molestar con numéricos)
-            codeBook = new Codification(data);
+            codeBook = new Codification(data, "school", "sex", "address", "famsize", "Pstatus", "Mjob", "Fjob", "reason", "guardian",
+                "schoolsup", "famsup", "paid", "activities","nursery", "higher", "internet", "romantic");
+            
             DataTable convertedData = codeBook.Apply(data);
 
             String[] headers = new string[32];
@@ -41,19 +43,19 @@ namespace PortugueseGradeClassification.Model
             {
                 new DecisionVariable("school", 2),
                 new DecisionVariable("sex", 2), 
-                new DecisionVariable("age", 8),// revisar
+                new DecisionVariable("age", DecisionVariableKind.Continuous),// revisar i=2 || i=6 || i=7 || (i>=12 && i<=14) || i>=23
                 new DecisionVariable("address", 2),
                 new DecisionVariable("famsize", 2),
                 new DecisionVariable("Pstatus", 2),
-                new DecisionVariable("Medu", 5),
-                new DecisionVariable("Fedu", 5),
+                new DecisionVariable("Medu", DecisionVariableKind.Continuous),
+                new DecisionVariable("Fedu", DecisionVariableKind.Continuous),
                 new DecisionVariable("Mjob", 5),
                 new DecisionVariable("Fjob", 5),
                 new DecisionVariable("reason", 4),
                 new DecisionVariable("guardian", 3),
-                new DecisionVariable("traveltime", 5),
-                new DecisionVariable("studytime", 5),
-                new DecisionVariable("failures", 4),
+                new DecisionVariable("traveltime", DecisionVariableKind.Continuous),
+                new DecisionVariable("studytime", DecisionVariableKind.Continuous),
+                new DecisionVariable("failures", DecisionVariableKind.Continuous),
                 new DecisionVariable("schoolsup", 2),
                 new DecisionVariable("famsup", 2),
                 new DecisionVariable("paid", 2),
@@ -62,12 +64,12 @@ namespace PortugueseGradeClassification.Model
                 new DecisionVariable("higher", 2),
                 new DecisionVariable("internet", 2),
                 new DecisionVariable("romantic", 2),
-                new DecisionVariable("famrel", 5),
-                new DecisionVariable("freetime", 5),
-                new DecisionVariable("goout", 5),
-                new DecisionVariable("Dalc", 5),
-                new DecisionVariable("Walc", 5),
-                new DecisionVariable("health", 5),
+                new DecisionVariable("famrel", DecisionVariableKind.Continuous),
+                new DecisionVariable("freetime", DecisionVariableKind.Continuous),
+                new DecisionVariable("goout", DecisionVariableKind.Continuous),
+                new DecisionVariable("Dalc", DecisionVariableKind.Continuous),
+                new DecisionVariable("Walc", DecisionVariableKind.Continuous),
+                new DecisionVariable("health", DecisionVariableKind.Continuous),
                 new DecisionVariable("absences", DecisionVariableKind.Continuous),
                 new DecisionVariable("G1", DecisionVariableKind.Continuous),
                 new DecisionVariable("G2", DecisionVariableKind.Continuous)
@@ -106,16 +108,8 @@ namespace PortugueseGradeClassification.Model
             double[][] inputs = convertedData.ToJagged(headers);
             int prediction = tree.Decide(inputs[0]);
 
-            string answer;
-            Console.WriteLine("prediction: "+prediction);
-            try
-            {
-                answer = codeBook.Revert("G3", prediction);
-            }
-            catch (Exception)
-            {
-                answer = "na";
-            }
+            string answer = Convert.ToString(prediction);
+
             return answer; //lo que devuelva debería ser la nota, aunque existe la opcion "G3 {nota}"
         }
 

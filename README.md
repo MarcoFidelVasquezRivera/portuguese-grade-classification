@@ -42,6 +42,8 @@ For more information about the program, visit the links below.
 
 [Explanation video 2nd release](https://youtu.be/DN5U29EkHuI)
 
+[Explanation video 3rd release](https://youtu.be/7S8WtP1CsG4)
+
 ## How the program works:
 
 This is the first window you see when the program is executed, you can open a file dialog by clicking the button:

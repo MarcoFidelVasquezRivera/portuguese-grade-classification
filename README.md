@@ -114,11 +114,27 @@ Interval  |  Grade
 
 11        |   20
 
-![image](https://user-images.githubusercontent.com/54719974/118566880-52cbb480-b73a-11eb-9208-57856405fa16.png)
 
 The Tree Graph tab allows graphic visualization of the decision tree built in the Decision Tree tab. The numbers found on the leaf nodes corresponds to the grade interval predicted by that leaf. For generation, DOUBLE CLICK the canvas.
 
 ![image](https://user-images.githubusercontent.com/54719974/118567440-6af00380-b73b-11eb-93ab-6fd2c9d7dfb8.png)
+
+Using the [accord library](http://accord-framework.net/) we developed a new decision tree. Now the user have two options at the moment of classify a student, the program 
+displays the prediction of the chosen tree.
+
+Manual Decision Tree prediction:
+
+![image](https://user-images.githubusercontent.com/54712482/119713348-378e3280-be27-11eb-887c-85738a3a950a.png)
+
+Library Decision Tree prediction:
+
+![image](https://user-images.githubusercontent.com/54712482/119713383-4248c780-be27-11eb-92c5-f4a4a38008bb.png)
+
+
+
+
+
+
 
 
 

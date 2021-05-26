@@ -140,7 +140,17 @@ namespace PortugueseGradeClassification.GUI
                 hEduComboBox.Text, internetComboBox.Text, romanticComboBox.Text, fRelationTextBox.Text, fTimeTextBox.Text, goOutTextBox.Text, aWeekTextBox.Text,
                 aWeekendTextBox.Text, healthTextBox.Text, absencesTextBox.Text, gOneTextBox.Text, gTwoTextBox.Text};
 
+                if(manager.LibraryClassify(info) != "-1") { 
                 MessageBox.Show("Implemented tree prediction: " + manager.Clasify(info) + "\nLibrary tree prediction: " + manager.LibraryClassify(info), "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else 
+                {
+
+                 MessageBox.Show("Library tree prediction returned -1, please retrain it", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                }
+
             }
         }
 

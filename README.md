@@ -34,6 +34,10 @@ For more information about the program, visit the links below.
 
 [TrainTree method sequence diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/TrainTreeMethod%20sequence%20diagram.pdf)
 
+[TrainLibraryTree method sequence diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/TrainLibraryTreeMethod%20sequence%20diagram.pdf)
+
+[ClassifyLibraryTree method sequence diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/LibrayClassify%20sequence%20diagram.pdf)
+
 [Explanation video 1st release](https://youtu.be/tOl-RGc9yCI)
 
 [Explanation video 2nd release](https://youtu.be/DN5U29EkHuI)

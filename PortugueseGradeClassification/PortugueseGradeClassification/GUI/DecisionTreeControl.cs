@@ -15,6 +15,7 @@ namespace PortugueseGradeClassification.GUI
     public partial class DecisionTreeControl : UserControl
     {
         private DepartmentManager manager;
+        private Tuple<double, double> accuracies;
         public DecisionTreeControl()
         {
             InitializeComponent();
@@ -27,25 +28,7 @@ namespace PortugueseGradeClassification.GUI
 
         private void TrainButton_Click(object sender, EventArgs e)
         {
-            Tuple<double, double> accuracies = manager.TrainTree();
-            double impAccuracy = accuracies.Item1;
-            double libAccuracy = accuracies.Item2;
-
-            guessesChart.Series.Clear();
-            guessesChart.Series.Add("Series1");
-            guessesChart.Titles.Clear();
-
-            guessesChart.Titles.Add("Accuracy");
-            guessesChart.Series["Series1"].IsValueShownAsLabel = true;
-            guessesChart.Series["Series1"].ChartType = SeriesChartType.Pie;
-            guessesChart.Series["Series1"].Points.AddXY("Correct", Math.Round(impAccuracy,2));
-            guessesChart.Series["Series1"].Points.AddXY("Incorrect", Math.Round(1.0 - impAccuracy, 2));
-
-            guessesChart.Visible = true;
-
-            LibAccuracyLabel.Text = "Library Tree Accuracy: " + libAccuracy;
-            LibAccuracyLabel.Visible = true;
-
+            accuracies = manager.TrainTree();
         }
 
         private void ClasiffyButton_Click(object sender, EventArgs e)
@@ -170,6 +153,46 @@ namespace PortugueseGradeClassification.GUI
             catch(Exception)
             {
                 return false;//devuelve false si no es numerico
+            }
+        }
+
+        private void UpdateGraph(object sender, EventArgs e)
+        {
+            double impAccuracy = accuracies.Item1;
+            double libAccuracy = accuracies.Item2;
+
+            switch (graphViewer.Text) 
+            {
+                case ("Manual Decision Tree"):
+                    
+                    guessesChart.Series.Clear();
+                    guessesChart.Series.Add("Series1");
+                    guessesChart.Titles.Clear();
+
+                    guessesChart.Titles.Add("Accuracy");
+                    guessesChart.Series["Series1"].IsValueShownAsLabel = true;
+                    guessesChart.Series["Series1"].ChartType = SeriesChartType.Pie;
+                    guessesChart.Series["Series1"].Points.AddXY("Correct", Math.Round(impAccuracy, 2));
+                    guessesChart.Series["Series1"].Points.AddXY("Incorrect", Math.Round(1.0 - impAccuracy, 2));
+
+                    guessesChart.Visible = true;
+                    break;
+
+                case ("Library Decision Tree"):
+
+                    guessesChart.Series.Clear();
+                    guessesChart.Series.Add("Series1");
+                    guessesChart.Titles.Clear();
+
+                    guessesChart.Titles.Add("Accuracy");
+                    guessesChart.Series["Series1"].IsValueShownAsLabel = true;
+                    guessesChart.Series["Series1"].ChartType = SeriesChartType.Pie;
+                    guessesChart.Series["Series1"].Points.AddXY("Correct", Math.Round(libAccuracy, 2));
+                    guessesChart.Series["Series1"].Points.AddXY("Incorrect", Math.Round(1.0 - libAccuracy, 2));
+
+                    guessesChart.Visible = true;
+                    break;
+
             }
         }
     }

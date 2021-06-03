@@ -15,7 +15,7 @@ namespace PortugueseGradeClassification.GUI
     public partial class DecisionTreeControl : UserControl
     {
         private DepartmentManager manager;
-        private Tuple<double, double> accuracies;
+        private Tuple<double, double, double, double> accuracies;
         public DecisionTreeControl()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace PortugueseGradeClassification.GUI
 
         private void TrainButton_Click(object sender, EventArgs e)
         {
-            accuracies = manager.TrainTree();
+            accuracies = manager.TrainTree(0.8);
         }
 
         private void ClasiffyButton_Click(object sender, EventArgs e)

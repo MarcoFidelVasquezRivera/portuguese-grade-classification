@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace PortugueseGradeClassification.Model
             treeLibrary = new DecisionTreeLibrary();
         }
 
-        public Tuple<double, double> TrainTree() 
+        public Tuple<double, double, double, double> TrainTree(double percent) 
         {
             DataTable copy = new DataTable();
             DataTable copylibrary = new DataTable();
@@ -64,7 +65,7 @@ namespace PortugueseGradeClassification.Model
 
 
             Random a = new Random();
-            for (int i = 0; i < table.Rows.Count*0.8; i++)
+            for (int i = 0; i < table.Rows.Count*percent; i++)
             {
                 int randmNum = a.Next(0,copy.Rows.Count);
 
@@ -81,6 +82,8 @@ namespace PortugueseGradeClassification.Model
 
             double correct = 0;
 
+            var sw = new Stopwatch();
+            sw.Start();
             foreach (DataRow dr in copy.Rows)
             {
                 string classification = tree.Classify(dr);
@@ -89,16 +92,23 @@ namespace PortugueseGradeClassification.Model
                 {
                     correct++;
                 }
-
             }
 
+            sw.Stop();
+            double timeManualTree = sw.ElapsedMilliseconds;
             double impPercent = correct/Convert.ToDouble(copy.Rows.Count);
 
+            //entrenamiento del segundo arbol
             treeLibrary.TrainTree(traininglibrary);
 
+            sw = new Stopwatch();
+            sw.Start();
             double libPercent = treeLibrary.Test(copylibrary);
 
-            Tuple<double, double> percents = new Tuple<double,double>(impPercent, libPercent);
+            sw.Stop();
+            double timeLibraryTree = sw.ElapsedMilliseconds;
+
+            Tuple<double, double, double, double> percents = new Tuple<double,double,double,double>(impPercent, libPercent, timeManualTree, timeLibraryTree);
             return percents;
         }
 
@@ -219,6 +229,27 @@ namespace PortugueseGradeClassification.Model
                     this.tableTwo.Columns.Add(headers[i], typeof(string));
                 }
                 this.table.Columns.Add(headers[i]);
+            }
+        }
+
+        public void Experiment()
+        {
+            double[] percents = { 0.2, 0.4, 0.6, 0.8 };
+            DataTable information = new DataTable();
+        
+            information.Columns.Add("Implementacion utilizada");
+            information.Columns.Add("porcentaje de entrenamiento");
+            information.Columns.Add("ram del os");
+            information.Columns.Add("tiempo usado");
+            information.Columns.Add("correctitud");
+
+            foreach (double percent in percents)
+            {
+                for (int i=0; i<4;i++)
+                {
+                    Tuple<double,double,double,double> data = this.TrainTree(percent);
+                }
+                
             }
         }
 

@@ -232,6 +232,7 @@ namespace PortugueseGradeClassification.Model
                 this.table.Columns.Add(headers[i]);
             }
         }
+
         //ni idea de si esto funciona
         [DllImport("kernel32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -239,33 +240,26 @@ namespace PortugueseGradeClassification.Model
 
         public void Experiment()
         {
+            StreamWriter sw = new StreamWriter("path");
             List<double> percents = new List<double>();
-            double[] array = { 0.2, 0.4, 0.6, 0.8 };
+            List<string> information = new List<string>();
 
-            foreach (double num in array)
-            {
-                percents.Add(num);
-            }
+            percents.Add(0.2);
+            percents.Add(0.4);
+            percents.Add(0.6);
+            percents.Add(0.8);
 
-            DataTable information = new DataTable();
-        
-            information.Columns.Add("Implementacion utilizada");
-            information.Columns.Add("porcentaje de entrenamiento");
-            information.Columns.Add("ram del os");
-            information.Columns.Add("tiempo usado");
-            information.Columns.Add("correctitud");
+            information.Add("Implementacion utilizada,porcentaje de entrenamiento,ram del os,tiempo usado,correctitud");
 
             foreach (double percent in percents)
             {
                 for (int i=0; i<4;i++)
                 {
-                    DataRow dr2 = tableTwo.NewRow();
-                    DataRow dr = tableTwo.NewRow();
                     Tuple<double,double,double,double> data = this.TrainTree(percent);
 
                     long ram;
                     GetPhysicallyInstalledSystemMemory(out ram);
-                    ram = ram / 1024 / 1024;
+                    ram = ram / 1024 / 1024;//convierte la cantidad de ram obtenida a GB
 
                     //revisa la cantidad de ram del sistema y dependiendo de esta pone el nivel que esta es en el experimento
                     if (ram >= 8)
@@ -280,26 +274,22 @@ namespace PortugueseGradeClassification.Model
                         ram = 1;
                     }
 
+                    string infoManualTree = $"2,{(percents.IndexOf(percent) + 1)},{ram},{data.Item4},{data.Item2}";
+                    string infoLibraryTree = $"1,{(percents.IndexOf(percent) + 1)},{ram},{data.Item3},{data.Item1}";
 
-                    dr[0] = 2;
-                    dr[1] = percents.IndexOf(percent) + 1;
-                    dr[2] = ram;
-                    dr[3] = data.Item4;
-                    dr[4] = data.Item2;
-
-                    dr2[0] = 1;
-                    dr2[1] = percents.IndexOf(percent)+1;
-                    dr2[2] = ram;
-                    dr2[3] = data.Item3;
-                    dr2[4] = data.Item1;
-
-                    information.Rows.Add(dr);
-                    information.Rows.Add(dr2);
+                    information.Add(infoManualTree);
+                    information.Add(infoLibraryTree);
                 }
 
             }
 
-            //hacer que se imprima la informacion en un csv
+            //escribe todos lo datos obtenidos en un archivo de texto plano
+            foreach(string row in information)
+            {
+                sw.WriteLine(row);
+            }
+            sw.Close();
+
         }
 
         public void FilterByCategory(String rowName, String category)

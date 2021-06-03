@@ -4,6 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using PortugueseGradeClassification.CustomExceptions;
@@ -231,14 +232,20 @@ namespace PortugueseGradeClassification.Model
                 this.table.Columns.Add(headers[i]);
             }
         }
+        //ni idea de si esto funciona
+        [DllImport("kernel32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GetPhysicallyInstalledSystemMemory(out long TotalMemoryInKilobytes);
 
         public void Experiment()
         {
             List<double> percents = new List<double>();
-            percents.Add(0.2);
-            percents.Add(0.4);
-            percents.Add(0.6);
-            percents.Add(0.8);
+            double[] array = { 0.2, 0.4, 0.6, 0.8 };
+
+            foreach (double num in array)
+            {
+                percents.Add(num);
+            }
 
             DataTable information = new DataTable();
         
@@ -256,15 +263,33 @@ namespace PortugueseGradeClassification.Model
                     DataRow dr = tableTwo.NewRow();
                     Tuple<double,double,double,double> data = this.TrainTree(percent);
 
-                    dr[0] = 1;
+                    long ram;
+                    GetPhysicallyInstalledSystemMemory(out ram);
+                    ram = ram / 1024 / 1024;
+
+                    //revisa la cantidad de ram del sistema y dependiendo de esta pone el nivel que esta es en el experimento
+                    if (ram >= 8)
+                    {
+                        ram = 3;
+                    }else if (ram >= 6)
+                    {
+                        ram = 2;
+                    }
+                    else
+                    {
+                        ram = 1;
+                    }
+
+
+                    dr[0] = 2;
                     dr[1] = percents.IndexOf(percent) + 1;
-                    dr[2] = 1;
+                    dr[2] = ram;
                     dr[3] = data.Item4;
                     dr[4] = data.Item2;
 
                     dr2[0] = 1;
                     dr2[1] = percents.IndexOf(percent)+1;
-                    dr2[2] = 1;
+                    dr2[2] = ram;
                     dr2[3] = data.Item3;
                     dr2[4] = data.Item1;
 

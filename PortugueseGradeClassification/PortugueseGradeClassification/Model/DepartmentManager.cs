@@ -234,7 +234,12 @@ namespace PortugueseGradeClassification.Model
 
         public void Experiment()
         {
-            double[] percents = { 0.2, 0.4, 0.6, 0.8 };
+            List<double> percents = new List<double>();
+            percents.Add(0.2);
+            percents.Add(0.4);
+            percents.Add(0.6);
+            percents.Add(0.8);
+
             DataTable information = new DataTable();
         
             information.Columns.Add("Implementacion utilizada");
@@ -247,10 +252,29 @@ namespace PortugueseGradeClassification.Model
             {
                 for (int i=0; i<4;i++)
                 {
+                    DataRow dr2 = tableTwo.NewRow();
+                    DataRow dr = tableTwo.NewRow();
                     Tuple<double,double,double,double> data = this.TrainTree(percent);
+
+                    dr[0] = 1;
+                    dr[1] = percents.IndexOf(percent) + 1;
+                    dr[2] = 1;
+                    dr[3] = data.Item4;
+                    dr[4] = data.Item2;
+
+                    dr2[0] = 1;
+                    dr2[1] = percents.IndexOf(percent)+1;
+                    dr2[2] = 1;
+                    dr2[3] = data.Item3;
+                    dr2[4] = data.Item1;
+
+                    information.Rows.Add(dr);
+                    information.Rows.Add(dr2);
                 }
-                
+
             }
+
+            //hacer que se imprima la informacion en un csv
         }
 
         public void FilterByCategory(String rowName, String category)

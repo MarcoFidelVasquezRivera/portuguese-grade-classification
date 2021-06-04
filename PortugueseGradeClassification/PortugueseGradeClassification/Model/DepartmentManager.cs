@@ -214,7 +214,7 @@ namespace PortugueseGradeClassification.Model
 
                 line = reader.ReadLine();
             }
-
+            Experiment();
         }
 
         public void CreateHeaders(String[] headers)
@@ -240,7 +240,7 @@ namespace PortugueseGradeClassification.Model
 
         public void Experiment()
         {
-            StreamWriter sw = new StreamWriter("path");
+            StreamWriter sw = new StreamWriter("C:/Users/User/Desktop/Test.csv");
             List<double> percents = new List<double>();
             List<string> information = new List<string>();
 
@@ -250,29 +250,30 @@ namespace PortugueseGradeClassification.Model
             percents.Add(0.8);
 
             information.Add("Implementacion utilizada,porcentaje de entrenamiento,ram del os,tiempo usado,correctitud");
+           
+            long ram;
+            GetPhysicallyInstalledSystemMemory(out ram);
+            ram = ram / 1024 / 1024;//convierte la cantidad de ram obtenida a GB
+
+            //revisa la cantidad de ram del sistema y dependiendo de esta pone el nivel que esta es en el experimento
+            if (ram >= 8)
+            {
+                ram = 3;
+            }
+            else if (ram >= 6)
+            {
+                ram = 2;
+            }
+            else
+            {
+                ram = 1;
+            }
 
             foreach (double percent in percents)
             {
                 for (int i=0; i<4;i++)
                 {
                     Tuple<double,double,double,double> data = this.TrainTree(percent);
-
-                    long ram;
-                    GetPhysicallyInstalledSystemMemory(out ram);
-                    ram = ram / 1024 / 1024;//convierte la cantidad de ram obtenida a GB
-
-                    //revisa la cantidad de ram del sistema y dependiendo de esta pone el nivel que esta es en el experimento
-                    if (ram >= 8)
-                    {
-                        ram = 3;
-                    }else if (ram >= 6)
-                    {
-                        ram = 2;
-                    }
-                    else
-                    {
-                        ram = 1;
-                    }
 
                     string infoManualTree = $"2,{(percents.IndexOf(percent) + 1)},{ram},{data.Item4},{data.Item2}";
                     string infoLibraryTree = $"1,{(percents.IndexOf(percent) + 1)},{ram},{data.Item3},{data.Item1}";

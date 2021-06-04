@@ -249,7 +249,7 @@ namespace PortugueseGradeClassification.Model
             percents.Add(0.6);
             percents.Add(0.8);
 
-            information.Add("Implementacion utilizada,porcentaje de entrenamiento,ram del os,tiempo usado,correctitud");
+            information.Add("Implementacion utilizada;porcentaje de entrenamiento;ram del os;tiempo usado;correctitud");
            
             long ram;
             GetPhysicallyInstalledSystemMemory(out ram);
@@ -275,8 +275,8 @@ namespace PortugueseGradeClassification.Model
                 {
                     Tuple<double,double,double,double> data = this.TrainTree(percent);
 
-                    string infoManualTree = $"2,{(percents.IndexOf(percent) + 1)},{ram},{data.Item4},{data.Item2}";
-                    string infoLibraryTree = $"1,{(percents.IndexOf(percent) + 1)},{ram},{data.Item3},{data.Item1}";
+                    string infoManualTree = $"2;{(percents.IndexOf(percent) + 1)};{ram};{data.Item4};{data.Item2}";
+                    string infoLibraryTree = $"1;{(percents.IndexOf(percent) + 1)};{ram};{data.Item3};{data.Item1}";
 
                     information.Add(infoManualTree);
                     information.Add(infoLibraryTree);

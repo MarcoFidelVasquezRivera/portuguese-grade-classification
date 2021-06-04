@@ -214,7 +214,6 @@ namespace PortugueseGradeClassification.Model
 
                 line = reader.ReadLine();
             }
-            Experiment();
         }
 
         public void CreateHeaders(String[] headers)

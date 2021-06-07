@@ -16,6 +16,10 @@ For more information about the program, visit the links below.
 
 [Engineering method](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/M%C3%A9todo%20de%20Ingenier%C3%ADa%20-%20Portuguese%20grade%20classification%20(1).pdf)
 
+[Experiment design](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/experiment%20design.docx)
+
+[Data gathered from the experiment](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/data/Test.csv)
+
 [Model package class diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/master/docs/Model%20Class%20Diagram.pdf)
 
 [GUI package class diagram](https://github.com/MarcoFidelVasquezRivera/portuguese-grade-classification/blob/develop/docs/GUI%20class%20diagram.pdf)
